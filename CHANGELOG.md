@@ -6,6 +6,29 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.2 — Fish Scales fix for Vesper's training, co-op skill recovery, and performance tweaks（2026-10-19）
+
+ヴェスパーの鍛錬と「魚の鱗」の組み合わせを直し、協力プレイの参加者でスキルが使えなくなる問題への対策を広げました。動作を軽くするための細かな調整も行いました。 / A fix for Vesper's training under "Fish Scales", broader handling of co-op guests whose skills become unusable, and minor adjustments to reduce processing load.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 「魚の鱗」で最大HPを削られながらヴェスパーの鍛錬（傷を糧にする）を溜めるとき、鍛錬が1段増えるたびに、その時点で削られている最大HPの25%が戻るようにしました。たとえば最大HPが200削られた状態で1段増えると、最大HPが50戻ります。現在のHPは回復せず、鍛錬の溜まり方とクールダウンも変わりません。 / While "Fish Scales" shaves max health on every hit, each stack gained by Vesper's expedition training now restores 25% of the max health currently shaved. For example, if 200 max health has been shaved, gaining one stack restores 50. Current health is not restored, and how training stacks build up and its cooldown are unchanged.
+- 協力プレイの参加者で、スキルが使えない状態が続いたときに検知できる場面を広げました。ホストは、ロックや参照も含めて状態を送り直します。 / Co-op guests now detect more cases of skills staying unusable, and the host resends locks and references along with the skill state.
+
+### 調整 / Adjustments
+
+- 装飾品の表示、一部のスキルの詠唱中の位置合わせ、図鑑の絞り込み、カーソルの処理、協力プレイ中の通信や一部の確認処理で不要な処理を省き、動作を軽くしました。ゲームの動きや見た目は変わりません。 / Reduced unnecessary work for accessory display, positioning during some skill channels, codex filters, cursor handling, and some communication and checks during co-op. Gameplay and visuals are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.1 — Performance tweaks（2026-10-18）
 
 動作を軽くするための細かな調整を行いました。 / Minor adjustments to reduce processing load.
