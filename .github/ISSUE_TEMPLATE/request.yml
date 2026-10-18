@@ -2,6 +2,11 @@ name: 要望 / Request
 description: 追加や変更の要望を送る / Suggest an addition or change
 labels: [enhancement]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        このMODは、すべてAIが作成しています。テストプレイは行っていません。小さなことでも、報告を歓迎します。
+        This mod is made entirely by AI and has not been play-tested. Every report is welcome, however small.
   - type: textarea
     id: request
     attributes:

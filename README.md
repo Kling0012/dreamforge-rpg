@@ -6,6 +6,12 @@ MOD は Steam ワークショップで配布しています。ソースコード
 The patch notes and bug report / request desk for Dreamforge RPG, a Shape of Dreams mod.
 The mod is distributed on the Steam Workshop. Source code is not published here.
 
+## このMODについて / About this mod
+
+このMODは、すべてAIが作成しています。テストプレイは行っていません。遊んでいて気になる点があれば、小さなことでも報告してください。プレイヤーの皆さんからの積極的な報告を歓迎します。
+
+This mod is made entirely by AI and has not been play-tested. If anything seems off while you play, please report it, however small. Reports from players are very welcome.
+
 ## 不具合の報告・要望 / Bug reports and requests
 
 [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) から送ってください。日本語でも英語でもかまいません。

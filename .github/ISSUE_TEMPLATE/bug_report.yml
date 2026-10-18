@@ -2,6 +2,11 @@ name: 不具合の報告 / Bug report
 description: 遊んでいて起きた不具合を知らせる / Report something that went wrong
 labels: [bug]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        このMODは、すべてAIが作成しています。テストプレイは行っていません。小さなことでも、報告を歓迎します。
+        This mod is made entirely by AI and has not been play-tested. Every report is welcome, however small.
   - type: input
     id: version
     attributes:
