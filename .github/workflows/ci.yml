@@ -1,0 +1,176 @@
+name: ci
+run-name: ci ${{ inputs.sha }} ${{ inputs.mode }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        required: true
+        type: string
+      mode:
+        required: true
+        type: choice
+        options: [quick, full]
+        default: quick
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Validate
+        env:
+          SHA: ${{ inputs.sha }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] && [[ "$MODE" =~ ^(quick|full)$ ]]
+          mkdir -m 700 "$RUNNER_TEMP/private-logs"
+      - name: Prepare
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          path: public
+      - name: Quiet checkout
+        run: |
+          set +x
+          umask 077
+          mkdir -p "$RUNNER_TEMP/private-logs" "$RUNNER_TEMP/git-bin"
+          command -v git >"$RUNNER_TEMP/git-bin/real-git"
+          printf '%s\n' '#!/usr/bin/env bash' 'set +x' 'real="$(<"$RUNNER_TEMP/git-bin/real-git")"' 'if [[ "${1:-}" == checkout || "${1:-}" == reset || ( "${1:-}" == log && "$*" != *--format=* ) ]]; then' '  exec "$real" "$@" >>"$RUNNER_TEMP/private-logs/checkout.log" 2>&1' 'fi' 'exec "$real" "$@" 2>>"$RUNNER_TEMP/private-logs/checkout.log"' >"$RUNNER_TEMP/git-bin/git"
+          chmod 700 "$RUNNER_TEMP/git-bin/git"
+          printf '%s\n' "$RUNNER_TEMP/git-bin" >>"$GITHUB_PATH"
+      - name: Fetch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Kling0012/shape-of-dreams-rpg-plan
+          ref: ${{ inputs.sha }}
+          ssh-key: ${{ secrets.PRIVATE_REPO_DEPLOY_KEY }}
+          persist-credentials: false
+          path: code
+          show-progress: false
+      - name: Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Plan
+        id: plan
+        env:
+          MODE: ${{ inputs.mode }}
+        run: |
+          set +x
+          python code/tools/ci/plan.py --mode "$MODE" >"$RUNNER_TEMP/private-logs/plan.json" 2>"$RUNNER_TEMP/private-logs/plan.log"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          try:
+              value = json.loads((Path(os.environ['RUNNER_TEMP']) / 'private-logs/plan.json').read_text())
+              ids = value['shard']
+              assert set(value) == {'shard'} and isinstance(ids, list) and 0 < len(ids) <= 256
+              assert all(type(n) is int and 1 <= n <= 256 for n in ids)
+              assert len(set(ids)) == len(ids)
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+                  output.write('matrix=' + json.dumps({'shard': ids}, separators=(',', ':')) + '\n')
+          except Exception:
+              raise SystemExit(1)
+          PY
+      - name: Encrypt
+        if: ${{ always() }}
+        run: |
+          set +x
+          umask 077
+          mkdir -p "$RUNNER_TEMP/private-logs" "$RUNNER_TEMP/encrypted" "$RUNNER_TEMP/gpg"
+          chmod 700 "$RUNNER_TEMP/gpg"
+          (set -o pipefail; tar -C "$RUNNER_TEMP/private-logs" -cf - . | gpg --no-options --homedir "$RUNNER_TEMP/gpg" --batch --trust-model always --recipient-file public/.github/ci-public.asc --encrypt --output "$RUNNER_TEMP/encrypted/plan.tar.gpg") >"$RUNNER_TEMP/encrypt.log" 2>&1
+      - name: Upload
+        if: ${{ always() && steps.plan.outcome != 'skipped' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: plan-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/encrypted/plan.tar.gpg
+          retention-days: 3
+          if-no-files-found: error
+
+  shard:
+    name: shard ${{ matrix.shard }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - name: Prepare
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          path: public
+      - name: Quiet checkout
+        run: |
+          set +x
+          umask 077
+          mkdir -p "$RUNNER_TEMP/private-logs" "$RUNNER_TEMP/git-bin"
+          command -v git >"$RUNNER_TEMP/git-bin/real-git"
+          printf '%s\n' '#!/usr/bin/env bash' 'set +x' 'real="$(<"$RUNNER_TEMP/git-bin/real-git")"' 'if [[ "${1:-}" == checkout || "${1:-}" == reset || ( "${1:-}" == log && "$*" != *--format=* ) ]]; then' '  exec "$real" "$@" >>"$RUNNER_TEMP/private-logs/checkout.log" 2>&1' 'fi' 'exec "$real" "$@" 2>>"$RUNNER_TEMP/private-logs/checkout.log"' >"$RUNNER_TEMP/git-bin/git"
+          chmod 700 "$RUNNER_TEMP/git-bin/git"
+          printf '%s\n' "$RUNNER_TEMP/git-bin" >>"$GITHUB_PATH"
+      - name: Fetch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Kling0012/shape-of-dreams-rpg-plan
+          ref: ${{ inputs.sha }}
+          ssh-key: ${{ secrets.PRIVATE_REPO_DEPLOY_KEY }}
+          persist-credentials: false
+          path: code
+          show-progress: false
+      - name: Dotnet
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Run
+        id: run
+        env:
+          SHARD: ${{ matrix.shard }}
+          CI_LOG_DIR: ${{ runner.temp }}/private-logs
+        run: |
+          set +x
+          umask 077
+          mkdir -p "$CI_LOG_DIR"
+          result=0
+          bash code/tools/ci/run-shard.sh "$SHARD" >"$CI_LOG_DIR/console.log" 2>&1 || result=$?
+          python - <<'PY'
+          import os, re
+          from pathlib import Path
+          number = os.environ['SHARD']
+          lines = (Path(os.environ['CI_LOG_DIR']) / 'console.log').read_text(errors='replace').splitlines()
+          pattern = rf'shard {re.escape(number)}: (ok|fail), passed [0-9]+, failed [0-9]+'
+          matches = [line for line in lines if re.fullmatch(pattern, line)]
+          print(matches[-1] if matches else f'shard {number}: fail, passed 0, failed 0')
+          PY
+          exit "$result"
+      - name: Encrypt
+        if: ${{ always() }}
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          set +x
+          umask 077
+          mkdir -p "$RUNNER_TEMP/private-logs" "$RUNNER_TEMP/encrypted" "$RUNNER_TEMP/gpg"
+          chmod 700 "$RUNNER_TEMP/gpg"
+          (set -o pipefail; tar -C "$RUNNER_TEMP/private-logs" -cf - . | gpg --no-options --homedir "$RUNNER_TEMP/gpg" --batch --trust-model always --recipient-file public/.github/ci-public.asc --encrypt --output "$RUNNER_TEMP/encrypted/shard-$SHARD.tar.gpg") >"$RUNNER_TEMP/encrypt.log" 2>&1
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: shard-${{ matrix.shard }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/encrypted/shard-${{ matrix.shard }}.tar.gpg
+          retention-days: 3
+          if-no-files-found: error
