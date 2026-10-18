@@ -1,0 +1,3762 @@
+# 更新履歴 / Changelog
+
+Dreamforge RPG（Shape of Dreams 用 MOD）の更新履歴です。新しい版が上にあります。
+
+The Dreamforge RPG changelog, newest first.
+
+---
+
+## v3.7.6 — 細かな調整 / Minor adjustments（2026-10-18）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+---
+
+## v3.7.5 — Remove unofferable relics from a trade in one click, plus cooking and mod-loading fixes（2026-10-18）
+
+### 新機能 / New features
+- 交換画面で、提示できなくなった遺物を警告横のボタンからまとめて外せるようにしました。提示中の欠片と調律石の数は保ちます。 / Added a button beside the trade warning to remove all relics that can no longer be offered while preserving the offered shard and tuning amounts.
+
+---
+
+## v3.7.4 — Trade tab relic description fix（2026-10-18）
+
+### 不具合の修正 / Bug fixes
+- 取引タブの遺物一覧で、説明が行内に収まらない場合に「…」を表示するようにしました。説明の続きは行や「…」にカーソルを合わせると確認できます。 / Relic descriptions in the Trade tab now show an ellipsis when they do not fit in the row. Hover over the row or ellipsis to read the full description.
+
+---
+
+## v3.7.3 — Fix profile recovery on file access failures（2026-10-18）
+
+### 不具合の修正 / Bug fixes
+- プロフィールの読み込みや復旧用の写し先の確認でアクセスに失敗したとき、例外が復旧処理の外へ漏れる経路を修正しました。プロフィール切替中の存在確認の失敗も、読み取り失敗と同じく切替前に検出します。 / Fixed access failures escaping profile recovery while checking save files or choosing recovery copy paths. File-existence failures during a profile switch are now detected before switching, like read failures.
+
+---
+
+## v3.7.2 — Resume checkpoint retention and profile access error fixes（2026-10-18）
+
+### 不具合の修正 / Bug fixes
+- 本体の再開保存を確認した地点の直前にあるチェックポイントを、未確定地点の件数制限とは別に保持するようにしました。 / Retain the checkpoint immediately before a confirmed native resume save independently of the pending checkpoint limit.
+- プロフィールの読み込みや退避で権限エラーを扱うようにしました。スロットの読み込みでは、元のデータを変更する前に読み込みを中止します。 / Handle access errors during profile loading and preservation. Slot loading aborts before modifying source data.
+
+---
+
+## v3.7.1 — Fix 14 unique links that could never trigger（2026-10-18）
+
+### 不具合の修正 / Bug fixes
+- 「傑作の連剣」「決意と慈悲」「双発の火薬庫」「風傷の殺陣」の連携が、同時に装着できない Identity 記憶2種を条件にしていて、発動できなかった問題を直しました。今は、その旅人の Identity 記憶1種と移動の記憶で発動します。 / Fixed the links on Masterwork Flurry, Resolve and Mercy, Twin-Shot Powder Keg and Wind-Scar Melee requiring two Identity memories that cannot be equipped together. They now trigger with one Identity memory and that traveler's Movement memory.
+- 受け身の Identity 記憶を「使う」ことを条件にしていて、発動できなかった固有品10件の連携を直しました。今は、装着しているあいだ攻撃力と魔力が上がります。 / Fixed ten unique links that required casting passive Identity memories and so could never trigger. They now raise attack damage and ability power while equipped.
+- **協力プレイでは参加者全員を更新してください。** 装備の内容が変わるため、古い版と混ぜると内容の不一致の警告が出ます。 / **Everyone in co-op should update.** Equipment content changes, so mixing with older versions shows a content mismatch warning.
+
+---
+
+## v3.7.0 — Lighter combat and co-op networking（2026-10-18）
+
+このバージョンでは、ゲーム全体の処理と協力プレイの通信を軽くしました。ラセルタの焼夷弾装填と飛び道具系エッセンスの組み合わせで処理が重くなる問題と、協力プレイの参加者側でスキルが使えなくなる不具合も直しました。強さや効果の数値は変えていません。 / This version makes the whole game and co-op networking lighter. It also fixes heavy slowdowns from Lacerta's Incendiary Rounds combined with projectile essences, and a bug that left skills unusable for co-op guests. Strength and effect values are unchanged.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。古いバージョンの相手とも遊べますが、通信の軽量化は全員が更新したときに働きます。 / Everyone in co-op should update. Older versions can still play together, but the lighter networking only works when everyone has updated.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 追加要素 / New features
+
+- MOD 設定に、ゲーム本体の処理を軽くする各項目の切り替えを追加しました（既定はすべて有効）。おかしな動きがあったときに、項目ごとに切って確かめられます。 / Added MOD settings to toggle each base-game performance tweak (all on by default), so you can turn them off one by one if something looks wrong.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの参加者側で、スキルのアイコンが黒くなって発動できなくなることがあった問題を直しました。処理落ちしたときに起きやすい不具合でした。 / Fixed guest-side skill icons sometimes turning dark and becoming unusable in co-op, which happened more often during frame drops.
+- ラセルタの焼夷弾装填と飛び道具系エッセンスを組み合わせると、攻撃と発動が重なって処理が極端に重くなり、ゲームが固まることがあった問題を軽くしました。重いときは処理を次のフレームへ分け、発動は捨てません。 / Reduced extreme slowdowns, sometimes freezing the game, when Lacerta's Incendiary Rounds were combined with projectile essences. Under load the work is spread over the next frames, and no proc is dropped.
+
+### 改善 / Improvements
+
+- 戦闘中の処理を軽くしました。状態異常の同期の間隔、敵の回避の設定、敵 AI、担当制と動的難易度の確認、メニューの文字の作り直しなどを減らしています。 / Combat is lighter: less work for status-effect syncing, enemy avoidance settings, enemy AI, ownership and dynamic-difficulty checks, and menu text rebuilding.
+- 同じ敵へ同時に大量に飛ぶ同じ種類の弾（跳弾など）は、まとめて1本として処理するようにしました。ダメージや発動の回数は変わりません。 / Large bursts of the same projectile (such as ricochets) flying at the same enemy at once are now handled as one. Damage and proc counts are unchanged.
+- 協力プレイの通信量を減らしました。変化のない定期送信、撃破の同期、選択の履歴、取引の大きなデータの送り方を見直しています。 / Co-op uses less bandwidth: fewer unchanged periodic messages, and lighter kill sync, choice history and large trade transfers.
+- ゲーム起動時の星図の準備を速くしました。 / Star maps get ready faster when the game starts.
+
+このバージョンの変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.6.2 — Co-op Infinity, MOD reward, and save error fixes（2026-10-18）
+
+### 不具合の修正 / Bug fixes
+- 協力プレイで同じプレイヤーの識別子が変わると、古い識別子への討伐記録の受領待ちが残り、インフィニティの潜行・帰還が「仲間の討伐待ち」で止まることがあった問題を修正しました。 / Fixed a changed client identity leaving a kill-receipt debt that blocked Infinity delve and return in co-op.
+- 本体の再開読み込みが完了しないままタイトルに戻ると、ゲームを終了するまで以降の遠征で MOD 報酬が出なくなる問題を修正しました。 / Fixed an abandoned native resume pausing MOD rewards in later expeditions until the game was closed.
+- 協力の距離減衰：味方への回復・吸収の範囲を強化すると、距離減衰と2秒の猶予が外れて強化後の半径でぴったり切れるようになり、強化したのに届く距離が縮んでいた問題を修正。減衰の外端も半径に比例して伸びる。 / Co-op distance falloff: a radius upgrade on an ally heal/siphon now widens the falloff (and keeps the grace) instead of turning it into a hard cutoff that shrank its reach.
+- 保存に失敗したときの理由の表示が、表示言語を切り替えたあとも現在の言語で出るようになりました。また、保存中に例外が出たあとでさらに書き込みに失敗したときは、古い例外の文が残り続けず、新しい書き込み失敗の表示に切り替わります。 / Save failure reasons on screen now follow the display language after you switch it. When a write fails again after an exception during saving, the newer write failure replaces the lingering older exception message.
+- 保存に失敗したときのログ（`Player.log` の "Save failed" 行）は、表示言語に関係なく英文で出るようになりました。 / The "Save failed" log entry is now written in English regardless of the display language.
+
+### 改善 / Improvements
+- 全滅時のヒント「夢から覚めました」と、残響が戻らない悪夢の契約の説明が、工房の「遺失物の地図」「残響ランタン」の強化を反映せず初期値（3部屋・25%）のままだった問題を修正。 / The first-defeat hint and no-echo pact descriptions now show your workshop-upgraded Lost & Found rooms and echo percent.
+- 遺物の抽選で、保管庫が大きいほど撃破のたびに重くなっていた処理を軽くしました（抽選結果は同じです）。 / Relic drops no longer get slower as the stash grows (drop results are unchanged).
+- 既存機能の再案内：宿敵の頭上の名札はシアン（`#4DD8FF`）で表示され、悪夢化した敵（桃色）や夢の変種（琥珀色）と区別できます。同じ敵に複数の表示情報がある場合も宿敵の名札を優先し、協力プレイでも各PCで同じ色を表示します。 / Reminder of an existing feature: Nemesis overhead nameplates use cyan (`#4DD8FF`), distinct from pink nightmares and amber dream variants. The Nemesis nameplate takes priority when tags overlap, and each PC uses the same color in co-op.
+
+---
+
+## v3.6.1 — Infinity, co-op trade and description fixes（2026-10-17）
+
+このバージョンでは、インフィニティと協力取引の不具合を直し、固有効果と連携付き固有品の説明を実際の値に合わせました。 / This version fixes bugs in Infinity and co-op trades, and makes power and linked-unique descriptions match their actual values.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで、行き止まりに着いて Primus の図が作り直された後に保存し、Continue すると、インフィニティが無効になることがある問題を直しました。 / Fixed Infinity sometimes being disabled after Continue when the Primus graph had been rebuilt at a dead end and the game was then saved.
+- インフィニティで同じゾーンへの潜行を繰り返すと、担当外の敵とボスの他人の持ち分に与えるダメージが、進んでも減らずに100%のままだった問題を直しました。 / Fixed damage to enemies and boss shares owned by other players staying at 100% instead of decaying when repeatedly delving into the same zone in Infinity.
+- 協力取引で、提示した遺物を後から再調律すると、警告が出ないまま確認でき、確認後に取引が取り消されていた問題を直しました。今は提示から外れ、警告が出て、確認ボタンが押せなくなります。 / Fixed co-op trades being cancelled after confirming when an offered relic had been retuned, with no warning beforehand. The relic is now removed from the offer, a warning is shown and the confirm button is disabled.
+- 過剰（禁忌化）で増えた分の条件付きの攻撃・能力ボーナスが、条件付きボーナスの共通上限（120%）に数えられ、効果が削られていた問題を直しました。 / Fixed the extra amount from Overcharge on conditional attack and power bonuses counting toward the shared 120% cap for conditional bonuses and cutting the effect short.
+- v1.29 の固有効果の説明で、上限の書き方が実際の値と食い違っていた問題を直しました。装備の元の値の上限、強化・覚醒・過剰で伸びる最大値、星の値が別に加わることを日英で説明します。 / Fixed v1.29 power descriptions stating caps that contradicted the actual values. Both languages now describe the base equipment cap, the maximum reachable through enhancement, awakening and Overcharge, and that star values are added on top.
+- 連携付き固有品4件で、図鑑と装備の説明に、実際に効く値より大きい効果量が上限と並んで表示されていた問題を直しました。実際の効果は変わりません。 / Fixed four uniques with links showing a larger effect than actually applied next to the cap in codex and gear descriptions. The actual effect is unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.6.0 — Minor adjustments and an Infinity fix（2026-10-17）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで同じゾーンへの潜行を繰り返すと、担当外の敵やボスの他人の持ち分への与ダメージの減衰が進まない問題を修正しました。 / Fixed helper damage decay failing to advance for other players' enemies and boss shares when repeatedly delving into the same zone in Infinity.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.5.0 — Per-world salvage dust cap and clearer descriptions（2026-10-17）
+
+細かな調整を行いました。 / Minor adjustments.
+
+このバージョンでは、遠征中に分解で得られる夢のダストに世界ごとの上限を付けました。あわせて、画面の説明文を実際の動きに合わせて直し、いくつかの不具合を修正しました。/ This version adds a per-world cap on Dream Dust from salvaging during expeditions. Screen descriptions now match how things actually work, and several bugs are fixed.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。更新前に保存した遠征を再開した場合、分解の上限はその世界の 0 から数え始めます。 / Saves carry over. If you resume an expedition saved before updating, the salvage cap starts counting from zero in that world.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 変更 / Changes
+
+- 遠征中の分解で得られる夢のダストに、世界ごとの上限を付けました。手動の分解と鞄のあふれの両方が対象です。上限に達すると分解は断られ、遺物は失われません。上限は次の世界に進むか遠征が終わると元に戻ります。 / Dream Dust from salvaging relics during an expedition now has a per-world cap. It covers both manual salvage and satchel overflow. At the cap, salvage is refused and the relic is kept. The cap resets when you move to the next world or the expedition ends.
+
+### 追加要素 / New features
+
+- 遠征の分解画面に、この世界で分解から得た夢のダストの量を表示するようにしました。 / The expedition salvage screen now shows how much Dream Dust salvaging has given you in this world.
+
+### 不具合の修正 / Bug fixes
+
+- 協力取引で、提示した遺物を後から再調律すると警告が出ないまま確認でき、ホストに取引を取り消されていた問題を直しました。 / Fixed co-op trades being cancelled on confirm after an offered relic was retuned, with no warning shown.
+- インフィニティで、行き止まりから Primus の図を作り直した後に保存して Continue すると、インフィニティが無効になることがある問題を直しました。 / Fixed Infinity being disabled on Continue after a Primus graph was regenerated at a dead end and then saved.
+- 過剰（禁忌化）で増えた条件付きの攻撃・能力ボーナスが、条件付きの共通上限（120%）に数えられて削られていた問題を直しました。 / Fixed the Overcharge boost on conditional attack and power bonuses counting toward their shared 120% cap.
+- v1.29 の固有効果の説明が、強化・覚醒・過剰や星で上限を超えた値と食い違っていた問題を直しました。装備の元の値の上限、強化後の最大値、星の加算を日英で説明します。 / Fixed v1.29 power descriptions contradicting values raised above the base cap by enhancement, awakening, Overcharge or stars. Both languages now explain the equipment base cap, the enhanced ceiling and additive star values.
+- 連携付き固有品4件で、図鑑と装備の説明に効果量と上限が矛盾して表示されていた問題を直しました。 / Fixed contradictory effect values and caps shown in codex and gear descriptions for four uniques with links.
+- 画面とMODの説明文で、実際の動きと食い違っていた箇所を直しました。協力プレイの「敵を倒したとき」の効果の発動条件（装備・星図のタブと F6 に説明を追加）、動的難易度の倍率の範囲と報酬の扱い、担当の印がない敵の説明、鍛冶の節目、図鑑のボーナス、MOD紹介文の各コンテンツの数などです。 / Fixed descriptions on screen and in the mod description that did not match actual behavior: when "on defeating an enemy" effects trigger in co-op (now explained in the gear and star map tabs and in F6), the dynamic difficulty factor range and how it affects rewards, enemies without an ownership mark, forge milestones, the codex bonus, and content counts in the mod description.
+- 画面の日本語の文言を読みやすく整えました。 / Polished Japanese wording across the screens.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.4.1 — Dynamic difficulty status in the menu（2026-10-17）
+
+### 新機能 / New features
+- メニューのホスト設定に「現在の状況」を追加しました。動的難易度が有効かどうか、旅人ごとの倍率と敵の体力・攻撃・報酬への効き方（やさしめ／標準／きびしめ）、担当外の敵へのダメージ減衰と今いる世界の段階を確認できます。参加者には、ホストから届いた値だけを表示します。 / Added a "Current status" section under the host settings menu. It shows whether dynamic difficulty is on, each traveler's factor and how it changes enemy HP, enemy attack and rewards (easier / standard / harder), and the damage reduction on other players' enemies for the current world. Participants see only values received from the host.
+
+---
+
+## v3.4.0 — Minor adjustments（2026-10-17）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game. Please report anything odd.
+
+---
+
+## v3.3.2 — Fix double save on quit and warnings not following language changes（2026-10-17）
+
+### 不具合の修正 / Bug fixes
+- ゲームを終了したとき、MOD の保存が2回走って、バックアップ（.bak）の世代が余分に進んでいました。終了時の保存を1回だけにしました。 / On quitting the game, the mod saved twice and the backup (.bak) generation advanced an extra step. The terminal save now runs once.
+- 遠征中に言語を切り替えたとき、再開の注意文、協力トレードの警告、ホストの版違いの警告も、いまの表示言語に切り替わるようにしました。 / Switching language during an expedition now also updates the resume notice, the co-op trade warnings and the host version warning to the current display language.
+
+---
+
+## v3.3.1 — Limbo Infinity unlock for Limbo 6 clears, plus death light and boss equipment fixes（2026-10-17）
+
+### 新機能 / New features
+- リンボ6をクリアした旅人で、リンボのインフィニティを選べるようにしました。本体の過去のクリア記録も使います。協力プレイではホストが選んでいる旅人で判定し、未解禁のときはロビーに条件を表示します。 / Travelers who have cleared Limbo 6 can now enable Infinity in Limbo, including those with existing native clear records. Co-op uses the host's selected traveler, and the lobby shows the requirement while locked.
+
+### 不具合の修正 / Bug fixes
+- プールへ戻さず破棄される敵や攻撃の寿命記録も解放し、長時間の戦闘でボス装備の印や命中判定が働かなくなる原因を修正しました。コードと再現テストで確認し、実ゲームの長時間プレイは未確認です。 / Release lifetime records for enemies and attacks destroyed without pooling, fixing a cause of boss equipment marks and hit tracking failing after extended combat. Verified with code and reproduction tests; long live-game sessions remain unverified.
+
+---
+
+## v3.3.0 — Minor adjustments（2026-10-17）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game. Please report anything odd.
+
+---
+
+## v3.2.15 — Help finish off other players' enemies in co-op（2026-10-17）
+
+この版は、協力プレイの分担で、ほかの人が担当する通常の敵のHPが30%以下になると手伝えなくなっていた点を改める更新です。あわせて、装備・鍛冶タブの処理を軽くし、いくつかの表示の不具合を直しています。 / This update lets you keep helping with enemies another player is responsible for in co-op, even after their HP drops to 30% or below. It also lightens the work done in the Equipment and Forge tabs and fixes several display issues.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 協力プレイで分担がオンのとき、ほかの人が担当する通常の敵のHPが30%以下になると、攻撃してもダメージが入らなくなっていました。これからはHPが30%以下になった敵にもダメージが入るので、最後まで削り切る手伝いができます。召喚体の攻撃も同じです。自分の担当の敵や、ボスの自分の持ち分にはこれまでどおりダメージがすべて入ります。担当の人が倒れたり、HPが低かったり、戦っていなかったりするときに、ほかの人が自由に手伝えるのもこれまでどおりです。 / In co-op with shares turned on, attacks on a regular enemy another player was responsible for stopped doing damage once its HP dropped to 30% or below. Now those attacks still deal damage, so you can help finish the enemy off. The same goes for attacks by summons. Attacks on your own enemies and on your own share of a boss still deal full damage as before. As before, others can also help freely when the responsible player is down, low on HP, or not fighting.
+
+### 改善 / Improvements
+
+- 保管庫に装備がたくさんあるときの、装備・鍛冶タブの毎フレームの処理を減らしました。スロットごとの個数、遺物のアイコン、枠の色を毎回作り直さず、使い回すようにしています。 / Reduced per-frame work in the Equipment and Forge tabs when your vault is large. Per-slot counts, relic icons, and frame colors are now reused instead of being rebuilt every time.
+
+### 不具合の修正 / Bug fixes
+
+- 遺物を強化して固有効果が増えたとき、記録タブの図鑑の要約と「固有効果」の発見数がすぐに増えるようにしました。 / When upgrading a relic adds a unique effect, the codex summary and the "Unique effects" discovered count in the Records tab now update right away.
+- 断ち切り済みの遺物を選んだとき、装備比較の「＋」にその固有効果が出るようにしました。 / Selecting a severed relic now shows its unique effect under "+" in the gear comparison.
+- 遠征中に言語を切り替えたとき、敵の頭上に出る悪夢・変異の名前と、ロビーの旅人選びの名前も切り替わるようにしました。 / Switching language during an expedition now also updates the nightmare and mutation names above enemies and the names in the lobby's traveler selection.
+- 装備タブを開いたまま装着や星の割り振りを変えたとき、強さの表示がすぐに変わるようにしました。 / Changing equipment or star allocation with the Equipment tab open now updates the power display immediately.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.14 — Infinity boss-clear fix, co-op training ownership fix, and more（2026-10-17）
+
+この版は、Infinity の純白ゾーンでボスを倒しても先へ進めなくなることがある問題を直す更新です。あわせて、協力プレイで遠征を続きから始めたときや再接続したときに鍛錬の成果が別の人のものと取り違えられる問題も直しました。光の精霊・プリムス・ポラリスの技の待ち時間が宝石や記憶の付け替えで消える問題、溢れる命の障壁が依頼の回数に数えられない問題、狩猟団と払暁のセット装備の英語名が固有品と区別できなかった問題なども直しています。 / This update fixes defeating the boss in Infinity's pure white zone sometimes failing to let you move on. It also fixes training progress getting mixed up between players after continuing a run or reconnecting in co-op. Other fixes include the cooldowns of Light Spirit, Primus and Polaris being lost when swapping gems or memories, 溢れる命's shield not counting toward quests, and the English names of Hunting Party and Dawnbreak set gear being indistinguishable from unique items.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- Infinity の純白ゾーンで、準備の門からボスの部屋に入ってすぐにボスを倒すと、撃破が数えられずにボス戦のまま先へ進めなくなることがある問題を直しました。そのような場合でも撃破が数えられ、魂の回収から選択画面まで進めるようになりました。 / Fixed defeating the boss right after entering from the preparation gate in Infinity's pure white zone sometimes not counting, which left you stuck in the boss fight. The kill now counts in that case too, and you can go on through collecting the soul to the choice screen.
+- Infinity で保存の完了が正しく確かめられず、最大30秒待たされることがあった問題を直しました。 / Fixed Infinity sometimes failing to confirm that a save had finished, which could leave you waiting for up to 30 seconds.
+- Infinity で潜行を選んで次の区間に入ったあとも、ゲストがホストへ不要な通信を毎秒送り続けていた問題を直しました。通信を取りこぼしても、ホストはこれまでどおり先へ進めます。あわせて、個人選択の処理が1フレームに2回行われていた無駄をなくしました。選択の結果は変わりません。 / Fixed guests in Infinity sending unnecessary messages to the host every second after a dive had been applied and the next section had started. The host can still move on even if a message is lost. Also removed wasted work where personal choices were processed twice per frame. The results of choices are unchanged.
+- 協力プレイで遠征を続きから始めたときや再接続したときに、遠征中の鍛錬の成果が見つからなくなることや、別の参加者のものと取り違えられることがある問題を直しました。鍛錬の成果は、プレイヤーごとに正しく引き継がれるようになりました。ただし、この版より前に保存した遠征を続きから始めると、鍛錬は0からやり直しになります。 / Fixed training progress during a run sometimes going missing or getting mixed up with another player's after continuing a run or reconnecting in co-op. Training progress now carries over correctly for each player. Note that if you continue a run saved before this version, training starts again from 0.
+- 光の精霊・プリムス・ポラリスの装備で、同じ部屋のなかで宝石や記憶を付け替えると技の待ち時間が消えていた問題を直しました。付け替えたあとも、待ち時間はそのまま続きます。ポラリスのモード・紋印・コンボの進み具合は、これまでどおり引き継がれません。 / Fixed the cooldowns of Light Spirit, Primus and Polaris gear skills being lost when you swapped gems or memories in the same room. Cooldowns now keep running after a swap. As before, Polaris's mode, marks and combo progress do not carry over.
+- 溢れる命で自分に付けた障壁が、「自分か味方に障壁をN回付ける」依頼の回数に数えられていなかった問題を直しました。 / Fixed shields that 溢れる命 gives to yourself not counting toward the "give shields to yourself or allies N times" quest.
+- 狩猟団と払暁のセットの武器が、英語表示では固有品の「Huntmaster's Bow」「Daybreak Scepter」と区別できなかった問題を直しました。セットの武器の英語名は「Hunting Party Bow」「Dawnbreak Scepter」になります。英語表示ではセット内の名前もそろっていなかったため、狩猟団の6部位は「Hunting Party」で始まる名前に、払暁の6部位は「Dawnbreak」で始まる名前にそろえました。セット名も「Hunting Party Kit」「Dawnbreak Vow」にしています。日本語名と装備の効果は変わりません。 / Fixed the Hunting Party and Dawnbreak set weapons being indistinguishable in English from the unique items "Huntmaster's Bow" and "Daybreak Scepter". The set weapons are now named "Hunting Party Bow" and "Dawnbreak Scepter". The English names within each set were also inconsistent, so all six Hunting Party pieces now use "Hunting Party", all six Dawnbreak pieces use "Dawnbreak", and the sets are named "Hunting Party Kit" and "Dawnbreak Vow". Japanese names and gear effects are unchanged.
+- 装備タブと鍛冶タブでは、画面を描くたびにスロットごとの個数を数え直し、遺物アイコンや枠の色を読み込み直していました。これを毎回行わないようにして、処理を減らしました。 / Reduced the work the Gear and Forge tabs did every time they were drawn. Item counts per slot, relic icons and frame colors are no longer recomputed each time.
+- 処理を減らしたあとも、表示はすぐに切り替わります。遺物を強化して固有効果が増えたときは、記録タブの図鑑の要約と「固有効果」の発見数がすぐに増えます。断ち切り済みの遺物を選んだときは、装備比較の「＋」にその固有効果が出ます。遠征中に言語を切り替えたときは、敵の頭上の悪夢・変異の名前と、ロビーの旅人選びの名前も切り替わります。装備タブを開いたまま装着や星の割り振りを変えたときも、強さの表示にすぐ反映されます。 / Displays still update right away after this change. When upgrading a relic adds a unique effect, the codex summary and the "Unique effects" discovery count in the Records tab go up right away. When you select a severed relic, its unique effect appears in the "+" of the gear comparison. Switching language during a run also switches nightmare and mutation names above enemies and traveler names in the lobby selection. Changing equipped gear or star allocation with the Gear tab open updates the power display right away.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.13 — Fix unkillable co-op elites, enemy owner flip-flopping, and training bonuses on mod heals and shields（2026-10-17）
+
+この版は、協力プレイでエリートの自分の分担が0%になったあと、わずかにHPが残って倒せなくなる問題を直す更新です。あわせて、全員が離れた敵の担当が入れ替わり続ける問題、鍛錬で得た回復強化・シールド強化が一部の効果に反映されていなかった問題、禁忌化のあと図鑑が更新されない問題を直しました。空殻の星図の前提の星の名前、移動の記憶に関わる星の判定、獲得効果の一覧の能力値の表示、増援の戦利品と道標の組み合わせも直し、味方も回復する記憶の仕掛けの説明には、離れると回復量が減ることを書き加えました。 / This update fixes elites in co-op becoming impossible to kill when a sliver of HP was left after your share hit 0%. It also fixes enemies far from everyone switching owners over and over, run training bonuses to healing and shields not applying to some effects, and the codex not updating after making a relic forbidden. It also fixes the prerequisite star names on 空殻's star map, how stars tied to movement memories are checked, stat values in the earned effects list, and how reinforcement loot works with waypoints, and adds the distance drop-off of healing to the descriptions of memory effects that also heal allies.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで分担がオンのとき、エリートを倒せなくなることがある問題を直しました。自分の分担を使い切ったあとにごくわずかなHPが残ると、攻撃してもダメージが入らず、無敵のようになっていました。これからは残ったHPも削り切れるので、エリートを倒せます。自分の分を使い切ったあとにほかの人の分を手伝えるのは、これまでどおりです。 / Fixed elites sometimes becoming impossible to kill in co-op with shares turned on. After your own share was used up, a tiny amount of HP could be left over and attacks stopped doing damage, so the elite was effectively invincible. Now the leftover HP can be worn down and the elite can be defeated. As before, you can still help with other players' shares after using up your own.
+- エリートの分担の割合が、まだ少し残っているのに0%と表示されることがあった問題を直しました。ボスバーとエリートの頭上の表示では、残りが1%未満なら「<1%」と表示されます。「0%」と表示されるのは、自分の分を本当に使い切ったときだけです。 / Fixed an elite's share percentage sometimes showing 0% even though a little was still left. On the boss bar and the mark above elites, a share below 1% now shows as "<1%". It shows "0%" only when your share is actually used up.
+- 協力プレイで、全員が離れた場所にいる敵（部屋の奥の陣地など）の担当が、約6秒ごとに入れ替わり続けていた問題を直しました。担当が替わるたびに敵の最大HPと攻撃が新しい担当に合わせて計算し直され、◆/◇の表示も反転していました。たとえば夢レベルの違う2人が離れて立っていると、38秒で6回入れ替わり、最大HPが1000と2300の間を行き来していました。これからは、担当が離れているだけのときは、その敵と戦っている人か、実際に30m以内にいる人にだけ担当が移ります。担当が倒れたときや切断したときの付け替えはこれまでどおりです。 / Fixed enemies that everyone was far away from (such as camps at the back of a room) switching owners about every 6 seconds in co-op. Each switch recalculated the enemy's max HP and attack for the new owner and flipped the ◆/◇ mark. For example, with two players at different dream levels standing far away, the owner switched 6 times in 38 seconds and max HP went back and forth between 1000 and 2300. Now, when the owner is just far away, the enemy is only handed to someone fighting it or actually within 30 m. Reassignment when the owner goes down or disconnects works as before.
+- 遠征中の鍛錬で得た回復強化とシールド強化が、このMODで追加された記憶・星・仕掛けなどの回復とシールドに反映されていなかった問題を直しました。たとえば装備と星のシールド強化が0%で鍛錬が+30%なら、基礎100のシールドは130になります。あわせて、共有の守りと優しさの返礼で、与え手の強化が二重にかかって回復やシールドが多くなりすぎていた問題と、溢れる命のシールドに受け手の強化がもう一度かかっていた問題も直しました。これらの効果は本来の量に戻ります。 / Fixed healing and shield bonuses gained from training during a run not applying to the healing and shields from memories, stars, effects and other content added by this mod. For example, with 0% shield bonus from gear and stars and +30% from training, a base 100 shield now becomes 130. Also fixed 共有の守り and 優しさの返礼 applying the giver's bonuses twice, which made their healing or shields too large, and 溢れる命's shield getting the receiver's bonus applied again. These effects now give their intended amounts.
+- 味方も回復する記憶の仕掛けの説明に、協力プレイでは味方が離れるほど回復量が減ることが書かれていなかった問題を直しました。既定の10mの範囲では、10m以内なら回復が全部届き、そこから離れるにつれて少しずつ減って、18mで0になります。日本語と英語の説明に、この減り方と、範囲の外に出ても2秒は猶予があることが表示されます。距離による減少を無効にしているときの動きも表示されます。変わったのは説明だけで、回復量は変わりません。 / Fixed the descriptions of memory effects that also heal allies not mentioning that, in co-op, healing gets weaker the farther away an ally is. With the default 10 m range, allies within 10 m get the full heal, and it drops off gradually to 0 at 18 m. The Japanese and English descriptions now show this drop-off and the 2-second grace period after leaving the range, as well as what happens when the distance drop-off is turned off. Only the descriptions changed; heal amounts are the same.
+- 空殻の星図で、「剣気の貫禄」と「気に染まる風」の前提の星が、星図にない「夢輪の叡智」という名前で案内されていた問題を直しました。実際に必要なのは、星図に「剣気の追い裂き」と表示されている星です。これからは、まだ取得できない理由に画面と同じ名前が出るので、どの星を取ればよいか画面で探せます。星を取得できる条件は変わりません。 / Fixed two stars on 空殻's star map, 剣気の貫禄 and 気に染まる風, naming a prerequisite star called "Dream Ring Wisdom" that isn't on the star map. The star they actually need is the one shown on the star map as "Aura Follow-Slash". The reason a star can't be taken yet now uses the same name as the screen, so you can find the star you need there. The conditions for taking stars are unchanged.
+- 移動の枠に入れた記憶に関わる仕掛けを持つ星が、正しく判定されないことがあった問題を直しました。ケートスとヴェスパーの、移動の記憶に関わる星もこれに含まれます。 / Fixed stars with effects tied to the memory in the movement slot sometimes not being checked correctly. This includes Cetus's and Vesper's stars tied to movement memories.
+- 獲得効果の一覧で、エッセンス枠などの能力値が、実際に効く上限を超えた値で表示されることがあった問題を直しました。これからは、上限を当てはめた実際の値で表示されます。 / Fixed the earned effects list sometimes showing stats such as essence slots above the cap that actually applies. They now show the actual value with the cap applied.
+- 夢の圧で現れる増援の戦利品が、道標の効果とうまくかみ合っていなかった問題を直しました。増援で受け取れなかった遺物が、焼き入れの道の部屋の枠や六つの足取りの巡回を使ってしまうことはなくなりました。双子の宝箱では、受け取る遺物とその複製を一緒に受け取れます。星への供物と目覚めの巡礼で変換された分が、二重に減らされていた問題も直しました。一番槍のレアの保証はこれまでどおりです。 / Fixed loot from dream pressure reinforcements not working well with waypoint effects. Relics you didn't get from reinforcements no longer use up 焼き入れの道's room slots or 六つの足取り's rotation. With 双子の宝箱, you now receive a relic and its copy together. Also fixed the loot converted by 星への供物 and 目覚めの巡礼 being reduced twice. 一番槍's rare guarantee works as before.
+- 禁忌化の断絶で増えた固有効果が図鑑の発見数に入らず、禁忌化したあとも図鑑の表示が更新されなかった問題を直しました。保管庫・遺失物・鞄のどこにある遺物でも数えられ、たとえば発見数が2/90から3/90に増えて、「？？？」だった欄に「溢れる一撃」と効果の説明が表示されます。 / Fixed unique effects added by Severance when making a relic forbidden not counting toward the codex, and the codex not updating after making a relic forbidden. Relics in storage, lost items, and your bag are all counted; for example, the count goes from 2/90 to 3/90 and the entry that showed "???" now shows "Spillover Strike" and its description.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.12 — Stocked memories no longer go on cooldown with charges left, plus wiki fixes（2026-10-17）
+
+この版は、ストックを持つ記憶で、回数が残っているのに一度クールダウンに入ってしまう問題を直す更新です。あわせて、Wiki の刻印の費用、固有効果の掲載数、旅人ごとの星数を実際の値に合わせ、容量の上限を超えていた固有品のページを分けました。 / This update fixes memories with stocks going on cooldown even though they still had charges left. It also makes the wiki's keystone costs, listed unique effect count, and per-traveler star counts match the actual values, and splits unique item pages that went over the size limit.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- Q/W/E/R のどの枠でも、ストック（複数回分の使用回数）を持つ記憶を1回使うと、まだ回数が残っているのに基礎クールダウンの20%（最低0.3秒）の待ち時間が入り、その間は使うことも予約することもできなかった問題を直しました。たとえば基礎クールダウン12秒・3回分のストックを持つ記憶では、1回使ったあと残り2回あっても約2.3秒使えず、スキルボタンにもその待ち時間が表示されていました。これからは、ストックが残っている間は続けて使ったり予約したりでき、ボタンにも余分な待ち時間は表示されません。最後の1回を使ったあとでも、先に回復したストックはすぐに使えます。ストックが回復するまでの時間はこれまでと変わりません。ストックを持たない記憶の連打防止はこれまでどおりで、移動スキルにも変更はありません。 / Fixed memories with stocks (multiple charges) in any Q/W/E/R slot getting an extra wait of 20% of their base cooldown (at least 0.3 seconds) after each use, even with charges left. During that wait they couldn't be used or queued. For example, a memory with a 12-second base cooldown and 3 charges couldn't be used for about 2.3 seconds after one use, even with 2 charges left, and the skill button showed that wait. Now you can keep using or queuing the memory while it has charges left, and the button no longer shows the extra wait. Even after using the last charge, any charge that comes back early can be used right away. The time it takes to recover a charge is unchanged. The spam guard for memories without stocks works as before, and movement skills are unchanged.
+- Wiki の刻印の費用欄がゲームでの実際の費用と食い違っていた問題を直しました。黄金の余熱・連鎖の鼓動・森の鼓動・不安定な軌道の4件は費用欄に3と出ていましたが、正しい1と表示されるようになりました。段ごとに並ぶ刻印の費用もゲームと同じ値になります。 / Fixed the wiki's keystone cost column not matching the actual in-game costs. Golden Embers, Chain Pulse, Forest Pulse, and Unstable Orbit showed a cost of 3 and now show the correct cost of 1. Keystone costs listed by tier now match the game as well.
+- Wiki のホームと総合ポータルで、固有効果の数が95件と表示されていた問題を直しました。これからは実際に掲載している90件と表示されます。 / Fixed the wiki home page and main portal showing 95 unique effects. They now show 90, the number actually listed.
+- Wiki のホームの旅人ごとの星の数に到達刻印まで含まれていて、旅人のページと数字が合わなかった問題を直しました。たとえば Aurena はホームで星759でしたが、これからは旅人のページと同じく星748・到達刻印11と分けて表示されます。 / Fixed per-traveler star counts on the wiki home page including reached keystones, so they didn't match each traveler's page. For example, Aurena showed 759 stars on the home page and now shows 748 stars and 11 reached keystones separately, the same as Aurena's page.
+- Wiki の固有品の一覧で、3つのページが1ページの容量の上限を超えていた問題を直しました。これからは土台と固有品の一覧がどのページも上限に収まるように分かれます。一覧の行は1つも欠けず、ページ間のリンクもすべて正しくつながります。 / Fixed three unique item list pages on the wiki going over the size limit for a single page. The base and unique item lists are now split so every page stays within the limit. No rows are dropped, and all links between pages work.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.11 — Fix Infinity co-op waypoint enemy effects following only the host's choice（2026-10-17）
+
+この版は、インフィニティの協力プレイで、道標の敵側の効果がホストの選んだ道標だけで決まり、全員の敵にかかっていた問題を直す更新です。 / This update fixes waypoint effects on enemies in Infinity co-op being decided only by the host's waypoint and applied to everyone's enemies.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティの協力プレイで、道標の敵側の効果（敵の体力・攻撃の倍率、全員悪夢化、悪夢化の確率）がホストの選んだ道標だけで決まり、全員の敵にかかっていた問題を直しました。参加者が選んだ道標は敵側に何も起こさず、記憶のクールダウンや撃破報酬などの見返りだけを本人が受け取る状態でした。たとえば参加者だけが「駆ける記憶」を選んでも敵は強くならず、逆にホストだけが選ぶと参加者の敵まで強くなっていました。参加者が「明けない夜」を選んでも、敵は悪夢化しませんでした。これからは、各プレイヤーに割り当てられた敵に、そのプレイヤー本人が選んだ道標の効果がかかります。参加者が「駆ける記憶」を選べば、記憶のクールダウン×0.8に加えて、その参加者の敵の体力と攻撃が説明どおり×1.25になり、ホストの選択が参加者の敵にかかることはありません。ホストが選んだ場合は、クールダウン×0.8はホスト本人だけにかかり、参加者の敵には×1.25がかかりません。参加者が「明けない夜」を選べば、その参加者に割り当てられた敵が悪夢化します。出現時の全員悪夢化の判定、変異の除外、悪夢化の抽選も、割り当てられた本人の道標で決まります。 / Fixed waypoint effects on enemies in Infinity co-op (enemy HP and attack multipliers, all-Nightmare, and Nightmare chance) being decided only by the host's waypoint and applied to everyone's enemies. Waypoints picked by other players had no effect on enemies, so they received the rewards, such as memory cooldown reduction and kill rewards, without the drawback. For example, if only a guest picked the waypoint that speeds up memory cooldowns, enemies didn't get stronger, but if only the host picked it, the guest's enemies got stronger too. A guest picking the waypoint that makes enemies Nightmares didn't turn any enemies into Nightmares. Now each player's own waypoint applies to the enemies assigned to that player. If a guest picks the cooldown waypoint, that guest gets ×0.8 memory cooldown and that guest's enemies get ×1.25 HP and attack as described, and the host's choice no longer affects the guest's enemies. If the host picks it, the ×0.8 cooldown applies only to the host, and the guest's enemies don't get ×1.25. If a guest picks the Nightmare waypoint, enemies assigned to that guest become Nightmares. The all-Nightmare check, variant exclusion, and Nightmare roll at spawn also follow the waypoint of the player the enemy is assigned to.
+- ボス、共有の目標、誰にも割り当てられていない敵には、どのプレイヤー個人の道標の効果もかからなくなりました。全員共通の夢の圧と敵の数も、ホスト個人の道標で変わらなくなりました。HUD では、表示している圧が全員共通の値であることが分かるようになりました。途中参加や離脱で敵の担当が変わったときは、残り体力の割合を保ったまま新しい担当者の道標の倍率に切り替わります。 / Personal waypoint effects no longer apply to bosses, shared objectives, or enemies not assigned to anyone. Shared Dream Pressure and enemy count no longer change based on the host's personal waypoint, and the HUD now makes clear that the pressure it shows is the shared value. When an enemy's assigned player changes because someone joins or leaves mid-run, the enemy switches to the new player's waypoint multiplier while keeping its remaining HP percentage.
+- 確保地点の確率表示に、協力プレイでは自分に割り当てられた敵が対象であることを日本語と英語で書き添えました。 / The probability display at secure points now notes, in Japanese and English, that in co-op it applies to the enemies assigned to you.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.10 — Fix recovered relic counts in expedition reports and stale Forbidden descriptions in the Trade tab（2026-10-17）
+
+この版は、遺失物から取り戻した遺物が遠征の報告で発見件数に入らず、ほかの件数と合わなかった問題を直す更新です。協力プレイの取引タブで、禁忌化した遺物の説明が古いまま残っていた問題もあわせて直しています。 / This update fixes relics recovered from lost items not counting toward the found count in the expedition report, which left the report's numbers out of line. It also fixes the co-op Trade tab still showing a relic's old description after the relic was made Forbidden.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 部屋の突破、迷い人の灯、遺失物の霊廟で取り戻した遺物が、遠征の報告で発見件数に入っていなかった問題を直しました。取り戻した遺物は確保と喪失の件数には入っていたのに、発見件数には入っていなかったため、報告の数字が合いませんでした。これからは取り戻した遺物も、その遠征の発見件数に入ります。勝利したときも全滅したときも、報告の件数が合うようになります。 / Fixed relics recovered on room clear, at the Lost Lantern, or at the Mausoleum of the Lost not counting toward the found count in the expedition report. Recovered relics were included in the secured and lost counts but not in the found count, so the report's numbers didn't match. Recovered relics now count toward that expedition's found count, and the report adds up whether you win or are wiped out.
+- 協力プレイの取引タブで遺物の説明を見たあと、まだ提示していないその遺物を鍛冶で禁忌化してから取引タブに戻ると、禁忌化する前の説明が表示されたままになっていた問題を直しました。これからは、禁忌化で変わった内容に合わせて説明とツールチップが更新されます。 / Fixed the co-op Trade tab keeping a relic's old description if you viewed it there, made that relic (not yet offered) Forbidden at the forge, and then returned to the Trade tab. The description and tooltip now update to match the changes from being made Forbidden.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.9 — Fixes for unreachable bounties, Sealed Vault relic draws, waypoint Codex bonus, and Infinity saves（2026-10-17）
+
+この版は、ソロやインフィニティで達成できない依頼が出ていた問題と、封印の宝庫に預けた遺物が遺物の抽選で持っていないものとして扱われていた問題を直す更新です。道標で遺物を引き直したときや最初の獲得で図鑑の補正がかからなかった問題、インフィニティで短い区画が終点に昇格したあとのセーブを読み込めなかった問題、契約と属性組み合わせ星の説明文の誤りもあわせて直しています。 / This update fixes bounties that could not be completed in solo or Infinity, and relics stored in the Sealed Vault being treated as unowned in relic draws. It also fixes the Codex bonus not applying to relic draws at waypoints (rerolls and first claims), saves made after a short Infinity section was promoted to its endpoint failing to load, and text errors in Pact and attribute combo star descriptions.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ソロでは「別の旅人を回復」、インフィニティでは「次のゾーンへ進む」と「確保」の依頼が出ることがあり、達成できなかった問題を直しました。これからは、遠征の条件が決まった時点で、まだ手を付けていない達成できない依頼が、ほかの依頼と重ならない達成できる依頼に入れ替わります。進めている途中の依頼や達成済みの依頼はそのまま残ります。依頼を引き直したときも、達成できない依頼は選ばれません。 / Fixed bounties that could not be completed appearing in solo ("Heal another traveler") and Infinity ("Advance to the next zone" and "Secure"). Now, once the expedition's conditions are set, any untouched bounty that cannot be completed is replaced with a completable one that doesn't duplicate your other bounties. Bounties already in progress or completed are kept. Rerolling a bounty will no longer pick one that cannot be completed either.
+- 封印の宝庫に預けている遺物が、遺物の抽選では持っていないものとして扱われていた問題を直しました。たとえば組の欠片Aを保管庫に、欠片Bを宝庫に入れていると、Bがまだ足りないとみなされ、セット集めの補助で同じBが出やすくなっていました。これからは宝庫の預かり品も持っているものとして数えられ、伝説セットや銘品の小セットの集めやすくする補助が、本当に足りない部位に向くようになります。この修正は、敵を倒したときの抽選と、道標での引き直し・最初の獲得に効きます。 / Fixed relics stored in the Sealed Vault being treated as unowned in relic draws. For example, with set piece A in your vault and piece B in the Sealed Vault, B was considered missing, so the set-collection bonus kept making B more likely to drop. Relics in the Sealed Vault now count as owned, so the collection bonus for Legendary sets and named-item mini sets goes toward pieces you are actually missing. This applies to kill drops and to waypoint rerolls and first claims.
+- 道標で遺物の部位やレア度を変えて引き直したときと、最初の獲得のときに、図鑑に未登録の銘品への補正がかかっていなかった問題を直しました。これからは、ほかの報酬と同じように図鑑の補正が反映されます。 / Fixed the Codex bonus for unregistered named items not applying at waypoints, both when redrawing a relic after changing its slot or rarity and on the first claim. The Codex bonus now applies there just as it does for other rewards.
+- インフィニティで、短い区画が終点に昇格したあとに保存したデータが読み込めなかった問題を直しました。これからは、そのようなセーブも正しく読み込めます。 / Fixed saves made in Infinity after a short section was promoted to its endpoint failing to load. These saves now load correctly.
+- 契約の説明文で、見返りをつなげた部分に句点が「。。」と重なって表示されていた問題を直しました。 / Fixed Pact descriptions showing a doubled Japanese period ("。。") where rewards were joined together.
+- 属性組み合わせ星の英語の説明で、追加スタックの表示が正しくなかった問題を直しました。これからは、たとえば150なら「+1 stack (plus a 50% chance of one more)」、100未満なら「N% chance of +1 stack」のように、確実に増える数と追加の確率が分かる表示になります。単数・複数の書き分けや「+0 stacks」という表示も直しました。 / Fixed the English descriptions of attribute combo stars showing extra stacks incorrectly. They now show both the guaranteed stacks and the extra chance, for example "+1 stack (plus a 50% chance of one more)" for 150, or "N% chance of +1 stack" for values under 100. Singular/plural wording and the "+0 stacks" display were also fixed.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.8 — Fix co-op trade offers with used relics and capped unique effects（2026-10-17）
+
+この版は、協力プレイの取引で、提示したあとに装着したり合成などで使ったりした遺物が提示に残り、取引を進められなくなる問題を直す更新です。あわせて、覚醒や過剰（禁忌化）で上がった装備の固有効果が、実際の効果では上限で切り詰められていた問題と、恨みの通行料が最大HPのちょうど60%を失っても発動しなかった問題も直しています。 / This update fixes relics that were equipped or used up (for example in crafting) after being offered in a co-op trade staying in the offer and blocking the trade. It also fixes gear unique effects raised by awakening or Overcharge (Forbidden) being cut back to the cap in their actual effect, and Toll of Grudge not triggering after losing exactly 60% of max HP.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの取引で、遺物を提示したあとにその遺物を装着したり、合成などで保管庫や鞄から使ったりすると、使えない遺物が提示に残っていた問題を直しました。これまでは提示を更新できなくなったり、交換を確定したときに取引が取り消されたりすることがありました。これからは、素材の数を変えたり遺物を選び直したりして提示を更新すると、使えなくなった遺物が提示から外れます。使えない遺物が提示に残っている間は警告が表示され、交換の確認ボタンは押せません。 / Fixed an issue in co-op trades where a relic stayed in your offer after you equipped it, or used it up from your vault or bag (for example in crafting), after offering it. Previously, this could stop you from updating the offer or cancel the trade when you confirmed the exchange. Now, when you update the offer by changing the material amount or reselecting relics, relics that are no longer available are removed from it. While an unavailable relic remains in the offer, a warning is shown and the exchange confirm button is disabled.
+- 覚醒によって通常の上限を超えた装備の固有効果が、実際の効果では通常の上限までに切り詰められていた問題を直しました。たとえばエピックの武器とお守りに過負荷20を付けて覚醒3にした場合、合計は72%になるのに、実際の効果は50%になっていました。これからは協力プレイでも、合計どおり72%が効果に反映されます。 / Fixed gear unique effects pushed past the normal cap by awakening being cut back to that cap in their actual effect. For example, with Overload 20 on an Epic weapon and charm both at Awaken 3, the total was 72%, but only 50% was actually applied. The full 72% is now applied, in co-op as well.
+- 過剰（禁忌化）で1.6倍になった固有効果が、上限に近いと実際の効果では削られていた問題を直しました。たとえば血の渇望30・上限40の場合、表示は48なのに実際の効果は40になっていました。これからは表示どおり48が効果に反映されます。 / Fixed unique effects boosted 1.6x by Overcharge (Forbidden) being cut down in their actual effect when near the cap. For example, with Bloodlust 30 and a cap of 40, the display showed 48 but only 40 was actually applied. The displayed 48 is now applied.
+- 恨みの通行料が、最大HPのちょうど60%を失ったときに発動しなかった問題を直しました。たとえば最大HP100で60を失っても発動していませんでした。これからは、ちょうど60%を失った時点で発動します。 / Fixed Toll of Grudge not triggering when you lost exactly 60% of your max HP. For example, losing 60 out of 100 max HP did not trigger it. It now triggers at exactly 60%.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.7 — Fixes for Baku shard refunds, Memory Archive at max Dream Level, and Codex slot filter（2026-10-17）
+
+この版は、夢喰いの獏が返す欠片に強化にかけた分が含まれていなかった問題、夢レベルが上限でも記憶の書庫が出て使えてしまう問題、図鑑を部位で絞り込むと銘品の効果が表示されなかった問題を直す更新です。 / This update fixes the Dream-Eating Baku not including upgrade costs in the shards it returns, the Memory Archive appearing and being usable at max Dream Level, and named item effects not showing up when filtering the Codex by slot.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 出来事「夢喰いの獏」に強化済みの遺物を渡したとき、返ってくる欠片に強化にかけた費用の分が含まれていなかった問題を直しました。これからは、強化にかけた費用の返還分も含めた欠片が返ってきます。 / Fixed an issue where giving an upgraded relic to the Dream-Eating Baku event returned shards that did not include what you spent on upgrades. The returned shards now include a refund for upgrade costs.
+- 夢レベルが上限に達していて経験値を得られないのに、出来事「記憶の書庫」が出てきて使えてしまう問題を直しました。これからは、夢レベルが上限のときは記憶の書庫が出なくなります。すでに表示されている場合も使えず、使えない理由が日本語・英語で表示されます。 / Fixed the Memory Archive event appearing and being usable even at max Dream Level, where it could not grant any experience. At max Dream Level, the Memory Archive no longer appears. If it is already shown, it cannot be used, and the reason is displayed in both Japanese and English.
+- 図鑑で効果を部位で絞り込むと、銘品の効果が一覧から漏れていた問題を直しました。これからは、銘品のもとになった装備の部位でも絞り込めるようになり、該当する銘品の効果が表示されます。 / Fixed named item effects being left out when filtering effects by slot in the Codex. Named items now match the slot of the gear they are based on, so their effects appear in the filtered list.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.6 — Fixes for Infinity co-op choices, forge buttons, gear effect caps, and effect lights（2026-10-17）
+
+この版は、Infinity の協力プレイでゲストがホストより先に次の選択を始められてしまう問題、鍛冶のボタンと遊び方の表示が実際のルールと合っていなかった問題、装備の固有効果と連携の説明の問題、同じエフェクトを短い間に繰り返すと光が上限を超えて点灯する問題を直す更新です。 / This update fixes guests in Infinity co-op being able to start the next choice before the host, forge buttons and how-to text that did not match the actual rules, issues with gear unique effects and link descriptions, and lights exceeding their limit when the same effect replays in quick succession.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- Infinity の協力プレイで、ゲストがホストより先に次の選択を始められてしまう問題を直しました。潜行で決めた内容は次に決め直すまで残ります。そのため、次の区間でボスを倒したあと、前の区間の選択をもとにゲストの画面で次の選択が開いていました。これからは、ゲストはホストの選択が届いてから次の選択を始めます。通信の状況によっては、選択が開くまで少し待つことがあります。 / Fixed an issue in Infinity co-op where guests could start the next choice before the host. The delve decision stays in effect until the next decision, so after the next segment's boss, the next choice could open for guests based on the previous segment's choice. Guests now wait for the host's choice to arrive before starting the next one. Depending on the connection, there may be a short wait before the choice opens.
+- 鍛冶で、保管庫がいっぱいでも通常・上等の製作ボタンが押せてしまっていた問題を直しました。保管庫がいっぱいだと製作はできないため、これからはどちらのボタンも押せなくなります。 / Fixed the forge's normal and fine craft buttons being clickable while the vault was full. Since crafting isn't possible with a full vault, both buttons are now disabled in that case.
+- 鍛冶で、再調律の候補を選んでいる途中の遺物にも分解ボタンが押せた問題を直しました。押しても分解はされないのに、遺物の選択と再調律の候補が画面から消えていました。これからは、再調律の候補がある遺物では分解ボタンが押せません。分解できなかったときは選択と候補の表示がそのまま残り、選択が外れるのは分解できたときだけです。 / Fixed the forge letting you click Salvage on a relic while choosing a retune option. Nothing was salvaged, but the relic selection and retune options disappeared from the screen. The Salvage button is now disabled for relics with pending retune options. If salvaging is refused, the selection and options stay on screen, and the selection is cleared only when salvaging succeeds.
+- 記録タブの遊び方で、遺失物の回収に必要な部屋数に工房の強化が反映されず、基本の数のまま表示されていた問題を直しました。これからは日本語・英語とも、実際に必要な部屋数を表示します。 / Fixed the how-to in the Records tab showing the base number of rooms needed to recover lost items, without reflecting workshop upgrades. It now shows the actual number of rooms required, in both Japanese and English.
+- 日替わり強化の日に、装備の固有効果が普段より低くなることがあった問題を直しました。たとえば勢い5を3部位に付けた場合、普段は合計10ですが、烈火の日には9に下がっていました。これからは強化の日でも10になります。 / Fixed gear unique effects sometimes ending up lower than usual on daily boost days. For example, Momentum 5 on three slots normally totals 10, but it dropped to 9 on Blaze days. It now stays at 10 on boost days as well.
+- 覚醒させた装備の条件付き効果が、共通の上限に対して実際より多く数えられていた問題を直しました。たとえば活力30を2部位に付け、片方を覚醒3にした場合、上限に数える覚醒前の値が56になっていましたが、正しく40で数えるようになりました。効果そのものの合計（56）は変わりません。 / Fixed conditional effects on awakened gear counting more than they should toward the shared cap. For example, with Vitality 30 on two slots and one of them at Awaken 3, the pre-awakening value counted toward the cap was 56; it is now correctly counted as 40. The total effect itself (56) does not change.
+- 連携の説明に出る上限の割合が、実際の値と違っていた問題を直しました。たとえば同調の条件を1つ満たした場合、説明には25%と出ていましたが、実際の上限は45%でした。これからは、装備全体にかかる実際の上限を表示します。あわせて、同じ種類・同じ条件の効果は合算されること、星の連携はそれとは別に加わることを、日本語と英語の説明に書き加えました。 / Fixed link descriptions showing a cap percentage that differed from the actual value. For example, with one Sync condition met, the description said 25% while the actual cap was 45%. Descriptions now show the real cap applied to your equipped gear as a whole. They also now explain, in both Japanese and English, that effects of the same type and condition are combined, and that star links are added separately.
+- 同じエフェクトが短い間に何度も再生されると、エフェクトの光が決められた数を超えて点灯することがあった問題を直しました。これからは、同じエフェクトを繰り返し再生した場合も、光の数が上限の中に収まります。 / Fixed effect lights sometimes exceeding their set limit when the same effect was replayed several times in quick succession. Lights now stay within the limit even when the same effect replays repeatedly.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.5 — Fix saving after salvaging starting relics and keep starting relic marks（2026-10-17）
+
+この版は、初期遺物を分解したあとにプロフィールの保存や協力プレイでの取引ができなくなる問題と、一時的に保管庫から出ている初期遺物の印が保存や読み込みで消えてしまう問題を直す更新です。 / This update fixes being unable to save your profile or trade in co-op after salvaging a starting relic, and starting relic marks disappearing on save or load while the relic was temporarily out of the vault.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 初期遺物を分解したあと、プロフィールの保存に失敗するようになっていた問題を直しました。何度保存し直しても失敗が続き、協力プレイの取引も成立させられませんでした。1個ずつ分解した場合も、まとめて分解した場合も、これからは普段どおり保存でき、続きから遊べます。取引も完了できます。 / Fixed an issue where saving your profile failed after salvaging a starting relic. Saving kept failing no matter how many times you tried, and co-op trades could not be completed either. Whether you salvage starting relics one at a time or in bulk, you can now save and continue as usual, and trades can be completed.
+- 初期遺物が保管庫の外にあると、保存して読み込み直したときに初期遺物の印が消えていた問題を直しました。鞄の中、遺失物、中断した遠征から回収を待つ遺物、分解待ち、協力プレイの取引で預けている間、道標で保留している間が対象です。たとえば取引を取り消すと遺物は手元に戻りますが、印は消えたままでした。これからは、こうした状態で保存・読み込みをしても、続きからの再開でロビーでの変更を反映し直したあとも、印は残ります。分解した遺物や取引で渡した遺物の印は残りません。 / Fixed an issue where the starting relic mark disappeared after saving and reloading while a starting relic was outside the vault. This affected relics in your bag, in lost items, waiting to be recovered from an interrupted run, pending salvage, held in a co-op trade, or held at a waypoint. For example, canceling a trade returned the relic, but its mark stayed lost. Marks now stay through saving and loading in all of these cases, including when lobby changes are applied again on Continue. Relics you salvaged or traded away no longer keep their mark.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.4 — Star Offering description now notes the Dream Depth XP multiplier（2026-10-17）
+
+この版は、出来事「星の捧げ物」の説明に、実際に得られる星の経験の量が正しく書かれていなかった問題を直す更新です。 / This update fixes the Star Offering event description not accurately showing how much Star XP you actually receive.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 出来事「星の捧げ物」の説明には基礎値の星の経験40しか書かれていませんでしたが、実際には夢の深さに応じた経験の倍率が掛かります。たとえば深さ5では80を得られます。説明と実際に得られる量が違って見えていたため、日本語・英語の両方の説明に、夢の深さの経験倍率が掛かることを書き加えました。得られる経験の量そのものは変わっていません。 / The Star Offering event description showed only the base value of 40 Star XP, but the actual amount is multiplied by the Dream Depth XP multiplier. At depth 5, for example, you receive 80. Because the description did not match what you actually got, both the Japanese and English descriptions now note that the Dream Depth XP multiplier applies. The amount of XP you receive is unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.3 — Fixes for Pure White Dream profile switching, F6 language saving, and Infinity boss saves（2026-10-17）
+
+この版は、純白の夢に勝ったあとプロフィールを切り替えられなくなる問題、F6 メニューで切り替えた言語が次回起動時に元へ戻る問題、インフィニティでボスに繰り上がったあとに保存や協力プレイの同期が失敗する問題を直す更新です。インフィニティの案内に出る数値も実際の値に揃えました。 / This update fixes being unable to switch profiles after winning the Pure White Dream, the language chosen in the F6 menu reverting on the next launch, and saving and co-op syncing failing after Infinity moves you up to the boss. It also makes the numbers in the Infinity guide match the actual values.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 純白の夢に勝ったあと、終わったはずの遠征の結果がまだ反映されていない扱いのまま残っていた問題を直しました。ホストでも参加者でも起きており、保存してゲームを再起動してもこの状態が続いたため、プロフィールを切り替えられませんでした。その結果、次の遠征が以前のプロフィールに記録されることもありました。これからは、勝利後もプロフィールを普段どおり切り替えられ、次の遠征は選んだプロフィールに記録されます。 / Fixed an issue where, after winning the Pure White Dream, the finished run was still treated as having a result waiting to be applied. This happened for both the host and other players, and it continued even after saving and restarting the game, so you could not switch profiles. As a result, your next run could also be recorded to your previous profile. You can now switch profiles as usual after the win, and your next run is recorded to the profile you chose.
+- F6 メニューの記録タブで言語を切り替えても、次にゲームを起動すると前の言語に戻っていた問題を直しました。これからは切り替えた時点で設定に保存され、次回の起動でも選んだ言語で表示されます。保存できなかった場合は、画面にその旨が表示されます。 / Fixed an issue where the language you switched to in the Records tab of the F6 menu went back to the previous language the next time you started the game. Your choice is now saved as soon as you switch, so the game starts in the language you picked. If saving fails, a message is shown on screen.
+- インフィニティで、周期に必要な数より小さい地図からボスへ繰り上がったあと、プロフィールの保存や読み込みに失敗していた問題を直しました。特に最初の周期で起きやすく、協力プレイでは参加者が進行状況を受け取れないこともありました。これからは、ボス戦の途中、次の選択を待っている間、その先の地図へ進んだあとも、保存して続きから遊べます。 / Fixed an issue in Infinity where saving or loading the profile failed after a map smaller than the cycle length moved you up to the boss. It happened most often in the first cycle, and in co-op, other players could fail to receive the run's progress. You can now save and continue during the boss fight, while waiting for the next choice, and after moving on to later maps.
+- 以前の版でこの状態になったセーブも、ボス戦や選択待ちなどの進行状況を保ったまま読み込めるようになりました。 / Saves that hit this issue in an earlier version now load correctly, keeping progress such as an ongoing boss fight or a pending choice.
+- インフィニティの案内に表示される初期遺物の数、星図の上限、到達刻印の条件を、日本語・英語とも実際の値と一致するように直しました。 / The starting relic count, Star Chart limit, and milestone mark conditions shown in the Infinity guide now match the actual values in both Japanese and English.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.2 — Smoother Trade tab with large vaults（2026-10-17）
+
+この版は、保管庫の遺物が多いときに取引タブが重くなる問題を直す更新です。 / This update fixes the Trade tab slowing down when the vault holds many relics.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 保管庫に遺物が数百件あると、取引タブを開いている間にフレームレートが大きく落ちていた問題を直しました。工房で保管庫を最大の1960枠まで広げた場合も同じでした。これからは、保管庫と鞄の遺物一覧で画面に見えている行だけを表示するので、遺物が多くても動作が重くなりにくくなります。スクロールできる範囲は今までどおりです。 / Fixed an issue where the frame rate dropped sharply while the Trade tab was open if the vault held hundreds of relics, including a vault expanded to the maximum of 1,960 slots in the workshop. The vault and bag relic lists now show only the rows visible on screen, so the tab stays responsive even with many relics. You can still scroll through the whole list as before.
+- 取引タブの遺物一覧は、装備・鍛冶の一覧と同じく、どの行も同じ高さで並ぶようになりました。長い名前は1行で表示し、説明は行の中に収まる分だけを表示します。全文は行にカーソルを合わせると表示され、選択済みの欄でも確認できます。 / Relic rows in the Trade tab now all have the same height, like the equipment and forge lists. Long names are shown on one line, and descriptions are trimmed to fit the row. Hover over a row to see the full text, which is also shown in the selected section.
+- 名前・レア度・部位で絞り込みを変えると、一覧は先頭に戻ります。 / Changing the name, rarity, or slot filter now scrolls the list back to the top.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.1 — Secure point nightmare chance now matches the actual roll（2026-10-17）
+
+この版は、確保地点のパネルに表示される悪夢化の確率を、実際の抽選と合うように直す更新です。 / This update makes the nightmare chance shown on the secure point panel match the actual roll.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 確保地点のパネルで「通常の敵の◯%が悪夢化」と表示される確率が、実際の確率より低く出ていた問題を直しました。夢レベルが高く装備が育っているほど差が大きくなり、たとえば30%と表示されていても、実際には40〜60%前後になることがありました。これからは、夢の圧、パネルで選んでいる道標、一行の装備の効果も表示に含めるので、表示される確率が実際の確率と一致します。 / Fixed an issue where the "◯% of normal enemies become nightmares" chance on the secure point panel was lower than the real chance. The gap grew with higher dream levels and stronger gear, so a displayed 30% could actually be around 40–60%. The panel now includes Dream Pressure, the waypoint selected on the panel, and the party's gear, so the shown chance matches the real one.
+- 「明けない夜」の道標を選んでいるとき、ボス以外の敵がすべて悪夢化するのに通常の確率が表示されていた問題を直しました。これからは「ボス以外のすべての敵が悪夢化」と表示されます。 / Fixed an issue where selecting the "Endless Night" waypoint still showed a normal percentage even though every non-boss enemy becomes a nightmare. The panel now says "All non-boss enemies become nightmares."
+- 協力プレイでホストが古いバージョンのままの場合は、一行の装備の効果を確かめられないため、確率を「◯%以上」と表示します。 / In co-op, if the host is on an older version, the party's gear effect can't be checked, so the chance is shown as "at least ◯%".
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.2.0 — Minor adjustments（2026-10-17）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game. Please report anything odd.
+
+---
+
+## v3.1.7 — Fixes for cooking ingredient limits and icon numbers（2026-10-17）
+
+この版は、料理の素材まわりの不具合を直す更新です。 / This update fixes bugs related to cooking ingredients.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 料理の素材のうち1つでも上限の設定が正しくないと、すべての素材で、料理1回に使う量の上限が効かなくなる問題を直しました。これからは問題のある素材だけが元のゲームの動きに戻り、ほかの素材はこれまでどおり上限の量だけ使われます。 / Fixed an issue where one ingredient with an invalid limit setting turned off the per-cook usage limit for every ingredient. Now only that ingredient goes back to the base game's behavior, and the other ingredients are still used only up to their limit.
+- 素材アイコンを別の場所の表示に使い直したとき、前の数字が消えずに残ることがある問題を直しました。 / Fixed an issue where an old number could stay on an ingredient icon after the icon was reused in another place.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.6 — Maintenance update: co-op processing cleanup and troubleshooting logs（2026-10-17）
+
+この版は内部の保守のための更新で、ゲーム内の動きや数値に変更はありません。 / This is a maintenance update with no changes to gameplay or numbers.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### この版について / About this version
+
+- 協力プレイで敵を倒した記録をやり取りする処理を内部で整理し、無駄な繰り返しを減らしました。遊び方や報酬、表示はこれまでと変わりません。 / We streamlined the internal processing used to exchange kill records in co-op, cutting out redundant work. How the game plays, rewards and what is shown on screen are unchanged.
+- 協力プレイの記録のやり取りや取引で問題が起きたときに原因を調べやすくするため、調査用の記録を追加しました。この版で不具合が直ったわけではありません。 / To make problems easier to investigate when exchanging records or trading in co-op, we added logging for troubleshooting. This version does not fix any bug by itself.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.5 — Maintenance update: streamlined build and roll processing（2026-10-17）
+
+この版は内部の保守のための更新で、ゲーム内の動きや数値に変更はありません。 / This is a maintenance update with no changes to gameplay or numbers.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### この版について / About this version
+
+- 装備の能力を集計する処理と、抽選の処理を内部で整理し、無駄な繰り返しを減らしました。遊び方や効果の内容、確率、表示はこれまでと変わりません。 / We streamlined the internal processing used to total up equipment effects and to run random rolls, cutting out redundant work. How the game plays, what effects do, the odds and what is shown on screen are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.4 — Maintenance update with no gameplay changes（2026-10-17）
+
+この版は内部の保守のための更新で、ゲーム内の動きや数値に変更はありません。 / This is a maintenance update with no changes to gameplay or numbers.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### この版について / About this version
+
+- 今後の調整で設定の誤りが入り込まないよう、開発側の確認を強化しました。遊び方や敵の挙動、表示はこれまでと変わりません。 / We strengthened development-side checks so that configuration mistakes are less likely to slip into future updates. How the game plays, how enemies behave and what is shown on screen are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.3 — Clearer, localized co-op trade messages（2026-10-17）
+
+協力プレイの取引で表示されるメッセージを改善しました。 / This version improves the messages shown during co-op trades.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 改善 / Improvements
+
+- 協力プレイの取引で、取引が取り消されたときと、接続が切れたときのメッセージを分けました。これまではどちらも同じ文で表示されていました。今後は、取消や時間切れで取引をもう一度申し込めるのか、再接続を待っているのかが区別できます。 / In co-op trades, cancellations and connection changes now show different messages. Both used to show the same text. You can now tell whether a trade was cancelled or timed out and can be offered again, or whether the game is waiting for a player to reconnect.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの取引で、参加者が出した品がホストに受け付けられなかったときに、ホストの言語の内部メッセージが参加者にそのまま表示されることがありました。今後は理由が参加者自身の言語で表示されます。 / Fixed co-op trades where a participant whose offer was rejected by the host could see an internal message in the host's language. The reason is now shown in the participant's own language.
+- 協力プレイの取引で表示されるエラーや取消のメッセージが、どの場面でも参加者それぞれの言語で表示されるようにしました。取引画面の状態表示と、参加者一覧の状態表示も同じように各自の言語で表示されます。 / Error and cancellation messages in co-op trades are now shown in each player's own language in every case. The status shown on the trade screen and in the player list also appears in each player's own language.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.2 — Melee co-op display polish and locale-independent numbers（2026-10-17）
+
+近接協力の表示まわりを細かく改善し、言語設定によって数値の表示が変わる不具合を修正しました。 / This version polishes how melee co-op is displayed and fixes numbers showing differently depending on language settings.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 改善 / Improvements
+
+- MOD 設定画面の近接協力の4項目で、設定名を短い1行にまとめました。倍率・上限・距離・時間などの詳しい内容は、設定名とは別の説明文に表示されます。改行が原因で文字が重なったり切れたりする心配がなくなり、数値の情報はこれまでどおりすべて確認できます。 / The four melee co-op entries in the MOD settings screen now have short one-line names. Details such as multipliers, caps, distances and durations are shown in a separate description, so the text no longer depends on line breaks that could overlap or get cut off. All the numbers are still shown.
+- 星図で自分以外の旅人のページを見ているときは、近接協力の見出しを「近接の協力効果（通常攻撃が近接の間）」にしました。遠距離攻撃をしている Aurena などが、いま近接攻撃中であるかのように読めなくなります。 / On another traveler's star chart page, the melee co-op heading now reads "Melee co-op effects (while the basic attack is melee)", so a traveler such as Aurena using a ranged attack no longer looks like they are currently melee.
+- 攻撃速度が上限に達していて近接の射程変換による増加が無いときは、「+0%」ではなく「0%」と表示するようにしました。増加が無いことがひと目でわかります。 / When attack speed is already capped and the melee range conversion adds nothing, it now shows "0%" instead of "+0%", making it clear there is no gain.
+- ランを開始するたびに診断ログの記録をリセットするようにしました。2回目以降のランでも同じログがもう一度出力されます。 / Diagnostic logs are now reset at the start of each run, so they are written again in later runs.
+
+### 不具合の修正 / Bug fixes
+
+- 小数点にカンマを使う言語設定の PC で、近接協力の説明文の数値が「0.25」ではなく「0,25」のように表示されることがありました。今後はどの言語設定でも同じ表記で表示されます。 / Fixed melee co-op descriptions showing numbers like "0,25" instead of "0.25" on PCs whose language settings use a comma as the decimal separator. Numbers now display the same way regardless of language settings.
+- 近接協力の崩しを付ける処理をすべて見直し、近接攻撃でない旅人には崩しが付かないようにしました。 / Reviewed every place that applies the melee co-op break and made sure it is not applied to travelers who are not using a melee attack.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.1 — Fix repeated record re-sending in co-op trades with large stashes（2026-10-17）
+
+協力プレイで、保管庫の大きな参加者と取引するときの不具合を修正しました。 / This version fixes an issue when trading in co-op with a player who has a large stash.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで保管庫の大きな参加者と取引すると、取引相手の記録の受け取りが終わる前に送信が最初からやり直され、それが何度も繰り返されることがありました。今後は受け取り中にやり直しが起きなくなり、記録は最後まで届きます。取引中に参加者が再接続したときも、これまでどおりすぐに記録が送り直されます。 / Fixed co-op trades with a player who has a large stash, where the partner's record could restart sending before it finished arriving, over and over. Records are no longer restarted mid-transfer and now arrive in full. If a player reconnects during a trade, the record is still re-sent right away as before.
+- インフィニティモードを無効にしたときや終了したときに、記憶していたゾーンの情報も消えるようにしました。 / When Infinity Mode is disabled or ended, the zone information it remembered is now cleared as well.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.1.0 — Per-traveler adjustments and co-op improvements（2026-10-16）
+
+旅人ごとの細かな調整と、協力プレイの改善です。 / Per-traveler adjustments and co-op improvements.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 改善 / Improvements
+
+- 宿敵の頭上の名札をシアンに変え、悪夢化した敵（桃色）や夢の変種（琥珀色）と見分けやすくしました。協力プレイでも全員に同じ色で表示されます。 / Nemesis nameplates are now cyan, so they stand out from pink nightmares and amber dream variants. Everyone in co-op sees the same color.
+- 細かな調整を行いました。 / Minor adjustments.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで保管庫が大きいとき、取引の記録の送り直しが繰り返されて通信が重くなることがあった問題を修正しました。 / Fixed co-op trades with a large stash repeatedly re-sending their records and slowing the connection.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game. Please report anything odd.
+
+---
+
+## v3.0.1 — Co-op trades no longer stop the host on bad data; suspend data no longer grows without limit（2026-10-16）
+
+このバージョンでは、協力プレイの取引で壊れたデータが届いてもホスト全体が止まらないようにし、討伐記録の受け取りで中断データが増え続ける問題を修正しました。 / This version keeps a broken co-op trade from stopping the whole host, and fixes suspend data that could keep growing when kill records were received.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの取引で、壊れたデータや読み取れないデータが届くと、ホスト全体が保存に失敗した状態になることがありました。今後は、壊れたデータは無視され、進行中の取引はそのまま続きます。取引相手のプロフィールや提示内容が読み取れない場合は、その取引だけが取り消され、相手にも取り消しが伝わります。ほかの協力プレイはそのまま続けられます。 / Fixed broken or unreadable data in a co-op trade putting the whole host into a save-failure state. Broken data is now ignored and trades in progress continue. If a trading partner's profile or offer can't be read, only that trade is canceled and the other player is notified. The rest of co-op keeps going.
+- 協力プレイで、ホストが知らない討伐記録を受け取ると、そのまま保存されて中断データが際限なく大きくなることがありました。今後は、知らない記録は保存されません。 / Fixed kill records unknown to the host being saved when received in co-op, which could make suspend data grow without limit. Unknown records are no longer saved.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v3.0.0 — Co-op rebuilt: every traveler gets their own fight（2026-10-16）
+
+このバージョンでは協力プレイを作り直しました。これまでは、一番育った人が共有の敵をまとめて倒してしまい、ほかの人の出番がなくなりがちでした。これからは、敵が湧いた時点で参加者それぞれの「担当」になり、各自が自分の育ち具合に合った敵と戦います。助けに行くこともできますが、真ん中に立っているだけで全部が消える、ということは起きません。 / This version rebuilds co-op. Until now, the most-progressed player tended to clear every shared enemy and leave nothing for anyone else. From now on, each enemy becomes one player's "assignment" when it spawns, and everyone fights enemies matched to their own progress. You can still help each other, but standing in the middle no longer wipes the whole room.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op must update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+- 新しい仕組みはすべて F6 のホスト設定で切り替えられます。ソロの遊び方は変わりません。 / Every new system can be toggled in the host settings (F6). Solo play is unchanged.
+
+### 追加要素 / New features
+
+- **敵の担当制（協力プレイ）**: 部屋の敵は湧いた時点で参加者の誰かの担当になり、その人を狙い、その人の育ち具合に合わせた強さで現れます。担当者が戦っている間、ほかの人の攻撃は手伝い程度に抑えられ、とどめは担当者が刺します。担当者が倒れそうなとき・倒れたとき・離れたときは、ほかの人が助けに入れます。 / **Enemy assignments (co-op)**: each enemy belongs to one player from the moment it spawns, targets that player, and is scaled to their progress. While the owner is fighting it, other players' attacks count as help, and the owner lands the finishing blow. When the owner is in danger, down, or away, others can step in.
+- 頭上の印「◆」（自分の担当）「◇」（ほかの人の担当）と、プレイヤーごとの色・番号で、どの敵が誰の担当か分かります。F6 に色の凡例があります。 / Overhead markers show who owns each enemy: ◆ for yours and ◇ for others, with a color and number per player. The F6 menu shows the color legend.
+- **ボスの持ち分（協力プレイ）**: ボスとミニボスは、参加者それぞれの持ち分に分かれた体力を持ちます。各自が自分の持ち分を削り、終わった人はほかの人を手伝えます。ボスの体力バーの下に持ち分が表示されます。 / **Boss shares (co-op)**: bosses and minibosses have health split into a share for each player. Everyone works down their own share, and those who finish can help the others. The shares are shown under the boss health bar.
+- **殲滅速度に合わせた難易度**: 部屋ごとに各プレイヤーの火力を測り、敵が溶けすぎる人の担当の敵を少し硬くします。苦戦している人の敵は少し易しくなります。硬くなった分は報酬も増えます。協力プレイでは既定で有効、ソロでは F6 で有効にできます。 / **Difficulty that follows your damage**: each room, every player's damage output is measured, and enemies assigned to players who melt everything get a bit tougher, while players who are struggling get a little relief. Tougher enemies give more rewards. On by default in co-op, optional in solo (F6).
+- **同行の刻印**: 9 人の旅人それぞれに、味方が近くにいるときだけ働く刻印を 1 つずつ追加しました。仲間の攻撃を活かしたり、仲間を守ったりする効果です。 / **Companion keystones**: each of the nine travelers gets a new keystone that works only while an ally is nearby, built around setting up or protecting your teammates.
+- **マルチ専用の兆し「共鳴の盾」**: 協力プレイ中の部屋に時々現れます。盾を持つ敵は、2 人以上で同時に攻撃しないと崩せません。 / **Co-op room omen "Resonant Ward"**: appears in some co-op rooms. Warded enemies can only be broken when two or more players attack them together.
+- **アシスト**: 敵を倒す直前に攻撃や支援をした人にも、クールダウン回復などの一時的な撃破時効果が届くようになりました。 / **Assists**: players who attacked or supported just before a kill now also receive temporary on-kill effects such as cooldown recovery.
+- 協力プレイでのビスマスの自動詠唱が、仲間が戦っている敵より自分の周りの敵を優先するようになりました。 / In co-op, Bismuth's automatic casting now prefers enemies around you over enemies your teammates are fighting.
+
+### 不具合の修正 / Bug fixes
+
+- エッセンスと記憶の組み合わせによっては連鎖が止まらず、処理が重くなったりゲームが落ちたりすることがあった問題を修正しました。 / Fixed some essence and memory combinations that could chain endlessly, causing heavy slowdowns or crashes.
+- 協力プレイでビスマスの自動詠唱が非常に速く連続し、ほかの参加者の動作が重くなることがあった問題を修正しました。 / Fixed Bismuth's automatic casting firing extremely fast in co-op and slowing down other players' games.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.64 — Melee co-op effect descriptions and host-synced range display（2026-10-16）
+
+このバージョンでは、近接の旅人が受ける協力効果（射程の変換・崩し・近接防御）の数値を画面で確認できるようにし、協力プレイの参加者の画面に出る射程の表示と連携の効き具合を、ホストの設定と攻撃速度の上限に合わせました。 / This version shows the numbers behind the melee co-op effects (range conversion, Break, and Melee Guard), and makes the range display and link strength on co-op participants' screens follow the host's settings and the attack speed cap.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **近接の協力効果の説明**: 崩しと近接防御、射程から攻撃速度への変換の効果量を、日本語と英語の説明文で見られるようにしました。崩しは、命中した敵が3秒間12%多くダメージを受けるようになる効果です。近接防御は、3m以内に敵がいるときに受けるダメージを12%減らす効果です。MOD 設定画面の4項目の名前にも数値を入れたので、ロビーでも確認できます。 / **Melee co-op effect descriptions**: the strength of Break, Melee Guard, and the range-to-attack-speed conversion is now explained in Japanese and English. Break makes enemies you hit take 12% more damage for 3 seconds. Melee Guard reduces damage you take by 12% while an enemy is within 3 m. The four entries in the mod settings screen now include their numbers too, so you can check them in the lobby.
+- Dreamforge メニューの星図にある「獲得した効果」欄に、近接の旅人を使っているときだけ、ホストが有効にしている効果が「近接の協力効果」として出るようになりました。 / In the Dreamforge menu's star chart, the "Acquired effects" section now lists the effects the host has enabled under "Melee co-op effects". This appears only when you are playing a melee traveler.
+
+### 不具合の修正 / Bug fixes
+
+- 近接の旅人の装備にある射程の行が「攻撃速度 +◯%」と表示されるとき、攻撃速度の上限（合計80%）を考えていなかったため、実際より大きい値が出ることがありました。今後は実際に増える量と上限が表示されます。たとえば攻撃速度が70%のときに射程+30%の装備を付けると、「攻撃速度 +10%（近接のため射程 +30% から変換。攻撃速度は合計80%まで）」と出ます。 / Fixed the range line on a melee traveler's gear (shown as "Attack speed +X%") ignoring the attack speed cap (80% total), which could make it show more than you actually get. It now shows the actual increase and the cap. For example, with 70% attack speed and a +30% range item, it reads "Attack speed +10% (converted from range +30% because you are melee; attack speed caps at 80% total)".
+- 協力プレイの参加者の画面で、射程から攻撃速度への変換の表示と、連携の「現在の効き%」が、ホストではなく自分の設定をもとに出ていたため、設定がホストと違うと実際の効き方とずれていました。今後はホストの設定に合わせて表示されます。ホストが設定を変えたときも、数秒で表示に反映されます。 / Fixed co-op participants seeing the range-to-attack-speed display and the current link strength based on their own settings instead of the host's, which made the numbers wrong when their settings differed from the host's. They now follow the host's settings, and changes the host makes show up within a few seconds.
+- 距離減衰をオフにしたときの説明文から、「10mまでは全量で効き、10mを超えると切れる」という一文が抜けていたので戻しました。 / Restored the missing sentence for when distance falloff is off: effects apply in full up to 10 m and cut off past 10 m.
+- 近接の旅人の協力効果が実際のゲームで正しく発動しているかを調べるため、近接の判定結果をゲームの記録（Player.log）に残すようにしました。あわせて、攻撃のデータの形が違う場合（prefab や GameObject）でも近接の判定が働くようにしました。近接の判定が発動しない問題は、まだ実際のゲームで確かめられていません。 / To check whether the melee co-op effects actually trigger in the live game, the result of the melee check is now written to the game log (Player.log). The melee check now also works when the attack data comes in a different form (a prefab or GameObject). Whether the melee check fails to trigger has not been confirmed in the live game yet.
+- 攻撃が当たったときの処理を軽くしました。崩しがオフのときや近接の旅人でないときは余計な確認を省き、近接防御は当たるたびに調べ直さず、0.25秒ごとの周囲の確認結果を使うようにしました。 / Made hit processing lighter: extra checks are skipped when Break is off or the traveler is not melee, and Melee Guard now uses the surroundings check done every 0.25 seconds instead of re-checking on every hit.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.63 — Save error messages stay visible and follow your display language（2026-10-16）
+
+このバージョンでは、保存に失敗したときのエラー表示が消えてしまうことがあった不具合を修正し、保存失敗の理由が表示言語に合わせて出るようにしました。 / This version fixes an issue where the save error message could disappear, and shows the reason for a save failure in your display language.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 保存中にエラーが起きたとき、その表示がすぐに消えてしまうことがありました。今後は、エラーの表示が残るようにしました。以前に起きた別の保存失敗が残っている場合も、今回の保存で起きたエラーの理由が優先して表示されます。 / Fixed an issue where the error message could disappear right after an error occurred while saving. The message now stays on screen. If an earlier save failure is still pending, the reason for the error in the current save is shown first.
+- 自動で行われる保存でも、ほかの場面で起きた保存エラーの表示が消えないようにしました。 / Automatic saves no longer clear save error messages that came from other situations.
+- 保存に失敗したときに表示される理由の文が、日本語と英語の両方に対応し、表示言語に合わせて出るようにしました。表示言語を切り替えたときや、失敗の原因が変わったときには、再試行の案内文も新しい内容に更新されます。なお、OS などゲームの外から届くエラーの文やファイル名は、調査に使えるよう元の文のまま表示されます。 / Messages explaining why a save failed now support both Japanese and English and match your display language. When you change the display language or the cause of the failure changes, the retry message is updated as well. Error text from outside the game, such as from the OS, and file names are still shown as-is so they can be used for troubleshooting.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.62 — Fix boss setup error and lighter hit processing（2026-10-16）
+
+このバージョンでは、ボス戦の準備中に起きることがあったエラーを修正し、命中時の処理を軽くしました。 / This version fixes an error that could occur while a boss was being set up and makes hit processing lighter.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ボスの装備を準備するときに装備の情報がまだそろっていないと、エラーが起きることがありました。この場合はボスの効果をいったん外し、情報がそろってから改めて付け直すようにしました。 / Fixed an error that could occur when a boss's equipment was set up before its equipment info was ready. In that case, the boss's effects are now removed for the moment and applied again once the info is available.
+- 攻撃が命中したときに仕掛けや刻印の効果を調べる処理で、余分なメモリを使わないようにして、動作を軽くしました。表示内容や効果は変わりません。 / Reduced extra memory use when checking gimmick and mark effects on hit, making the game lighter. What is shown and how things work are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.61 — Fixes for legacy kill records, co-op trade recovery, and version warning language（2026-10-16）
+
+このバージョンでは、古いセーブの討伐記録の読み込み、協力プレイの取引で再接続したときの表示、ホストの版違い警告の表示言語に関する不具合を修正しました。 / This version fixes issues with loading kill records from older saves, the co-op trade display after reconnecting, and the display language of the host's version mismatch warning.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 古い形式のセーブに同じ対象の討伐記録が重なって入っていても、先の記録を残して残りの討伐記録を引き続き復元するようにしました。 / If an older save contains overlapping kill records for the same target, the earlier record is now kept and the rest of the kill records continue to be restored.
+- 協力プレイの取引中に参加者が再接続したり、通信の途中で相手の情報を受け取れなかったりしても、相手の情報が送り直され、取引画面が元に戻るようにしました。これまでは、そのまま相手の情報が表示されないことがありました。 / In co-op trading, if a player reconnects or misses the other player's info partway through, that info is now sent again and the trade screen recovers. Previously, the other player's info could stay missing.
+- ホストに出る版違いの警告が、日本語と英語の両方で表示され、表示言語を切り替えたときにも新しい言語に切り替わるようにしました。版の違いが変わったときにも警告が更新されます。 / The version mismatch warning shown to the host now supports both Japanese and English and switches when you change the display language. The warning also updates when the version difference changes.
+- インフィニティモードのホスト側で、毎フレーム行われていた表示用の処理を減らし、動作を軽くしました。表示内容や効果は変わりません。 / Reduced work done every frame on the host in Infinity mode to make it lighter. What is shown and how things work are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.60 — Co-op trade messages in each player's language（2026-10-16）
+
+このバージョンでは、協力プレイの取引で表示されるメッセージが、参加者それぞれの表示言語で出るようにしました。 / This version makes co-op trade messages appear in each player's own display language.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの取引で、中止やエラー、「相手は今取引できる状態ではありません」などのメッセージが、ホストの言語ではなく自分の表示言語で表示されるようにしました。これまでは、たとえばホストが日本語で参加者が英語のとき、参加者にも日本語で表示されていました。 / In co-op trading, messages such as cancellations, errors, and "the other player can't trade right now" now appear in your own display language instead of the host's. Previously, for example, an English-speaking player in a Japanese host's game saw these messages in Japanese.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.59 — Codex, equipment comparison, and language switch fixes（2026-10-16）
+
+このバージョンでは、図鑑と装備比較、表示言語を切り替えたときの表示に関する不具合を修正し、装備や鍛冶の画面を軽くしました。 / This version fixes issues with the codex, equipment comparison, and display after changing the language, and makes the equipment and forge screens lighter.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 遺物の強化や夢の出来事で、所持数が変わらないまま固有効果が増えたり減ったりしたとき、図鑑の発見数と発見状態が古いまま残らないようにしました。 / When upgrading a relic or a dream event adds or removes a unique effect without changing how many you own, the codex's discovery count and discovered status no longer stay out of date.
+- 装備を比べるとき、断ち切りで追加された固有効果も増減に表示されるようにしました。また、変化のない能力値は表示せず、同じ効果が重ねて表示されないようにしました。 / Equipment comparison now includes unique effects added by severing. Stats that do not change are no longer listed, and the same effect is no longer shown twice.
+- 表示言語を切り替えたとき、悪夢・変異の頭上の表示と、旅人選択の名前が新しい言語に切り替わるようにしました。 / After changing the display language, the overhead labels for nightmares and mutations and the names in traveler selection now switch to the new language.
+- 宝庫の倍率、工房の次の段階の表示、英語の到達刻印の案内が、実際のゲームの値と一致するようにしました。 / The hoard multiplier, the next-level info in the workshop, and the English keystone guidance now match the actual in-game values.
+- 装備・鍛冶の画面と HUD で、繰り返し行われていた計算を減らし、動作を軽くしました。表示内容や効果は変わりません。 / Reduced repeated calculations in the equipment and forge screens and the HUD to make them lighter. What is shown and how things work are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.58 — Co-op forbidden equipment warning fixes（2026-10-16）
+
+このバージョンでは、協力プレイでの禁忌装備の警告と、警告表示まわりの処理を整理しました。 / This version tidies up the forbidden equipment warning and related warning handling in co-op.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、禁忌装備の警告が出る条件と、実際に装備が外される条件を同じものにしました。警告の内容と、実際に外される装備が食い違わなくなります。 / In co-op, the forbidden equipment warning now uses the same rule that decides which equipment is actually removed, so the warning always matches what is removed.
+- 協力プレイで、ほかの参加者の対応があとから分かったときに、禁忌装備の警告が消えて装備が正しく反映されるようにしました。すでにほかの応答を受け取っている場合も同じです。 / In co-op, when other players' support is confirmed later, the forbidden equipment warning is cleared and your equipment is applied correctly, even if other responses were already received.
+- 協力プレイで、ホストから応答がないときの警告が、表示中のほかの警告を上書きしないようにしました。表示言語を変えたときも同じです。 / In co-op, the no-response warning no longer replaces another warning already on screen, including when you change the display language.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.57 — Co-op warning, resume save, and room omen fixes（2026-10-16）
+
+このバージョンでは、協力プレイでの警告表示、中断データからの再開、部屋の兆しに関する不具合を修正し、装備一覧などの動作を軽くしました。 / This version fixes issues with co-op warnings, resuming from a suspended save, and room omens, and makes the equipment list and other screens lighter.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、禁忌装備の警告がほかの参加者の対応を確認してから出るようにしました。あとから対応していると分かった場合は警告が消え、装備が正しく反映されます。 / In co-op, the forbidden equipment warning now waits until other players' support has been checked. If support is confirmed later, the warning is cleared and your equipment is applied correctly.
+- 協力プレイで、退出した参加者のバージョン違いの警告が残らないようにしました。 / In co-op, version mismatch warnings no longer remain for players who have left.
+- 部屋の兆しが不具合で止まったとき、次の遠征か、ホストが再接続したときに再び動くようにしました。 / If room omens stop because of an error, they now start again on the next expedition or when the host reconnects.
+- 中断したデータから再開するとき、保存の書き込みを確認してから再開の通知を送るようにしました。保存に失敗した場合は、次に接続したときにやり直します。 / When resuming from a suspended save, the resume notice is now sent only after the save is confirmed to be written. If saving fails, it is retried the next time you connect.
+- 保留中の取引が上限に達したとき、手動取引の上限（64件）と全体の上限（4096件）のどちらに達したかが正しく表示されるようにしました。 / When pending trades reach their limit, the message now correctly shows which limit was reached: the manual trade limit (64) or the overall limit (4096).
+- 装備一覧や星図などで、繰り返し行われていた処理を減らし、動作を軽くしました。表示内容や効果は変わりません。 / Reduced repeated processing in the equipment list, star map, and elsewhere to make them lighter. What is shown and how things work are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.56 — Test and documentation cleanup for co-op trading（2026-10-16）
+
+このバージョンでは、開発用のテストと文書を整理しました。ゲーム内の動作は変わりません。 / This version tidies up development tests and documentation. Nothing changes in gameplay.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 変更点 / Changes
+
+- 協力プレイでのアイテム交換に関わるテストと説明文書を整理しました。プレイヤーから見える動作は変わりません。 / Cleaned up tests and documentation related to item trading in co-op. Nothing changes for players.
+- 協力プレイでアイテム交換が止まる問題は、この版ではまだ修正されていません。 / The issue where item trading can stop in co-op is not yet fixed in this version.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.55 — Faster star map loading at startup（2026-10-16）
+
+このバージョンでは、ゲーム起動時に Dreamforge RPG の読み込みに時間がかかる問題を改善しました。 / This version reduces the time Dreamforge RPG takes to load when the game starts.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 起動時の読み込みのうち、Dreamforge RPG の読み込みにかかった時間がゲームのログ（Player.log）に記録されるようになりました。実際のゲームでどれだけ短くなったかを確かめるのに使います。 / The game log (Player.log) now records how long Dreamforge RPG takes to load at startup. This helps confirm how much faster loading is in the actual game.
+
+### 不具合の修正 / Bug fixes
+
+- ゲームを起動したとき、星図の準備に数秒かかり、タイトル画面までの読み込みが長くなっていた問題を改善しました。星図の準備にかかる時間を減らしました。 / Improved an issue where preparing the star map took several seconds at startup, making the load to the title screen longer. Star map preparation now takes less time.
+- 星図の内容、星の割り当て、効果は変わっていません。 / The star map contents, allocated stars, and their effects are unchanged.
+- 使われていない内部の処理を整理しました。ゲーム内の動作は変わりません。 / Removed unused internal code. Nothing changes in gameplay.
+
+開発環境での計測では星図の準備にかかる時間がおよそ半分になりましたが、実際のゲームでどれだけ短くなるかはまだ確かめていません。更新前と更新後の Player.log を送っていただけると、効果の確認に役立ちます。 / In our development environment, star map preparation took about half as long, but we have not yet confirmed how much faster it is in the actual game. Sending Player.log from before and after updating would help us check the effect.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.54 — Fix version mismatch warning staying after a player leaves the co-op lobby（2026-10-16）
+
+このバージョンでは、協力プレイで、参加者がロビーから抜けたあともホストにバージョン違いの警告が残ることがある問題を修正しました。 / This version fixes an issue in co-op where the host could keep seeing a version mismatch warning after a player had left the lobby.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、バージョンが違う参加者がロビーから抜けたあとも、ホストの画面にその参加者についてのバージョン違いの警告が残ることがある問題を修正しました。参加者が完全に抜けたときは、警告がすぐに消えるようになりました。 / Fixed an issue in co-op where, after a player on a different version left the lobby, the host could still see a version mismatch warning about that player. The warning now clears right away when the player fully leaves.
+- 同じ参加者がロビーからゲームへ移ったときは、警告がいったん消えたままにならず、続けて表示されるようになりました。 / When that player moves from the lobby into the game, the warning no longer disappears and now stays shown.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.53 — Co-op trade diagnostics logging（2026-10-16）
+
+このバージョンでは、協力プレイの取引で、双方が承認したあとに先へ進まなくなる問題の原因を調べるため、取引の進み具合をログに記録するようにしました。この問題自体はまだ直っていません。 / This version adds logging of trade progress in co-op to help find the cause of an issue where a trade does not move forward after both players accept it. The issue itself is not fixed yet.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 協力プレイの取引で、双方が承認したあとに先へ進まなくなる問題を調べるため、取引の進み具合がゲームのログ（Player.log）に記録されるようになりました。同じ内容が短い間に何度も記録されないようにしてあります。記録の処理で問題が起きても、接続や取引の処理には影響しません。 / To investigate an issue in co-op where a trade does not move forward after both players accept it, trade progress is now recorded in the game log (Player.log). The same entry is not recorded over and over in a short time. If something goes wrong while recording, it does not affect connections or trades.
+
+この問題はまだ再現できておらず、直っていません。取引が承認済みのまま止まったときは、その時のPlayer.logを送っていただけると原因の調査に役立ちます。Player.logの集め方はREADMEに載せています。取引の条件や持ち物の扱い、セーブデータの形式は変わっていません。 / We have not yet been able to reproduce this issue, and it is not fixed. If a trade gets stuck after both players accept it, please send the Player.log from that time to help us find the cause. Instructions for collecting Player.log are in the README. Trade conditions, item handling, and the save format are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.52 — Fix lost co-op bounty reports and essence slot display refresh（2026-10-16）
+
+このバージョンでは、協力プレイで依頼の数の報告が届かずに失われることがある問題を修正しました。あわせて、表示設定を変えても記憶のエッセンス枠の表示がすぐに更新されない問題も修正しました。 / This version fixes an issue in co-op where bounty count reports could be lost before reaching the host. It also fixes an issue where the memory essence slot display did not update right away after changing display settings.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、依頼の数の報告が送られる途中で中身が消え、届かないことがある問題を修正しました。 / Fixed an issue in co-op where the contents of a bounty count report could be cleared while it was being sent, so the report never arrived.
+- 協力プレイで、参加者が依頼の数の報告を受け取れなくなった後も、しばらくその参加者あてに報告が送られ、報告が失われることがある問題を修正しました。受け取りをやめたことがすぐにホストへ伝わるようになりました。 / Fixed an issue in co-op where bounty count reports could still be sent to a player for a while after they stopped receiving them, causing those reports to be lost. The host is now told right away when a player stops receiving them.
+- 遠征の終わりなどの区切りの前に依頼の報告を送る処理が、条件によっては働かないおそれがあった問題を修正しました。 / Fixed an issue where reports for bounties sent before milestones such as the end of an expedition might not work under certain conditions.
+- 表示設定を変えても、次にシーンを読み込むまで記憶のエッセンス枠の表示が更新されないことがある問題を修正しました。設定を変えたときにすぐ反映されるようになりました。 / Fixed an issue where the memory essence slot display might not update after changing display settings until the next scene loaded. Changes now apply right away.
+- 一部の能力を持っていないとき、味方の人数や周りの敵の数が実際と違う値で扱われ、それを使うほかの能力の効果が知らないうちに変わってしまうおそれがあった問題を修正しました。 / Fixed an issue where, without certain abilities, party size or nearby enemy count could be treated as the wrong value, which might silently change the effects of other abilities that use them.
+- 対象が無効になったときに、条件によってはエラーが起きるおそれがあった問題を修正しました。 / Fixed an issue where an error could occur under certain conditions when a target became invalid.
+
+これらの修正は、不具合を再現するテストではまだ確かめられていません。 / These fixes have not yet been confirmed with tests that reproduce the issues.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.51 — Faster bulk salvage and lighter saves（2026-10-16）
+
+このバージョンでは、まとめて分解を押したときに画面が止まる時間を短くし、長く遊ぶほど保存が重くなっていく問題を修正しました。あわせて、強敵を続けて倒したときの保存の重さと、中断したプレイの再開に失敗したときの扱いも改善しました。 / This version shortens the freeze when using bulk salvage and fixes an issue where saving got heavier the longer you played. It also reduces save load when defeating strong enemies in quick succession and improves how failed resumes of interrupted runs are handled.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- まとめて分解で、遺物1つごとに保存が終わるまで画面が止まっていたため、最大30個を分解すると長く引っかかることがあった問題を修正しました。保存は全部の分解の準備が終わってから1回だけ行われるようになりました。準備や保存に失敗したときは、その回の分解はすべて取り消され、遺物は元に戻ります。協力プレイで分解の結果を受け取った側の保存も、まとめて行われるようになりました。 / Fixed an issue where bulk salvage froze the screen until the save finished for each relic, which could cause a long hitch when salvaging up to 30 relics. The game now saves once, after every salvage is ready. If preparing or saving fails, the whole batch is cancelled and your relics are returned. In co-op, saves on the side receiving the salvage results are now grouped as well.
+- 遠征の中断・再開用のデータがセーブデータの中にたまり続け、長く遊ぶほどセーブデータが大きくなって保存が重くなっていた問題を修正しました。終わった遠征のデータは消されるようになり、再開用に残すデータの数にも上限を設けました。再開用のデータに入る協力取引の情報は、変わっていないときは書き込まないようにしました。また、再開用データの確定に失敗し続けても、協力取引の控えが入れ子になってたまり、セーブデータが増え続けることはなくなりました。 / Fixed an issue where data for interrupting and resuming expeditions kept piling up in the save, making the save larger and saving slower the longer you played. Data for finished expeditions is now removed, and the amount of resume data kept is now limited. Co-op trade data in the resume data is no longer written when it has not changed. The save also no longer keeps growing with nested co-op trade backups when confirming resume data keeps failing.
+- 保存のたびに書き込んだセーブデータを全部読み直していたため、一時的にメモリを多く使い、ゲームが一瞬止まることがあった問題を修正しました。保存後の確認は書き込んだ内容との照合で行うようになり、全体の読み直しはプレイを始めて最初の保存だけになりました。 / Fixed an issue where the game re-read the whole save file after every save, using a lot of temporary memory and sometimes causing brief freezes. Saves are now checked by comparing against what was written, and the full re-read happens only on the first save of a session.
+- 強敵を続けて倒すと、1秒に何回も保存が走って重くなることがあった問題を修正しました。続けて倒したときの保存はまとめて行われるようになりました。 / Fixed an issue where defeating strong enemies in quick succession could trigger several saves per second and slow the game down. Saves after back-to-back kills are now grouped together.
+- 起動時にセーブデータを同じファイルにつき2回ずつ読み込んでいた問題を修正しました。 / Fixed an issue where each save file was read twice at startup.
+- ロビーに戻った遠征の記録が消えずにたまり続けていた問題を修正しました。記録は直近の分だけ残すようになりました。 / Fixed an issue where records of expeditions returned to the lobby kept piling up. Only recent records are now kept.
+- 中断したプレイを再開するときに中断データが読み込めないと、エラーがそのままゲームに伝わっていた問題を修正しました。今は警告が表示され、読み込めなかった遠征の報酬とビルドの反映だけが保留されます。 / Fixed an issue where an error went straight through to the game when interrupted-run data could not be read while resuming. A warning is now shown, and only the rewards and build changes for that expedition are put on hold.
+
+### 内部の改善 / Internal improvements
+
+- 星の木の画面について、テストが使う項目を明示し、木の形の前提が崩れたときに分かりやすいメッセージで失敗するようにするなど、内部の点検の仕組みを強化しました。 / Strengthened internal checks for the star tree screen, such as listing the fields the tests rely on and making tests fail with a clear message when assumptions about the tree's shape no longer hold.
+
+これらの変更でどれだけ軽くなるかは、実際のゲームではまだ測っていません。 / How much these changes improve performance has not yet been measured in the actual game.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。星の木の画面の実際のゲームでの表示（1920x1080）・マウス操作・二択パネルの見た目・フレーム時間の確認もまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. The star tree screen's display (1920x1080), mouse input, choice panel appearance, and frame time have also not yet been checked in the live game. Please report anything odd.
+
+---
+
+## v2.10.50 — Fix co-op lobby version warnings, room omens across zones, and essence slots after loading（2026-10-16）
+
+このバージョンでは、協力プレイのロビーにいる参加者のバージョンが違うときに、ホストに警告が表示されない不具合を修正しました。あわせて、ゾーンが変わっても同じ部屋番号で同じ兆しが出ることがある不具合と、読み込み直後に記憶のエッセンス枠が正しい数で出ないことがある不具合も修正しました。 / This version fixes an issue where the host was not warned when a player waiting in the co-op lobby had a different version. It also fixes an issue where the same room number could show the same omen even in a different zone, and an issue where memory essence slots could show the wrong number right after loading.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、ロビーにだけいる参加者のバージョンや内容がホストと違っていても、ホストの警告一覧に表示されなかった問題を修正しました。ロビーにいる参加者の違いも警告一覧に表示されるようになりました。ゲームとロビーの両方にいる参加者の警告が二重に出ることはなく、抜けた参加者の警告は今までどおり一覧から消えます。違いがあっても、これまで使えていた機能が止まることはありません。 / Fixed an issue in co-op where the host's warning list did not show players who were only in the lobby, even when their version or content differed from the host's. These differences for lobby players now appear in the warning list. Players who are both in the game and in the lobby are not listed twice, and warnings for players who have left are still removed from the list as before. Differences do not stop any features that already worked.
+- 部屋の兆しが部屋番号だけで決まっていたため、ゾーンが変わっても同じ部屋番号なら同じ兆しになることがある問題を修正しました。 / Fixed an issue where room omens were decided only by room number, so the same room number could show the same omen even in a different zone.
+- 読み込み直後、画面表示の準備が終わる前だと、レベルに応じた記憶のエッセンス枠が4つまでに切られてしまうことがある問題を修正しました。読み込み直後からレベルに応じた正しい数の枠が出るようになりました。 / Fixed an issue where level-based memory essence slots could be cut off at 4 if the game was loaded before the HUD was ready. The correct number of slots for your level now appears right after loading.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.49 — Less per-frame work in combat and batched co-op bounty reports（2026-10-16）
+
+このバージョンでは、戦闘中とタイトル・ロビーで毎回行っていた無駄な処理を減らし、協力プレイで送られる回復・シールド・属性撃破の報告をまとめて送るようにしました。 / This version reduces unnecessary repeated processing during combat and on the title and lobby screens, and sends heal, shield, and elemental kill reports in co-op as batches instead of one at a time.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 敵が多い戦闘で、状態異常の確認がフレームごとに大量に行われ、処理が重くなるおそれがあった問題を修正しました。問題のない状態異常については、余分な確認を行わないようにしました。 / Fixed an issue where battles with many enemies could become heavy because status effects were checked a large number of times every frame. Status effects without problems no longer go through these extra checks.
+- 協力プレイで、回復・シールド・属性撃破の報告が1件ずつ送られ、継続回復やボス撃破のときに通信が多くなっていた問題を修正しました。報告は英雄ごとにまとめて送られるようになりました。依頼の進み方は変わりません。 / Fixed an issue in co-op where heal, shield, and elemental kill reports were sent one at a time, causing heavy network traffic during healing over time or when many enemies fell at once after a boss kill. Reports are now batched per hero. Bounty progress works the same as before.
+- 戦闘中に毎フレーム行われていた余分な処理を減らしました。対象は、英雄の一覧の比較、協定の呪いの再同期の確認、周囲の確認（関係する能力を持っていないとき）、インフィニティのボス戦での魂の祠の検索です。 / Reduced unnecessary per-frame work during combat: hero list comparison, pact curse resync checks, nearby checks when no hero has a related ability, and the Soul Shrine search during Infinity boss fights.
+- 低品質設定で、敵が倒れるたびに死亡演出の光を探し直していた問題を修正しました。 / Fixed an issue on low quality settings where the death effect lights were searched for again every time an enemy died.
+- タイトル画面とロビーで、画面全体の検索を毎秒行っていた問題を修正しました。検索は起動後とシーンの読み込み後だけ行います。 / Fixed an issue where the title screen and lobby searched the whole scene every second. The search now runs only after startup and after a scene loads.
+
+これらの変更でどれだけ軽くなるかは、実際のゲームではまだ測っていません。 / How much these changes improve performance has not yet been measured in the actual game.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.48 — Fix stale choice descriptions after switching on the Star Map（2026-10-16）
+
+このバージョンでは、星図で二択の選択を切り替えたときに、選択肢の説明が更新されないことがある不具合を修正しました。 / This version fixes an issue where choice descriptions on the Star Map could fail to update after switching a two-option choice.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 星図で取得済みの二択を無料で切り替えたあと、二択の候補の説明が切り替え前のまま表示されることがある問題を修正しました。切り替えたあとは、本文、両方の候補、ツールチップが最新の内容で表示されます。 / Fixed an issue where, after a free switch on an already-acquired two-option choice on the Star Map, the option descriptions could still show their pre-switch text. After switching, the description, both options, and the tooltip now show up-to-date content.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.47 — Safer co-op trades for fused relics, plus logging to investigate a post-Polaris issue（2026-10-16）
+
+このバージョンでは、融合済みの遺物を協力取引したときに融合段階が失われる不具合を修正しました。また、ポラリス踏破後に起きる不具合の原因を調べるため、ゲームのログへ記録を追加しました。 / This version fixes an issue where fused relics could lose their Fusion level in co-op trades. It also adds log records to help investigate an issue that occurs after clearing Polaris.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 融合済みの遺物を、融合に対応していない古い版のプレイヤーと協力取引すると、融合段階が失われることがある問題を修正しました。取引の相手やホストが融合に対応しているか確認できない場合、融合済みの遺物は取引に出せなくなり、その理由が取引画面に表示されます。融合していない遺物や素材は、これまでどおり交換できます。融合済みの遺物を交換するときは、参加者全員がこのバージョンに更新してください。 / Fixed an issue where trading a fused relic in co-op with a player on an older version without Fusion support could lose its Fusion level. If the trade partner or host can't be confirmed to support Fusion, fused relics can no longer be offered, and the trade screen shows the reason. Unfused relics and materials can still be traded as before. To trade fused relics, make sure everyone has updated to this version.
+- ポラリスで夢を踏破した後の次の試合で、夢の圧が下がり、装備の効果が得られないという報告（#449）について、原因を調べるための記録をゲームのログ（Player.log）に追加しました。この記録はゲームの挙動やセーブデータを変えず、ログの量も控えめにしています。この不具合はまだ修正されていません。同じ現象が起きたら、ゲームを終了した直後に Player.log を添えて報告していただけると助かります。ログの場所と送り方は README に書いてあります。 / Added log records to Player.log to investigate the reported issue (#449) where, after clearing a dream at Polaris, the next run had lower dream pressure and equipment effects did not apply. These records don't change gameplay or save data, and log output is kept small. This issue is not fixed yet. If it happens to you, please report it with your Player.log attached right after it happens. The README explains where to find the log and how to send it.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.46 — Relic Fusion fixes: proper Fusion notification and lighter forge screen（2026-10-15）
+
+このバージョンでは、遺物の融合に関する不具合を修正しました。 / This version fixes issues with relic Fusion.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 鍛冶で遺物を融合したときの通知が、レベルアップの通知として扱われていた問題を修正しました。融合は専用の通知になり、融合後の能力値は従来どおり反映されます。 / Fixed an issue where fusing a relic at the forge was announced as a level-up. Fusion now has its own notification, and the fused relic's stats are still applied as before.
+- 保管庫に遺物が多いと、鍛冶画面の融合欄の処理が重くなる問題を軽減しました。融合の候補や必要な素材の変化はこれまでどおりすぐに反映され、融合ボタンを押したときには最新の状態を確認し直します。 / Reduced the processing load of the forge's Fusion panel when your storage holds many relics. Changes to Fusion candidates and required materials still show up right away, and the latest state is rechecked when you press the Fusion button.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.45 — Relic Fusion added to the forge（2026-10-15）
+
+このバージョンでは、鍛冶に遺物を融合して強化する機能を追加しました。 / This version adds relic Fusion to the forge, letting you strengthen relics by fusing them.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 鍛冶で遺物を融合できるようになりました。同じ名前で同じレア度の遺物を1個素材にすると融合段階が1つ上がり、最大5段まで重ねられます。段階が上がるたびに能力値が上がります。遺物の固有効果は変わりません。 / You can now fuse relics at the forge. Using one relic with the same name and rarity as material raises its Fusion level by one, up to 5 levels. Each level raises the relic's stats, while its unique effect stays the same.
+- 融合には欠片が必要で、固有品の遺物では調律石も必要です。鍛冶画面には融合できる候補、必要な素材、融合の前後で能力値がどれだけ上がるかが表示されます。素材を誤って使わないよう、融合ボタンは2回押して確定します。 / Fusion costs shards, and unique relics also need a Tuning Stone. The forge screen shows which relics can be fused, the required materials, and how much the stats rise from before to after Fusion. To prevent accidental use of materials, you press the Fusion button twice to confirm.
+- 融合段階はセーブデータに保存され、協力プレイでの取引でも引き継がれます。融合済みの遺物を協力プレイで交換するときは、参加者全員がこのバージョンに更新してください。 / Fusion levels are kept in your save data and carry over through co-op trades. When trading fused relics in co-op, make sure everyone has updated to this version.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.44 — Maintenance update with no player-visible changes（2026-10-15）
+
+このバージョンには、プレイヤーから見た新機能や不具合の修正はありません。 / This version contains no new features or bug fixes visible to players.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.43 — Smoother star map point allocation（2026-10-15）
+
+このバージョンでは、星図で星にポイントを割り振るときのカクつきを軽くしました。 / This version reduces the stutter when allocating points to stars on the star map.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 星図で星にポイントを割り振るたびに、画面が一瞬カクついていました。この動作を軽くし、ポイントをテンポよく割り振れるようにしました。ポイントの割り振りのルールや払い戻し、星の説明文の内容は変わりません。 / The screen briefly stuttered each time you allocated a point to a star on the star map. This has been made lighter so you can allocate points smoothly. The allocation rules, refunds, and star descriptions are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.42 — Maintenance update with no player-facing changes（2026-10-15）
+
+このバージョンには、プレイヤーから見た新機能や不具合の修正はありません。 / This version contains no new features or bug fixes visible to players.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.41 — Fix Forbidden Cores being lost on load（2026-10-15）
+
+このバージョンでは、「禁忌の核」がセーブデータの読み込み時に失われる不具合を修正しました。 / This version fixes a bug that caused Forbidden Cores to be lost when loading your save.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 禁忌の核を持ったままセーブし、ゲームの再起動などで読み込み直すと、禁忌の核の所持数が0になっていました。バックアップから読み込んだ場合も同じでした。この問題を修正し、禁忌の核は読み込み後や冒険を「続きから」再開した後も正しく残るようになりました。 / If you saved while holding Forbidden Cores and then loaded the save again, for example after restarting the game, your Forbidden Cores dropped to 0. Loading from a backup had the same problem. This has been fixed, and Forbidden Cores are now kept correctly after loading and when continuing your run.
+- 禁忌の核を持ったまま協力プレイで取引を終えたあと、冒険を「続きから」再開しようとすると、エラーで再開できないことがありました。この問題を修正し、禁忌の核やほかの素材、交換した遺物を保ったまま、取引の結果が二重に反映されることもなく再開できるようになりました。 / If you finished a co-op trade while holding Forbidden Cores, continuing your run afterward could fail with an error. This has been fixed, and you can now continue with your Forbidden Cores, other materials, and traded relics intact, without the trade being applied twice.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.40 — Fix Severance effects being lost on forbidden relics（2026-10-15）
+
+このバージョンでは、「断絶」で禁忌化した遺物の効果が失われることがある不具合を修正しました。 / This version fixes a bug that could cause the effect of relics forbidden with "Severance" to be lost.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 「断絶」で禁忌化した遺物に、後から同じ固有効果が付いていると、セーブデータを読み込んだときや協力プレイに持ち込んだときに、断絶で得た効果が何の表示もなく失われることがありました。この問題を修正し、正しく禁忌化した遺物の効果は保たれるようになりました。 / If a relic forbidden with "Severance" later gained the same unique effect, the effect granted by Severance could be silently lost when loading your save or bringing the relic into co-op. This has been fixed, and relics that were properly forbidden now keep their effect.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.39 — Forbidden Smith: Nemesis enemies and relic Forbidding（2026-10-15）
+
+このバージョンでは、工房に「禁忌の職人」を追加し、強敵「宿敵」の出現や、オレンジ枠の遺物を作り変える「禁忌化」を解禁しました。 / This version adds the Forbidden Smith to the workshop, which unlocks powerful Nemesis enemies and Forbidding, a new way to transform orange-frame relics.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 工房に新しい項目「禁忌の職人」を追加しました。これを解放すると、本バージョンで追加された宿敵の出現、禁忌化、再調律回数の上限引き上げが有効になります。解放するまでは、これらはいずれも発生しません。 / A new workshop upgrade, "Forbidden Smith," has been added. Unlocking it turns on Nemesis enemies, Forbidding, and the higher reroll limit added in this version. None of these happen until you unlock it.
+- 職人を解放すると、ボスやエリートがまれに「宿敵」として現れるようになります。宿敵は通常より大幅に強く、頭上に「宿敵」のタグが表示されます。潜行の深さが0でも出現します。悪夢化した敵や変種が宿敵になることはありません。 / Once the Smith is unlocked, bosses and elites occasionally appear as a "Nemesis." A Nemesis is much stronger than usual and shows a "Nemesis" tag above its head. Nemeses can appear even at dive depth 0. Nightmare and variant enemies never become Nemeses.
+- 宿敵を倒すと、通常より格の高い戦利品に加え、より多くの欠片や調律石が手に入ります。宿敵化したボスを倒すと、新しい素材「禁忌の核」も獲得できます（エリートの宿敵は因縁と追加報酬のみで、核は落としません）。禁忌の核は直接持ち帰り扱いとなるため、全滅しても失われません。宿敵の撃破は、悪夢化した敵の討伐数や依頼にはカウントされません。 / Defeating a Nemesis gives higher-grade loot, extra shards and tuning stones. Defeating a nemesis BOSS also grants the new material, "Forbidden Core" (elite Nemeses only deepen the grudge and give bonus rewards). Forbidden Cores go straight home with you, so you keep them even if your party is wiped out. Nemesis kills do not count toward nightmare kill counts or requests.
+- 協力プレイでは、ホストか参加者の誰か1人でも禁忌の職人を解放していれば、宿敵が現れます。 / In co-op, Nemeses appear if the host or any participant has unlocked the Forbidden Smith.
+- 宿敵を倒すたびに「深淵の追跡者との因縁」が1段深まります（最大5。保存されます）。1段ごとに宿敵の出現率・HP・攻撃力が上がり、因縁3段以上で宿敵化したボスが落とす禁忌の核が1つ増えます。協力プレイでは、パーティで最も深い因縁を使います。 / Each nemesis slain deepens your "Grudge with the Abyssal Stalker" (max 5, saved). Every level raises its spawn chance, HP and attack; at grudge 3+, nemesis bosses drop one extra Forbidden Core. Co-op uses the party's deepest grudge.
+- 鍛冶タブに「禁忌化」を追加しました。禁忌の核などの素材を使い、オレンジ枠の固有品を1つにつき一度だけ作り変えられます。誤操作を防ぐため、ボタンを2回押して確定します。 / A "Forbid" action has been added to the Forge tab. Using Forbidden Cores and other materials, you can transform an orange-frame unique relic once per relic. To prevent mistakes, you press the button twice to confirm.
+- 禁忌化の結果は、次の4つのタイプから均等な確率で決まります。「禁忌の契約」は大きな利点と大きな欠点が1組付与されます（5つ目の組み合わせ「血の転化」は、シールドを一切得られない代わりに、受けた回復の35%を回復せず攻撃力へ変換します）。「断絶」は特性を1つ失う代わりに固有効果を1つ獲得します。「過剰」は特性を1つ失う代わりに固有効果が強化されます。「破滅の誓い」は特性が強化される代わりに最大HPが減少します。ただし、特性の無い遺物では「断絶」「過剰」は選ばれず、等確率で「契約」か「破滅の誓い」に振り替わります。「断絶」は加える固有効果が無い場合「過剰」に振り替わります。「過剰」の倍率の対象（固有効果か特性か）は禁忌化した時点で固定です。 / The result is one of four types, each equally likely, with two exceptions: relics with no affixes reroute Severance/Excess into Pact or Oath, and Severance with no addable power becomes Excess. Overcharge's multiplier target (powers or affixes) is fixed at the moment of Forbidding. "Forbidden Pact" adds one large upside paired with one large downside (the fifth variant, "Blood Transmutation," blocks all shields and turns 35% of healing received into attack instead). "Severance" removes one trait and grants a unique effect. "Excess" removes one trait and strengthens the unique effect. "Oath of Ruin" strengthens the traits but lowers max HP.
+- 禁忌化した遺物は、再調律・特性の洗い直し・イベント「影の交換」の対象外となります。強化・限界突破・覚醒はこれまでどおり行えます。 / Forbidden relics can no longer be rerolled, have their traits reset, or be used in the "Shadow Exchange" event. You can still enhance, limit-break, and awaken them.
+- 禁忌の職人を解放すると、オレンジ枠の遺物を再調律できる回数の上限が引き上げられます。 / Unlocking the Forbidden Smith raises the reroll limit for orange-frame relics.
+- 赤枠の遺物（セット品やボスの技を持つ品）は、禁忌化および再調律回数の上限引き上げの対象外です。 / Red-frame relics (set items and items with boss skills) are not eligible for Forbidding or the higher reroll limit.
+
+このバージョンの変更内容は、コードとテストで確認したものですが、実際のゲームプレイや協力プレイでの確認はまだ行っていません。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.38 — Relic name search in the Equipment and Forge tabs（2026-10-15）
+
+このバージョンでは、装備タブと鍛冶タブに、遺物を名前で探せる検索欄を追加しました。 / This version adds a name search box to the Equipment and Forge tabs for finding relics.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 装備タブ（中央の保管庫の一覧）と鍛冶タブ（左の一覧）の上に、「名前で検索」欄と「解除」ボタンを追加しました。入力した文字を名前に含む遺物だけが一覧に表示されます。 / A "Search by name" box and a "Clear" button now appear above the Equipment tab list (the storage list in the center) and the Forge tab list (on the left). Only relics whose names contain the text you enter are shown.
+- 大文字と小文字、ひらがなとカタカナ、全角と半角の英数字は区別せずに検索できるので、日本語名でも入力の仕方を気にせず探せます。 / Search ignores the difference between uppercase and lowercase, hiragana and katakana, and full-width and half-width letters and numbers, so you can find Japanese names however you type them.
+- 検索語は2つのタブで共通です。装備タブで探した遺物は、鍛冶タブに移ってもそのまま扱えます。検索語は画面を開いている間だけ保持され、セーブデータには残りません。 / The search text is shared between the two tabs, so a relic you found in the Equipment tab stays in view when you switch to the Forge tab. The search text lasts only while the screen is open and is not kept in your save.
+- 一致する遺物がないときは「名前に検索語を含む遺物がありません。」と表示されます。また、選んでいる遺物が検索で一覧から外れても選択はそのまま維持され、右側の詳細の確認や装着・鍛冶の操作を続けられます。 / When no relic matches, the list shows a message saying so. If the relic you selected is filtered out of the list, it stays selected, and you can still see its details on the right and equip or forge it.
+
+このバージョンの変更は、コードとテストで確認していますが、実際のゲームや協力プレイでの確認はまだ行っていません。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.37 — Fix storage limit display in the workshop（2026-10-15）
+
+このバージョンでは、工房画面で保管庫の上限が正しく表示されない不具合を修正しました。 / This version fixes an issue where the workshop screen showed the wrong storage limit.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 工房の「広い保管庫」で、「保管庫の上限 いま → 解放後」の解放後の値が、どの段でも常に +20 される形で表示されていました。この不具合を修正し、次の段を解放したときの実際の上限が表示されるようにしました。 / In the workshop, the "Storage limit now → after unlock" line for "Wide Storage" always showed an increase of +20, no matter which tier came next. This is fixed, and the line now shows the actual limit you get after unlocking the next tier.
+
+このバージョンの変更は、コードとテストで確認していますが、実際のゲームや協力プレイでの確認はまだできていません。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.36 — Development testing improvements (no gameplay changes)（2026-10-14）
+
+この版では、ゲームの内容や遊び方は変わりません。開発に使うテストの仕組みを改善したものです。 / This version brings no changes to gameplay. It improves the testing tools used in development.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+この版には新機能や不具合の修正はありません。ゲーム内の動作や見た目はこれまでと同じです。 / This version contains no new features or bug fixes. The game looks and plays the same as before.
+
+この版の変更はコードとテストで確認したもので、実際のゲームや協力プレイでの確認はまだ行っていません。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.35 — Four new room omens (16 in total)（2026-10-14）
+
+部屋の兆しに新たに4種類が加わり、全16種類になりました。 / Four new room omens have been added, bringing the total to 16.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **部屋の兆しが12種類から16種類に**：これまでは部屋をいくつも進むと同じ兆しに何度も遭遇しがちでしたが、恵みと試練が2種類ずつ増え、恵み8種類・試練8種類の計16種類になりました。 / **Room omens expanded from 12 to 16**: previously you often saw the same omens again and again over many rooms. Two new blessings and two new trials have been added, for 8 blessings and 8 trials in total.
+- 新しい恵みは2つです。「活力」は最大HPが10%増え、「俊敏」は攻撃速度が8%上がります。 / Two new blessings: **Vigor** raises your max HP by 10%, and **Swiftness** raises your attack speed by 8%.
+- 新しい試練は2つです。「虚弱」は最大HPが8%減り、「鈍化」はスキル加速が8下がります。ほかの試練と同じく、乗り越えると遺物を得やすくなる効果が付きます。 / Two new trials: **Frailty** lowers your max HP by 8%, and **Sluggish** lowers your skill haste by 8. Like the other trials, they come with a better chance at relics.
+
+今回の変更は、コードとテストで確認したもので、実際のゲームや協力プレイでの確認はまだできていません。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.34 — Fix co-op trades canceling after acceptance（2026-10-14）
+
+協力交換で、相手の申し込みを承諾したあとに、切断も移動もしていないのに取引が中止されることがある不具合を修正しました。 / Fixed co-op trades sometimes being canceled after you accepted, even though no one disconnected or moved.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- **承諾後の協力交換が勝手に中止される問題**：交換を承諾したあと、渡す品を考えているあいだに、しばらくすると取引が中止されることがありました。いまは、両者が接続している限り、承諾後の取引は時間切れで終わりません。好きなだけ考えてから品を出せます。 / **Co-op trades canceling on their own after accepting**: after accepting a trade, it could be canceled after a while just because you were still deciding what to offer. Now an accepted trade no longer times out as long as both players stay connected, so you can take as long as you need to choose.
+- ゲームが一瞬セーブしただけで交換が中止されることがある問題も直しました。 / Fixed a trade sometimes being canceled just because the game saved for a moment.
+- 相手が切断したり応答しなくなったりしたときは、これまでどおり交換は中止されます。承諾後でも、交換タブの「交換を取消」ボタンでいつでも取り消せます。 / If your partner disconnects or stops responding, the trade is still canceled as before. You can also cancel at any time after accepting with the cancel button in the trade tab.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.33 — Search and filter relics in the co-op trade tab（2026-10-14）
+
+協力交換タブで、自分が渡す遺物を名前・レア度・部位で絞り込めるようにしました。 / You can now filter the relics you offer in the co-op trade tab by name, rarity and slot.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **交換で渡す遺物の検索と絞り込み**：協力交換タブの「自分が渡すもの」の一覧（保管庫と鞄にある、装着していない遺物）に、名前の検索欄を追加しました。名前の一部を入れるだけで探せて、大文字と小文字は区別しません。強化値（+N）も検索の対象になります。 / **Search and filters for relics you trade**: the "what you give" list in the co-op trade tab (unequipped relics in your storage and bag) now has a name search box. Typing part of a name is enough, letters are matched regardless of case, and the upgrade level (+N) is searchable too.
+- 「レア度」と「部位」の切り替えボタンも追加しました。左クリックで次の条件へ、右クリックで前の条件へ切り替わり、一周すると「すべて」に戻ります。「解除」ボタンを押すと、すべての条件をまとめて外せます。 / Rarity and slot toggle buttons were also added. Left-click moves to the next option, right-click to the previous one, and cycling through returns to "All". The Clear button removes every filter at once.
+- 絞り込みで変わるのは一覧の表示だけです。選んだ遺物が一覧から見えなくなっても、選択はそのまま残ります。条件に合う遺物が1つもないときは「条件に合う遺物がありません。」と表示されます。条件は交換の相手を変えても残ります。 / Filters only change what the list shows. A relic you already selected stays selected even if the filter hides it. When nothing matches, the list says that no relics match the filters. Your filters stay in place when you switch trade partners.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.32 — Endless Night in Limbo again（2026-10-14）
+
+Limbo でも道標「明けない夜」が出るように戻しました。 / Endless Night is offered in Limbo again.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 変更 / Changes
+
+- Limbo でも道標「明けない夜」（すべての敵が悪夢化）が出るように戻しました。「深まる夜」は新しくは出ません（すでに選んでいるものはそのまま有効です）。 / Endless Night (all enemies become nightmares) is offered in Limbo again. Deepening Night is no longer offered; one you have already chosen still works.
+
+---
+
+## v2.10.31 — Room Omens（2026-10-14）
+
+部屋の兆しを追加しました。戦闘の部屋ごとに、恵みか試練がランダムに1つ付きます。 / Added Room Omens: each combat room gets a random blessing or trial.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **部屋の兆し**：遠征中、戦闘のある部屋に入るたびに、全員に「恵み」か「試練」がランダムに1つ付きます。恵みは攻撃力・移動速度・スキル加速・防御・受ける回復・遺物の出やすさのどれかが上がり、試練は移動速度・防御・攻撃速度・受ける回復のどれかが下がるか、敵が速く・硬くなります。試練の部屋は遺物が出やすくなります。効果は次の部屋に移ると消えます。ボスの部屋・商店・井戸などには付きません。部屋に入ったときに通知し、HUD にも表示します。MOD 設定の「roomOmens」で切り替えられます（協力プレイではホストの設定が使われます）。 / **Room Omens**: during an expedition, every combat room gives everyone one random blessing or trial. Blessings raise attack, movement speed, skill haste, armor, incoming healing or relic drops; trials lower movement speed, armor, attack speed or incoming healing, or make enemies faster or tougher. Trial rooms drop more relics. The effect ends when you move to the next room. Boss rooms, shops and wells are excluded. The omen is announced on entry and shown on the HUD. Toggle it with "roomOmens" in the mod settings (the host's setting applies in co-op).
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.30 — Minor adjustments（2026-10-13）
+
+細かな調整を行いました。 / Minor adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+---
+
+## v2.10.29 — Invulnerable stones and enemies fix（2026-10-13）
+
+石や敵が無敵になって攻撃が効かなくなることがある問題を直しました。 / A fix for stones and enemies becoming invulnerable.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ゴールドやドリームダストを落とす石や、イベントの部屋の石、敵が、無敵になって攻撃が効かなくなることがある問題を修正しました。協力プレイの参加者側で効果が正しく片付かないことがあったのを直し、あわせて、持ち主のいなくなった無敵が残ったときは自動で外れるようにしました。 / Fixed stones that drop gold or Dream Dust, event-room stones and enemies sometimes becoming invulnerable. Effects that were not cleaned up correctly on co-op participants are fixed, and leftover invulnerability without a source is now cleared automatically.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.28 — Mist, trade and overflow fixes（2026-10-13）
+
+取引が止まる問題、ミストが動けなくなる問題、鞄あふれの追加ドリームダストが受け取れない問題を直しました。 / Fixes for stuck trades, Mist getting stuck, and missing overflow Dream Dust.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ミストで、フレッシュの突進中に狙った敵が倒れたり消えたりすると、動けないまま固まることがある問題を修正しました。あわせて、付けた相手がいなくなったスタンや足止めが異常に長く残ったときは、自動で外れるようにしました。 / Fixed Mist sometimes freezing in place when the target of a Flèche dash died or vanished. Stuns and roots left behind abnormally long by a vanished source are now cleared automatically.
+- 取引で「前の取引の結果を確認しています」と出たまま、取引できなくなることがある問題を修正しました。60秒たっても確定しない取引は待ちを解き、何を待っているかを表示するようにしました。 / Fixed trading sometimes staying blocked on "Checking the result of an earlier trade". Results still unconfirmed after 60 seconds no longer block trading, and the screen now shows what it is waiting for.
+- 鞄からあふれた遺物の追加ドリームダストが「使えません」になり、受け取れなくなることがある問題を修正しました。 / Fixed extra Dream Dust from satchel overflow sometimes becoming unavailable.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.27 — Star map loadouts（2026-10-12）
+
+星図のロードアウトを追加しました。旅人ごとに5つまで星の割り振りを保存して、切り替えられます。 / Added star map loadouts: save up to 5 star allocations per traveler and switch between them.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **星図のロードアウト**：旅人ごとに5つまで、星の割り振り（選んだ星と要の星を含む）を保存し、遠征の外で切り替えられます。たとえばミストで「ランジ型」「フレッシュ型」「パリィ型」を作り分けられます。星のポイントと装備はすべてのロードアウトで共通です。今の割り振りはロードアウト1になり、ほかの枠は空から始まります。今の構成を別の枠へコピーしたり、各枠に名前を付けたりもできます。星図の画面の上にあるボタンで操作します。 / **Star map loadouts**: save up to 5 star allocations per traveler (including choices and keystones) and switch between them outside expeditions — for example, separate lunge, flesh and parry builds for Mist. Star points and gear are shared across loadouts. Your current allocation becomes Loadout 1 and the others start empty. You can copy the current build to another slot and name each one, using the buttons at the top of the star map.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.26 — Essence slot interval and cap in F6（2026-10-11）
+
+レベルによるエッセンス枠の追加を「何レベルごとに+1」で設定でき、枠の上限とON/OFFをF6メニューから変えられるようになりました。 / Level-based essence slots are now set as +1 every N levels, with the slot cap and on/off switch adjustable from the F6 menu.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **エッセンス枠の設定をF6メニューで**：Q・W・E・Rの記憶のエッセンス枠が、英雄のレベル（ゲーム本来のレベル）が設定した数だけ上がるごとに1つ増えます（初期設定は10レベルごと）。ON/OFF、何レベルごとに増やすか、1つの記憶の枠の上限（4〜8、初期設定は4）を、F6メニューの記録タブから変えられます。上限は破損した混沌で増やした枠と合わせた合計に掛かり、破損した混沌でも上限まで増やせるようになります。協力プレイではホストの設定が全員に使われます。回避とアイデンティティの記憶は、これまでどおり星図で増やします。 / **Essence slot settings in F6**: Q, W, E and R memories gain one essence slot every N hero levels (the game's own level; every 10 by default). The on/off switch, the interval and the per-memory slot cap (4–8, default 4) can be changed from the F6 Records tab. The cap covers slots from Corrupted Chaos too, which can now add slots up to the cap. In co-op the host's settings apply. Movement and identity memories still gain slots from the star map.
+- 以前の「Lv10で+1、Lv20で+2」の段階指定はなくなりました。以前に上限を設定していた場合は、その値が引き継がれます。 / The old stage list is gone; a previously set slot cap carries over.
+
+### 注意 / Note
+
+- 上限を5以上にすると、スキルの枠の表示を5〜8枠に広げます。うまく広げられない環境では、上限は自動的に4に戻り、F6メニューにそのことが表示されます。5枠以上の表示はまだ実際のゲームで確認できていないので、おかしな点があれば教えてください。 / With a cap of 5 or more, the skill socket display is extended to 5–8 slots. If that fails, the cap falls back to 4 and the F6 menu says so. Displays above 4 slots are not yet verified in the live game; please report anything odd.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.25 — Level-based essence slots for R（2026-10-11）
+
+レベルに応じたエッセンス枠の追加が、Rの記憶にも適用されるようになりました。 / Level-based essence slots now also apply to the R memory.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **Rの記憶もレベルで枠が増える**：英雄のレベルに応じたエッセンス枠の追加が、Q・W・Eに加えてRの記憶にも適用されます。段階と上限はQ・W・Eと同じで、MOD設定の `levelEssenceSlotsR` で切り替えられます（初期設定は有効）。回避とアイデンティティの記憶は、これまでどおり星図で増やします。 / **R memory gains slots by level too**: level-based essence slots now apply to the R memory as well as Q, W and E, with the same stages and cap. Toggle it with `levelEssenceSlotsR` in the mod settings (on by default). Movement and identity memories still gain slots from the star map.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.24 — Essence slots by level, Japanese prose descriptions（2026-10-11）
+
+レベルに応じてQ・W・Eのエッセンス枠が増えるようになり、日本語の説明文を読みやすい文章に書き直しました。 / Essence slots on Q, W and E now grow with level, and Japanese descriptions read as natural sentences.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **レベルで増えるエッセンス枠**：英雄のレベルに応じて、Q・W・Eの記憶にはめられるエッセンスの枠が増えます。初期設定ではLv10で+1、Lv20で+2です。段階・対象・最大枠数はMOD設定で変えられ、F6メニューの記録タブで今の設定を確認できます。協力プレイではホストの設定が全員に使われます。 / **Essence slots by level**: Q, W and E memories gain essence slots as your hero levels up (+1 at Lv10, +2 at Lv20 by default). Stages, targets and the slot cap can be changed in the mod settings and are shown in the F6 Records tab. In co-op the host's settings apply to everyone.
+- **日本語の説明文を文章に**：星図・装備・図鑑の日本語の説明文を、記号や箇条書きではなく、条件から効果の順に読める文章にしました。数値や効果は変わりません。 / **Japanese descriptions as prose**: star map, gear and codex descriptions in Japanese now read as sentences instead of symbols and bullet lists. Values and effects are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.23 — Continue fix（2026-10-11）
+
+Continue まわりの不具合を直しました。 / A fix for Continue.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- Continue で前の遠征に戻ったとき、遠征の記録が多くたまっていると、保管庫へ送るボタンの使用済みの記録が消え、もう一度使えてしまうことがある問題を修正しました。 / Fixed the send-to-stash button sometimes becoming usable again after Continue when many expedition records had accumulated.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.22 — Bulk relic salvage, Limbo waypoint, co-op trade fixes（2026-10-11）
+
+遠征中の記録に遺物の一括分解を追加し、協力プレイの取引の不具合をまとめて直しました。 / Bulk relic salvage in the expedition records, and a batch of co-op trade fixes.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **遺物の一括分解**：遠征中の記録の、遺物をドリームダストに分解する画面に、固有品以外でレア以下（レアを含む）の遺物をまとめて分解するボタンを追加しました。誤操作を防ぐため、2回押すと実行します。 / **Bulk relic salvage**: the expedition records' salvage screen now has a button that salvages all non-unique relics of Rare or lower at once. Press it twice to confirm.
+- **リンボの道標「深まる夜」**：リンボでは、道標「明けない夜」（すべての敵が悪夢化）の代わりに「深まる夜」が出ます。敵は悪夢化しない代わりに夢の圧で強くなり、撃破で得る戦利品の格と覚醒の力が上がります。 / **Limbo waypoint "Deepening Night"**: in Limbo, "Endless Night" (all enemies become nightmares) is replaced by "Deepening Night". Enemies don't become nightmares but grow stronger under dream pressure, while kills yield higher-tier loot and more awakening.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイの取引で、参加者が遠征中に取引を始められない、送信中のエラーで支払った分が失われる、一時的なエラーのあと取引が使えなくなる、断られた理由が表示されない、などの不具合をまとめて修正しました。 / Fixed a batch of co-op trade issues, including participants being unable to start trades during an expedition, payment being lost on a send error, trading staying unusable after a temporary error, and missing reasons when a trade is refused.
+- ケートスの「下がれ！」の継続ダメージが入らないことがある問題を修正しました。 / Fixed Cetus's "Back Off!" damage over time sometimes not being applied.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.21 — Lighter Fever essence, co-op and Continue fixes（2026-10-11）
+
+熱病のエッセンスの爆発を軽くし、協力プレイ・Continue まわりの不具合を直しました。 / Lighter Fever essence explosions and fixes for co-op and Continue issues.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **熱病のエッセンスの軽量化**：爆発の光の明るさ・範囲と画面の揺れに上限を設け、一度に多く爆発したときは光る数を絞ります。エフェクト品質「低」では爆発の光を省きます。ダメージや範囲は変わりません。 / **Lighter Fever essence**: explosion light and camera shake are capped, and fewer lights are shown when many explode at once. At Low effect quality the explosion light is omitted. Damage and area are unchanged.
+
+### 不具合の修正 / Bug fixes
+
+- 同じ遠征に再接続したとき、まだ確定していなかった遠征の結果が失われることがある問題を修正しました。 / Fixed unconfirmed expedition results sometimes being lost when reconnecting to the same expedition.
+- Continue で前の遠征に戻ると、鞄の遺物を保管庫へ送るボタンをもう一度使えてしまう問題を修正しました。 / Fixed the send-to-stash button becoming usable again after continuing an earlier expedition.
+- ケートスの「下がれ！」のチャージを中断・差し替えしたあとも、継続ダメージが続くことがある問題を修正しました。 / Fixed Cetus's "Back Off!" charge damage sometimes continuing after the charge was cancelled or swapped.
+- 協力プレイで、参加者の負荷の報告が途切れて自動発動の調整が正しく働かないことがある問題を修正しました。 / Fixed participant load reports in co-op sometimes lapsing, which could misadjust automatic casting.
+- 内部の更新処理でエラーが起きたとき、記録の処理で別のエラーが重なることがある問題を修正しました。 / Fixed a secondary error that could occur while logging a failure in the client update loop.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.20 — Performance, lingering fixes, Limbo experience（2026-10-10）
+
+動作を軽くし、敵が消えたあとに効果やモデルが残る不具合を直しました。Limbo では深さに応じて経験値も増えます。 / Performance improvements, fixes for effects and enemy models lingering after enemies disappear, and experience scaling with Limbo depth.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **Limbo の経験値ボーナス**：Limbo の深さに応じて、遠征で得る経験値（旅人のレベル用）が増えます。深さ 1 ごとに +10%、最大 +100% です。遠征開始時の Limbo の案内にも表示されます。 / **Limbo experience bonus**: experience gained on expeditions (traveler levels) now increases with Limbo depth, +10% per depth up to +100%. The Limbo notice at the start of an expedition shows it.
+- **動作の軽量化** / **Performance**
+  - 協力プレイで、同じ内容の繰り返し送信を減らし、ボス演出の通信を小さくしました。古い版の相手にも従来の形式で送ります。 / Co-op sends fewer repeated updates and smaller boss visual packets; older peers still receive the previous format.
+  - 敵が一度に多く倒れたときの閃光・カメラ揺れ・コントローラ振動を間引きます（最初の 1 回は必ず出ます。遠くの死亡では出しません）。エフェクト品質「低」では死亡時の光を省きます。 / Death flashes, camera shake and rumble are thinned when many enemies die at once (the first always plays; distant deaths are skipped). Death lights are omitted at Low effect quality.
+  - ボス技の予告線が、ゲームのエフェクト品質設定（低）に合わせて簡素になります。 / Boss telegraph lines simplify at Low effect quality.
+  - 毎フレーム走っていた一部の処理を減らしました。`dreamforge_perf` に内訳の表示を追加しています。 / Reduced some per-frame work; `dreamforge_perf` now shows a breakdown.
+- ビスマスの「本が紡ぐ物語」の自動発動が、準備のできた記憶をすぐに使うようになりました。負荷が高いときは自動で抑えます。 / Bismuth's "Stories Woven by the Book" now casts ready memories promptly, and backs off automatically under load.
+
+### 不具合の修正 / Bug fixes
+
+- 敵が消えたあとも効果が残り、例外と警告が繰り返されて動作が重くなる問題を修正しました。 / Fixed effects lingering after enemies disappeared and repeatedly logging exceptions and warnings, slowing the game down.
+- 部屋や区画を移動しても敵のモデルが残ることがある問題を修正しました。 / Fixed enemy models sometimes remaining after moving to another room or area.
+- 敵が消えたあとに残っていた変種の色・大きさや合図の光を、敵が消えるときに確実に消すようにしました。 / Variant tints, sizes and cue glows are now reliably removed when their monster despawns.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.19 — Minor adjustments（2026-10-10）
+
+内部の細かな調整を行いました。 / Minor internal adjustments.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 変更 / Changes
+
+- 内部の細かな調整を行いました。 / Minor internal adjustments.
+
+---
+
+## v2.10.18 — Movement essence slots in the edit screen（2026-10-10）
+
+エッセンス装着画面で回避スキルの枠が表示されない不具合を修正しました。 / Fixes the movement skill's essence slots not showing in the essence edit screen.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 回避スキルにエッセンス枠があっても、エッセンス装着画面で回避スキルの列が隠れたままになり、装着できなかった問題を修正しました。マウスでもゲームパッドでも選べます。 / Fixed the movement skill's column staying hidden in the essence edit screen even when it had essence slots, so nothing could be equipped there. It can now be selected with mouse or gamepad.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.17 — Limbo の確保メニューの修正と保管庫へ送るボタン（2026-10-10）
+
+Limbo で確保メニューが出てこない不具合を直し、鞄の遺物を保管庫へ直接送るボタンを追加しました。 / Fixes the secure menu not appearing in Limbo and adds a button to send satchel relics straight to the stash.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- **鞄の遺物を保管庫へ送る**：遠征中に1回だけ、確保とは関係なく、鞄の遺物を保管庫へ直接送れるボタンを MOD メニューに追加しました。確保メニューが出ないときの救済用です。1回押すと確認表示になり、5秒以内にもう一度押すと実行します。確保ボーナスや依頼には数えず、遠征はそのまま続きます。 / **Send satchel relics to the stash**: a once-per-expedition MOD menu button that moves your satchel relics straight to the stash, regardless of securing. It is a fallback for when the secure menu does not appear. Press once to confirm and again within 5 seconds. It does not count toward secure bonuses or quests, and the expedition continues.
+
+### 不具合の修正 / Bug fixes
+
+- Limbo で、ボスを倒したあとや次の深度で、確保メニューが出てこないことがある問題を修正しました。 / Fixed the secure menu sometimes not appearing in Limbo after a boss or on the next depth.
+- 中断した遠征の遺物を受け取らないまま次へ進むと、受け取りボタンが消えてしまうことがある問題を修正しました。 / Fixed the interrupted-expedition relic claim button sometimes disappearing if you moved on without claiming.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.16 — 星図の刻印と仕掛けの効果の修正（2026-10-09）
+
+星図の刻印と仕掛けの効果が、設定どおりの強さで効くように直しました。 / Star map keystones and mechanisms now apply at their full listed strength.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 星図の刻印や仕掛けの効果が、内部の上限で途中から削られ、表示どおりの強さにならないことがある問題を修正しました。 / Fixed star map keystone and mechanism effects sometimes being cut down by an internal limit instead of applying at their listed strength.
+- 刻印が複数の効果を付けるとき、効果どうしが打ち消し合うことがある問題を修正しました。 / Fixed keystones that grant several effects sometimes having those effects overwrite each other.
+- 回復の対象を変える星を取ったあと、効果範囲が正しく計算されないことがある問題を修正しました。 / Fixed the effect radius sometimes being miscalculated after taking a star that changes who gets healed.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.15 — 空殻の刻印でビルドが失敗する問題の修正（2026-10-09）
+
+空殻で一部の刻印を付けると、ビルドの保存や送信に失敗する不具合を直しました。 / Fixes builds failing to save or send with some Husk keystones.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- v2.10.14 で、空殻の刻印「剣気の色」などを付けたビルドを保存・送信するときにエラーになり、星図が正しく反映されないことがある問題を修正しました。 / Fixed builds with some Husk keystones (such as "Aura Prism") failing to encode in v2.10.14, which could stop the star map from applying.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.14 — 星図の配置の見直しと取れない星の修正（2026-10-09）
+
+星図の見た目を整理し、取れない星や回避のエッセンス表示の不具合を直しました。 / Tidies up the star map layout and fixes unobtainable stars and the dodge essence display.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能・改善 / New features and improvements
+
+- 全旅人の星図の配置を見直し、線の交差・星の上を通る線・長すぎる線を減らして見やすくしました。星のつながりは変わっていません。 / Every traveler's star map has been re-laid out with fewer crossing lines, lines over stars and overly long lines. Connections between stars are unchanged.
+- ケトゥスの「下がれ！」に、チャージ中に周りへ継続ダメージを与える効果を加えました。 / Cetus's "Back Off!" now deals damage over time to nearby enemies while charging.
+
+### 不具合の修正 / Bug fixes
+
+- ケトゥスとラケルタの星図で、取れない星があった問題を修正しました。 / Fixed some stars on Cetus's and Lacerta's star maps that could not be taken.
+- エッセンスの装着画面で、回避の列が表示されないことがある問題を修正しました。 / Fixed the dodge column sometimes not appearing on the essence equip screen.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+## v2.10.13 — 回避のエッセンス装着とエッセンス枠の修正（2026-10-09）
+エッセンスの装着画面で回避に枠を付けられるようになり、アイデンティティの枠が表示されない不具合などを直しました。 / You can now fill dodge essence slots on the equip screen, and Identity slots no longer disappear.
+### 更新前に確認 / Before updating
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+### 新機能・改善 / New features and improvements
+- エッセンスの装着画面に回避（移動の記憶）を表示するようにしました。回避に枠が1つ以上あれば、ほかの技と同じようにエッセンスを付け外しできます。 / The essence equip screen now shows the dodge (movement memory). When it has at least one slot, you can attach and remove essences like any other skill.
+### 不具合の修正 / Bug fixes
+- 本体のエッセンス枠がちょうど4個のとき、星図で枠を増やすと枠がすべて表示されなくなる問題を修正しました。外部の枠追加MODを外した後でも正しく表示されます。 / Fixed all essence slots disappearing when the base slot count was exactly four and the star chart added more, including after removing an external slot mod.
+- 星の位階で強くなった「傷」の継続ダメージが、途中で切り捨てられていた問題を修正しました。 / Fixed Wound damage over time boosted by star ranks being cut off early.
+- ゲームを起動したまま MOD を読み込み直したあと、料理のエッセンスが正しく動かなくなることがある問題を修正しました。 / Fixed Culinary Essence sometimes misbehaving after the mod was reloaded while the game was running.
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.12 — 手動分解と鞄あふれのダストの修正（2026-10-09）
+
+手動分解が「取引できませんでした」で失敗する不具合と、鞄あふれの追加ドリームダストがもらえない不具合を直しました。 / Fixes manual salvage failing with "Trade failed" and missing extra overflow Dream Dust.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 遺物をドリームダストに手動分解しようとすると「取引できませんでした」と出て分解できないことがある問題を修正しました。ダストの換金や商人での購入も同じ原因で止まることがありました。 / Fixed manual salvage into Dream Dust sometimes failing with "Trade failed". Dust conversion and merchant purchases could stop for the same reason.
+- 鞄があふれて遺物が欠片になったとき、追加のドリームダスト（オプション）がもらえないことがある問題を修正しました。 / Fixed the optional extra Dream Dust sometimes not being granted when satchel overflow turns relics into shards.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.11 — インフィニティの報酬の枠の撤去と純白の修正（2026-10-09）
+
+インフィニティの報酬の枠をなくし、純白でボス部屋から準備部屋へ戻される不具合を直しました。 / Removes the Infinity reward caps and fixes being sent back from the pure-white boss room.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能・改善 / New features and improvements
+
+- インフィニティの報酬の枠をなくしました。遊び続けても、遺物や欠片などが途中で出なくなることはありません。 / Infinity reward caps are gone; relics, shards and other rewards no longer stop during long sessions.
+- インフィニティで、純白をボス戦として遊べるようになりました（準備部屋からゲートを通ってボスへ）。 / In Infinity, the pure-white route can be played as a boss fight again (through the gate from the preparation room to the boss).
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティの純白で、ゲートを通ってボス部屋に入ると、ボス戦が始まる前に準備部屋へ戻される問題を修正しました。 / Fixed being sent back to the preparation room after entering the pure-white boss room through the gate in Infinity, before the boss fight started.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.10 — インフィニティの報酬の枠の通知（2026-10-08）
+
+インフィニティで報酬の枠が尽きたとき、通知と残りの表示で分かるようにしました。 / Infinity now tells you when a reward cap is reached and shows what remains.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- インフィニティでは、遺物や欠片などの報酬に、戦闘を続けると少しずつ回復する枠があります。枠が尽きて報酬が出なくなったときに「インフィニティの報酬の上限に達しました：遺物（戦闘を続けると少しずつ回復します）」のように通知します。 / Infinity rewards such as relics and shards have caps that refill slowly during combat. When one runs out, you now see a notice such as "Infinity reward cap reached: relics (it refills slowly as combat continues)".
+- インフィニティの表示に、遺物と欠片の枠の残りを出すようにしました。 / The Infinity display now shows the remaining relic and shard caps.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.9 — 鞄あふれの追加ダストが止まる問題の修正（2026-10-08）
+
+鞄あふれの赤文字が出たあと、追加のドリームダストがずっと止まったままになる不具合を直しました。 / Fixes extra overflow Dream Dust staying off for good after the red overflow warning.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 「鞄あふれの追加ドリームダストを確認できません」と赤文字が出たあと、次の遠征以降も追加ダストがずっともらえなくなる問題を修正しました。新しい遠征では、また追加ダストがもらえるようになります。警告文も、止まるのは追加ダストだけという内容に直しました。 / Fixed extra overflow Dream Dust staying unavailable in every later expedition after the red "Extra overflow Dream Dust is unavailable" warning. It works again from the next expedition, and the warning now says only the extra Dream Dust is affected.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.8 — インフィニティの純白で詰む問題の修正（2026-10-08）
+
+インフィニティで純白など部屋の少ないゾーンに入ると、勝手に何度も移動させられて詰む不具合を直しました。 / Fixes Infinity repeatedly moving you on its own and getting stuck in small zones such as the pure-white route.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。純白の中で止まっているセーブは、次の移動で別のゾーンへ抜け出します。 / Saves carry over. A save stuck inside the pure-white route moves to another zone at the next transition.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで純白など部屋の数が少ないゾーンに入ると、部屋をクリアするたびに入力なしで移動させられ、先へ進めなくなる問題を修正しました。部屋が足りないゾーンはインフィニティの行き先に選ばれなくなります。 / Fixed Infinity moving you without input after every room and leaving you stuck in zones with too few rooms, such as the pure-white route. Such zones are no longer chosen as Infinity destinations.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.7 — 協力プレイと再読み込み後のエッセンス枠の修正（2026-10-08）
+
+協力プレイや MOD の再読み込みのあとに、星図で増やしたエッセンス枠の数がずれる不具合を直しました。 / Fixes star-chart gem slot counts going wrong in co-op or after the mod is reloaded.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイや、ゲームを起動したまま MOD を再読み込みしたあとに、星図で増やした回避などのエッセンス枠が反映されなかったり、数がずれたまま戻らなかったりする問題を修正しました。 / Fixed star-chart gem slots (for example on the dodge) not being applied, or staying at the wrong count, in co-op or after reloading the mod while the game was running.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.6 — インフィニティが ON にならない問題とエッセンス枠の表示の修正（2026-10-08）
+
+インフィニティを ON にしても ON にならない不具合と、エッセンス枠が表示されない不具合を直しました。 / Fixes Infinity not turning on, and gem slots not being shown.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+- MOD 一覧で Dreamforge RPG が2つ（ローカル版と Workshop 版など）有効になっていないか確認し、1つだけにしてください。 / Make sure only one copy of Dreamforge RPG is enabled in the mod list (for example, not both a local and a Workshop copy).
+
+### 不具合の修正 / Bug fixes
+
+- ロビーでインフィニティを ON にしても「無効です」で拒否され、ON にならないことがある問題を修正しました（同じ MOD が2重に読み込まれたときに起きていました）。 / Fixed Infinity sometimes being refused as "disabled" when turned on in the lobby (this happened when the mod was loaded twice).
+- 星図でエッセンス枠を増やすと、回避などの記憶に枠が1つも表示されなくなることがある問題を修正しました。 / Fixed memories such as the dodge showing no gem slots at all after adding slots from the star chart.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+- 星図で増やせるエッセンス枠を、本体が1つの記憶に実際に並べられる4個まで（合計8個）に戻しました。本体は枠の数が4を超えると、その記憶の枠を1つも表示しないつくりになっているため、5・6段まで取ると「回避の器を広げる」などを取っても枠が増えないことがありました。5・6段を取っていた場合は4段に切り詰められ、使ったポイントは戻ります。 / Star-chart essence slots are capped again at what the game can actually display per memory: 4 each, 8 total. Above four the game shows no sockets at all, so ranks 5–6 left the slot invisible; existing ranks are trimmed to 4 and their points return.
+- ホストが書き込むエッセンス枠の上限を、混沌の聖堂の追加分と足しても4を超えないようにしました。 / The host now keeps the written slot cap within four even when combined with native chaos-shrine additions.
+
+### その他 / Other
+
+- HUD の技ボタンが各記憶のエッセンス枠を何個まで並べられるかを、ゲームに入った後に1回だけ Player.log に残すようにしました（枠が表示されない報告の切り分け）。 / Once per session the client logs how many gem sockets each HUD skill button can display, to diagnose invisible-slot reports.
+
+
+## v2.10.5 — MOD再読み込み後のインフィニティ無効表示と食材の修正（2026-10-08）
+
+ゲームを起動したまま MOD を更新したあとに「インフィニティは無効です」と出ることがある不具合と、ブリンクで料理の食材を置いていく不具合を直しました。 / Fixes Infinity showing as disabled after updating the mod while the game is running, and Culinary ingredients being left behind by blinking.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ゲームを起動したまま MOD を更新・再読み込みしたあとに、ロビーで「Infinity patch was not installed: InfinityLobbyStartCondition」と出て、インフィニティが無効と表示されることがある問題を修正しました。これまでは再起動すると直っていた問題です。 / Fixed Infinity sometimes showing as disabled in the lobby ("Infinity patch was not installed: InfinityLobbyStartCondition") after the mod was updated or reloaded while the game was running. Previously only a restart fixed it.
+- ブリンクなどで素早く移動すると、料理のエッセンスの食材が置いていかれて拾えない問題を修正しました。離れすぎた食材は持ち主のところへ移ります。 / Fixed Culinary Essence ingredients being left behind when the owner blinks or moves fast; ingredients that fall too far behind now move to their owner.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.4 — インフィニティの無効表示の修正と食材の吸い寄せ（2026-10-07）
+
+インフィニティモードがロビーで「無効です」と出て選べない不具合を直し、料理のエッセンスの食材が部屋のどこからでも寄ってくるようにしました。 / Fixes Infinity mode showing as disabled in the lobby, and Culinary Essence ingredients now come to you from anywhere in the room.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能・改善 / New features and improvements
+
+- 料理のエッセンスの食材が、部屋のどこに落ちても（約500m以内）、待たずにすぐ自分のところへ飛んでくるようになりました。 / Culinary Essence ingredients dropped anywhere in the room (within about 500 m) now fly to you right away.
+
+### 不具合の修正 / Bug fixes
+
+- ロビーに「インフィニティは無効です（理由: Infinity patch was not installed …）」と出て、インフィニティモードを選べないことがある問題を修正しました。 / Fixed Infinity mode sometimes showing as disabled in the lobby ("Infinity patch was not installed …") and being unselectable.
+- 版もプロトコルも同じなのに「互換性情報に差があります」と赤字で出る問題を修正しました。差があるときは、何が違うのかを表示します。 / Fixed a red "compatibility information differs" warning appearing even with the same version and protocol. When something does differ, the warning now says what.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.3 — 他MODとのエッセンス枠の共存（2026-10-07）
+
+他のMODもエッセンス枠を増やしている環境で、枠が増えすぎたり消えたりする不具合を直しました。 / Fixes gem slots growing too much or disappearing when another mod also adds gem slots.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 他のMOD（DewGemSlotCount など）もエッセンス枠を増やしている環境で、Continue 後に枠が余分に増えたり、星図で増やした枠が正しく保たれなかったりする問題を修正しました。他のMODが増やした枠はそのまま残し、このMODは星図の分だけを足します。 / With another mod (such as DewGemSlotCount) also adding gem slots, slots could grow too much after continuing, or star-chart slots were not kept correctly; fixed. Slots added by other mods are left as they are, and this mod adds only its star-chart bonus.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.2 — 一番槍の保証の修正（2026-10-07）
+
+夢の圧で増えた敵を部屋で最初に倒したとき、「一番槍」のレア遺物保証が消える不具合を直しました。 / Fixes the First Claim rare relic guarantee being lost when the first kill in a room is an extra pressure enemy.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 部屋で最初に倒した敵が夢の圧で増えた敵だと、「一番槍」のレア以上の遺物保証がなくなり、その部屋ではもう受け取れなくなる問題を修正しました。 / If the first enemy killed in a room was an extra enemy from dream pressure, the First Claim guarantee of a Rare-or-better relic could vanish for that room; fixed.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.1 — トレード履歴と追加敵の報酬の修正（2026-10-07）
+
+協力プレイのトレード履歴と、夢の圧で増えた敵の報酬の不具合を直しました。 / Fixes co-op trade history and rewards from extra pressure enemies.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- v2.8.0 で協力プレイのトレードをしたことがあるホストが v2.9.0 以降に更新すると、トレードの履歴を開けず、新しいトレードや預かり中の品の確認が進まなくなる問題を修正しました。 / Hosts who traded in v2.8.0 and then updated to v2.9.0 or later could no longer open their trade history, which blocked new trades and checks on held items; fixed.
+- 古いバージョンの参加者がいると、夢の圧で増えた敵の報酬が多くなりすぎる問題を修正しました。 / With a player on an older version, extra enemies from dream pressure gave too many rewards; fixed.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.10.0 — 食材の自動回収と夢の圧の報酬（2026-10-07）
+
+料理のエッセンスの食材が自動で集まり、上限なく貯められるようになりました。夢の圧が高いほど、欠片と悪夢化も増えます。 / Culinary Essence ingredients now come to you and stack without a cap, and higher dream pressure brings more shards and nightmares.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **料理のエッセンスの食材が自動で集まる・上限なし**：料理のエッセンスで落ちた食材が、約9m以内にいる持ち主（そのエッセンスを持っている旅人）へ自動で吸い寄せられます。食材の所持数の上限もなくなり、999を超えても表示されます。1回の調理で使う量と効果は今までどおりで、余った食材は次の調理に回せます。 / **Culinary Essence ingredients come to you, no cap**: ingredients dropped by Culinary Essence are drawn to their owner (the traveler holding the essence) within about 9 m. The ingredient stock no longer has a cap and shows past 999. Each cooking still uses the usual amount for the usual effect, and leftovers carry over to the next cooking.
+- **夢の圧で欠片と悪夢化が増える**：夢の圧が高いほど、敵を倒したときに欠片が出やすくなり、敵が悪夢化しやすくなります（インフィニティでは適用されません。悪夢化はこれまでどおり深度1以上でのみ起きます）。 / **Dream pressure brings more shards and nightmares**: the higher the pressure, the more shards drop and the more often enemies turn into nightmares (not in Infinity; nightmares still only happen at depth 1 or higher).
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+## v2.9.1 — インフィニティの待ち時間と無効化の修正（2026-10-07）
+インフィニティでソロでも60秒待たされる問題と、インフィニティが無効のまま戻らない問題を直しました。 / Fixes Infinity making solo players wait 60 seconds, and Infinity staying disabled until restart.
+### 更新前に確認 / Before updating
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで次の部屋へ進むとき、ソロや、ゲスト全員が選び終えた後でも、最大60秒待たされる問題を修正しました。ホスト自身の選択は待たなくなりました。 / Infinity no longer makes you wait up to 60 seconds before the next room when playing solo or after every guest has chosen; the host's own choice is no longer waited on.
+- 「インフィニティは無効です」と出て、ゲームを再起動するまで選べなくなる問題を修正しました。遠征中に一時的なエラーで止まっても、その遠征が終わってロビーに戻れば、また使えるようになります。地図表示の一時的なエラーでは止まらなくなりました。 / Infinity no longer stays "disabled" until you restart the game. If it stops due to a temporary error during an expedition, it becomes available again once you return to the lobby, and brief map display errors no longer stop it.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.9.0 — インフィニティのランダムボスと部屋数の選択（2026-10-07）
+
+インフィニティのボスが特殊ボスを含めてランダムになり、ボスまでの部屋数で難しさと遺物の出やすさが変わるようになりました。協力プレイでゲストが自分の選択をできない問題も直しました。 / Infinity bosses are now random (special bosses included), and the boss interval changes difficulty and relic drops. Guests can now make their own choices in co-op.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。ただし、この版で一度保存すると、以前の版では読み込めなくなります（保存形式を更新しました）。 / Saves carry over. Once saved with this version, they can no longer be loaded by older versions (the save format was updated).
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **インフィニティのボスがランダムに**：ボスを倒して潜ると、次のボスを特殊ボス（エレボス・光の精霊・マウ・オブリビアクス・ポラリス）を含めた中からランダムに選びます。直前と同じボスは出ません。専用エンディングにはならず、通常のボスと同じ流れで進みます。インフィニティ中は本体の実績は記録されません（順番外の撃破で誤って解除されないため）。 / **Random Infinity bosses**: after a boss, the next boss is picked at random, special bosses (Erebos, Light Elemental, Maw, Obliviax, Polaris) included, never the same twice in a row. Their special endings do not trigger; they play out like normal bosses. Native achievements are not recorded during Infinity so out-of-order kills cannot unlock them by mistake.
+- **ボスまでの部屋数で難しさと遺物が変わる**：インフィニティでボスまでの部屋数を少なくするほど、夢の圧が上がり敵の数が増えますが、通常の遺物も手に入りやすくなります（15部屋・10部屋）。開始画面にそれぞれの効果を表示します。 / **Boss interval matters**: a shorter boss interval in Infinity (15 or 10 rooms) raises dream pressure and adds enemies, but ordinary relics drop more often. The start screen shows each option's effects.
+- **ボスまでに井戸とショップ**：インフィニティで、ボスまでの各区間に強化の井戸とショップを必ず1つずつ訪れられるようにしました。 / **Well and shop before every boss**: each Infinity segment now always lets you visit one upgrade well and one shop before the boss.
+- **中断した遠征の遺物を受け取る**：遠征が不具合などで中断して鞄の遺物を受け取れなかったとき、次の遠征中に MOD メニューの「中断した遠征の遺物を受け取る」で1回だけ受け取れます（1遠征につき1回）。倒されて失った遺物は、これまでどおり遺失物の扱いです。 / **Recover an interrupted expedition's relics**: if an expedition was cut short (crash, disconnect, bug), you can claim its satchel once during your next expedition from the MOD menu (once per expedition). Relics lost to death still go through lost-and-found as before.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティの協力プレイで、ホストが選ぶとすぐ移動してしまい、ゲストが契約などを選べなかった問題を修正しました。ゲスト全員が選ぶか「スキップ」するまで移動を待ちます（最長60秒、切断した人は待ちません）。 / Infinity co-op: the host's choice no longer moves everyone before guests can pick their pacts and other choices. The move waits until every guest chooses or skips (up to 60 seconds; disconnected players are not waited for).
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.8.0 — 協力プレイのトレード（2026-10-07）
+
+協力プレイのトレードを追加し、「続きから」で再開すると確保の画面が開かない問題を直しました。 / Adds co-op trading and fixes the secure choice not opening after Continue.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。ただし、この版で一度保存すると、以前の版では読み込めなくなります（保存形式を更新しました）。 / Saves carry over. Once saved with this version, they can no longer be loaded by older versions (the save format was updated).
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **協力プレイのトレード**：MOD 画面の「交換」タブから相手を選んで申し込み、承諾されたら、お互いに出すもの（装備していない遺物・欠片・調律石）を並べます。双方が確認すると成立します。ロビーと、遠征中の戦闘外で使えます。ホストがまとめて入れ替えるので、片方だけ渡ったり、増えたり消えたりしません。どちらかが内容を変えると確認はやり直しになり、取り消し・切断・2分間の無操作では安全に中止します。 / **Co-op trading**: open the "Trade" tab, pick a player and send a request. Once accepted, both sides lay out what they offer (unequipped relics, shards, tuning stones), and the trade completes when both confirm. Available in the lobby and outside combat during an expedition. The host swaps everything at once, so nothing is half-delivered, duplicated or lost. Changing the offer resets both confirmations; cancelling, disconnecting or 2 minutes of inactivity safely cancels the trade.
+
+### 不具合の修正 / Bug fixes
+
+- 「続きから」で再開した遠征で、ゾーンの終わりに確保の画面（確保するか、深く潜るか）が開かない問題を修正しました。 / The secure choice (secure or delve deeper) now opens at the end of a zone after resuming with Continue.
+- 図鑑まわりの説明文を見直しました。日本語と英語で数値や内容が違っていた箇所、実際の効果と違っていた説明、用語や書き方のばらつきを直しました。記録タブの「図鑑」の数と、偉業「図鑑をN%埋める」は、銘品も含めた同じ数え方にそろえました（達成済みの偉業はそのままです）。 / Reviewed codex descriptions: fixed Japanese/English mismatches in numbers or details, descriptions that did not match the real effect, and inconsistent wording. The codex count on the Records tab and the "Fill N% of the codex" feats now count named items the same way (feats you already earned stay earned).
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.7.3 — 協力プレイの進行停止とエッセンス枠の修正（2026-10-07）
+
+- 鞄からあふれた遺物の欠片を減らさず、ドリームダストも追加で受け取れる設定を追加しました（既定OFF）。大量にあふれた場合もまとめて付与し、協力プレイでは各自の設定を使います。
+- 協力プレイで未装着の遺物・欠片・調律石を交換できる「交換」画面を追加しました。ロビーや戦闘外で双方が内容を確認して成立し、取消・切断・時間切れや「続きから」でも重複取得を防ぎます。
+
+協力プレイでインフィニティや確保の画面が進まなくなる問題と、エッセンス枠の不具合を直しました。 / Fixes co-op stalls in Infinity and the secure choice, plus essence-slot bugs.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **あふれた遺物でドリームダストも受け取る設定**：鞄からあふれた遺物は今までどおり欠片になり、設定をONにするとドリームダストも追加でもらえます（既定はOFF）。大量にあふれてもまとめて受け取るので重くなりません。 / **Dream Dust from overflowing relics**: overflowing relics still turn into shards; turn the option on to also receive Dream Dust (off by default). It is granted in one batch, so large overflows stay light.
+- **夢の圧で敵の数も増える**：夢の圧が高いほど、ボス以外の敵が各ウェーブに混ざって増えます。増えた敵からも報酬を得られます。 / **Dream pressure adds enemies**: higher pressure adds more non-boss enemies to each wave. The extra enemies also drop rewards.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、返事のない参加者の確認を待ち続け、インフィニティの選択画面や次の地図へ進めなくなる問題を修正しました。待ちは30秒で解除されます。 / Co-op: Infinity's choice screen and the next map no longer stall waiting forever on a silent player; waits now end after 30 seconds.
+- エッセンス枠の不具合を修正しました。読み込み直すと上限を超えた枠にエッセンスが残る問題、混沌の祠・振り直し・続きから・再接続で枠や装着中のエッセンスが消えたり減ったりする問題を直しました。星などで増える枠は合計2枠までです。 / Fixed essence-slot bugs: essences left in over-cap slots after reloading, and slots or equipped essences vanishing with the Chaos shrine, respec, Continue or reconnect. Star-added slots are capped at 2 in total.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.7.2 — インフィニティの互換判定とボス装備の修正（2026-10-06）
+
+同じバージョン同士なのにインフィニティが無効になる問題と、ボス装備の移動トリガーが働いていなかった問題を直しました。 / Fixes Infinity being disabled between players on the same version, and boss-gear movement triggers that never fired.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、全員が同じバージョンなのに「Protocol・MOD内容・インフィニティ対応が一致しない」としてインフィニティが通常モードになる問題を修正しました。今後はバージョンや内容の違い、確認の遅れがあっても警告だけを出し、機能は止めません。 / Co-op: Infinity no longer falls back to normal mode with a "Protocol / content / Infinity support mismatch" when everyone runs the same version. Version or content differences and slow handshakes now only warn; features keep running.
+- ボス装備の「移動したとき」に働く効果（ポラリスの踏みつけ、プリムスの刻印設置、シーカーの再突進、オブリビアクスの待ち伏せ解除、ライトの移動チャージなど）が一度も働いていなかった問題を修正しました。起動時の長いエラー表示も出なくなります。 / Boss-gear effects that trigger on movement (Polaris stomp, Primus mark, Seeker re-dash, Obliviax ambush release, Light movement charge, etc.) never fired; fixed. The long startup error is gone too.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.7.1 — 読み込みと保存の軽量化（2026-10-06）
+
+読み込み・保存・続きの再開が軽くなりました。 / Loading, saving and resuming are now lighter.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 改善 / Improvements
+
+- **読み込みと保存の軽量化**：セーブデータを読むたびに星図全体を計算し直していた処理をやめ、読み込みと保存後の確認が約160倍速くなりました（65ms → 0.4ms）。読み込み・保存・続きの再開での引っかかりが減ります。ゲームの挙動と数値は変わりません。 / **Lighter load and save**: profile loading and the post-save check no longer rebuild the whole star map, making them about 160x faster (65 ms to 0.4 ms). Fewer hitches when loading, saving and resuming. No gameplay or number changes.
+- ほかにも、ビルドの集計、星の検索、保存データの書き出し、群れの味方の確認を軽くしました。 / Build totals, star lookups, save writing and the pack-ally check are also lighter.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.7.0 — インフィニティのゾーン巡りと修正（2026-10-06）
+
+インフィニティモードを遊びやすくしました。ボスを倒すたびに次のゾーンがランダムに変わります。 / Infinity mode is much more playable: after each boss, the next zone is picked at random.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください（通信の版が変わりました）。 / Everyone in co-op must update (the network protocol changed).
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **インフィニティのゾーン巡り**：ボスを倒して潜行を続けると、次のゾーンを全ゾーンからランダムに選びます（直前と同じゾーンは避けます）。ボスも移動先のゾーンのものになります。ホスト・参加者・続きからの再開で同じ結果になります。 / **Infinity zone rotation**: after a boss, delving on picks the next zone at random from all zones (never the same one twice in a row), with that zone's boss. Host, guests and Continue all get the same result.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで、ボスの魂に触れると選択画面がすぐ開き、ボス限定の記憶・エッセンスを拾えなかった問題を修正しました。画面は最初は折りたたまれ、拾ってから開けます。「戻る（拾いに行く）」も付けました。 / Infinity: touching the boss soul no longer opens the choice screen right away; it starts collapsed so you can pick up the boss's memories and essences first, and has a "Back (go pick up)" button.
+- インフィニティで、部屋をクリアした瞬間に強く引っかかる問題を軽くしました。保存が失敗・遅延しても進行が止まったままにならないようにしました。 / Infinity: reduced the hitch when a room is cleared, and a failed or slow save can no longer stall progress.
+- インフィニティで、地図の「移動」を何回も押さないと移動しなかった問題を修正しました。 / Infinity: the map Travel button no longer needs several presses.
+- インフィニティで、ハンターの侵食にすぐ呑まれて進めなくなる問題を修正しました。次に進む1部屋は侵食されません。 / Infinity: the hunt no longer swallows the single path ahead; the next room you can enter is kept clear.
+- インフィニティで、イベント部屋にほとんど出会えなかった問題を修正しました。 / Infinity: event rooms now show up instead of almost never appearing.
+- インフィニティで、報酬（通常装備・素材・経験値、ゴールド・ダストの星の効果）が非常に少なかった問題を修正しました。 / Infinity: rewards (regular gear, materials, XP, and gold/dust star bonuses) were far too scarce; fixed.
+- 星の組み合わせの定義を更新するとき、古い登録が残っていると条件付きの効果が正しく更新されない問題を修正しました。 / Fixed conditional star effects not updating when an older pairing registration was still present.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.6.0 — 説明文を読みやすく（2026-10-06）
+
+装備と星の説明を、効果と条件が一目で分かる形に整えました。 / Gear and star descriptions are now easier to read at a glance.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください（内容の一致確認があります）。 / Everyone in co-op should update (content is checked for a match).
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素・変更 / New and changed
+
+- **説明の箇条書き**：装備の固有効果・ボス装備・星の説明は、1行目に効果の要点、続けて条件・間隔・上限を「・」で1つずつ並べるようにしました。 / **Bulleted descriptions**: unique gear effects, boss gear and stars show the main effect on the first line, followed by conditions, intervals and caps as one bullet each.
+- **説明文の書き方をそろえる**：上限には単位を付け（例: 上限36%）、言い回し・記号・文末をそろえました。ボス装備の「段階」は「固有報酬の段階」と書くようにしました。数値や効果は説明のために変えていません。 / **Consistent wording**: caps always have units (e.g. "up to 36%"), and phrasing, symbols and sentence endings are unified. Boss gear "stages" now say which reward stage they mean. No numbers or effects were changed for the wording.
+
+### 不具合の修正 / Fixed
+
+- **BalanceSim の stars モード**：購入候補の仮評価が発信側・受信側の二重強化の禁止組合せで停止する問題を修正。禁止候補だけを除外し、ゲームの数値・割当規則は維持します。全旅人・3戦略を指定節目で止める軽量オプション `--star-max-points`（50〜500、50刻み、既定500）を追加しました。 / **BalanceSim stars mode**: skip illegal source/receiver double-boost drafts during candidate scoring without changing game values or allocation rules; add `--star-max-points` for shorter runs across all heroes and strategies.
+
+---
+
+## v2.5.0 — インフィニティの地図と、鞄あふれの軽量化（2026-10-06）
+
+インフィニティの地図を、1部屋ずつ新しい部屋が現れる形にしました。重さの原因だった鞄あふれの処理も作り直しています。 / Infinity now reveals its map one room at a time, and satchel overflow no longer causes heavy slowdowns.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました（Protocol 23）。 / Everyone in co-op must update; the network protocol changed (Protocol 23).
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素・変更 / New and changed
+
+- **インフィニティの地図**：最初から普通の地図とボス部屋が見えるのではなく、通った部屋と次の1部屋だけが見え、進むたびに新しい部屋が1つずつ現れます。ボス部屋は、決めた数（10／15／20）の戦闘部屋をクリアしたときに、次の部屋として現れます。 / **Infinity map**: instead of showing the whole map and the boss room up front, only the rooms you have visited and the next room are shown, and a new room appears each time you move on. The boss room appears as the next room once you clear the chosen number of combat rooms (10/15/20).
+- **鞄があふれたときは欠片に換わる**：重さの原因になっていたため、遠征中に鞄があふれた遺物は、夢のダストではなく欠片に換わるようにしました。同じタイミングであふれた分は、まとめて1回の通知になります。 / **Satchel overflow now turns into shards**: overflowing relics now become shards instead of Dream Dust, which was causing heavy slowdowns. Overflow in the same moment is reported in one notice.
+
+### 不具合の修正 / Bug fixes
+
+- **インフィニティで開始しても通常の遠征になる**：前のシーンの通信の記録が残り、新しい遠征を誤って通常モードに戻していました。 / **Infinity started as a normal run**: leftover connection state from the previous scene turned the new run back to normal mode.
+- **インフィニティで移動できなくなる**：返事のない参加者がいると、全員が次の部屋へ進めなくなることがありました。返事がなければ、その遠征だけ通常モードで続けます。 / **Could not move on in Infinity** when a guest never answered; that run now continues in normal mode instead.
+- **取れない星**：全キャラの星図を総点検し、前提を満たしているのに取れない星を直しました（ナキア・ヴェスパーなど）。効果のない段にポイントを払えてしまう問題も直しました。 / **Stars that could not be taken**: every traveler's star map was checked and unreachable stars were fixed (Nachia, Vesper and others). You can no longer spend points on ranks that do nothing.
+- **空殻の払い戻しの通知が何度も出る**：一度だけ表示されるようにしました（ポイントが二重に戻ることはありませんでした）。 / **Husk refund notice repeated**: it now shows once (points were never refunded twice).
+- **読み込みに失敗したときに進行が巻き戻る**：セーブの読み込みが一時的に失敗したとき、古いデータで上書きしないようにしました。 / **Progress could roll back after a failed load**: a temporary load failure no longer overwrites your save with older data.
+- **記憶の障壁でエラーが出る**：ホストで記憶の仕掛けが障壁を張るとき、エラーが繰り返し出ることがありました。 / **Errors from memory shields** on the host.
+- **記憶の井戸のあと、遺物の名前が古いまま**：固有効果を交換したあと、一覧に古い名前が残っていました。 / **Old relic names after the Memory Well** swap.
+
+---
+
+## v2.4.0 — 空殻の星図の作り直しと、協力プレイ・保存の修正（2026-10-06）
+
+空殻の星図を作り直しました。協力プレイのインフィニティや、鞄あふれ・続きからの保存まわりの不具合も直しています。 / A rebuilt Husk star map, plus fixes for co-op Infinity, satchel overflow and Continue saves.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました（Protocol 22）。 / Everyone in co-op must update; the network protocol changed (Protocol 22).
+- セーブデータはそのまま引き継げます。**空殻は、作り直した星の分のポイントが一度だけ払い戻されます**。星図を開いて取り直してください。 / Saves carry over. **Husk gets a one-time refund for the redesigned stars**; open the star map and pick them again.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+- **インフィニティ途中参加後の保存失敗（#182）**：地図更新時に最終クリア番号とクリア済み集合を同じホスト状態から同期し、古い番号による保存検証失敗を修正しました。報酬量・保存形式・通信形式は変更ありません。 / **Save failure after joining an Infinity run in progress (#182)**: synchronize the last cleared node and cleared-node set from the same host snapshot when the map updates, preventing stale-node save validation failures. Reward amounts, save and wire formats are unchanged.
+
+### 新しい要素・変更 / New and changed
+
+- **空殻の星図**：輪の並びを変え、風の傷・滅殺態勢・裂傷を隣り合わせにしました。橋は「風に導かれる剣気」「風傷の足跡」「楔の足跡」になり、3つを一緒に装備したときに噛み合う星が加わりました。ほかの旅人の星図は変わりません。 / **Husk star map**: the ring now puts Scar of the Wind, Annihilation Stance and Laceration side by side, with new bridges (Wind-Guided Aura, Windscar Footprints, Wedge Footprints) and stars that click when all three are equipped. Other travelers are unchanged.
+
+### 不具合の修正 / Bug fixes
+
+- **参加者がいるとインフィニティを開始できない**：v2.3.1 でも、参加者のいるロビーでは「全員の対応MODが必要です」と出て開始できませんでした。ロビーでは開始できるようにし、開始後に対応していない参加者が分かったときは、その遠征だけ通常モードで続けます。 / **Infinity could not start with guests**: even in v2.3.1 a lobby with guests was blocked. It now starts; if a guest turns out to be incompatible, that run continues in normal mode.
+- **インフィニティに途中参加すると保存に失敗する**：地図が更新されたあと、途中参加した人の保存が失敗していました。 / **Saves failed after joining an Infinity run in progress**.
+- **鞄あふれ・続きからで夢のダストや欠片を失う**：鞄からあふれた遺物の取引が、続きからの保存地点や再接続のあとで確認できなくなり、対価を受け取れないことがありました。 / **Lost Dream Dust or shards from satchel overflow**: overflow trades could become unresolvable after Continue or a reconnect.
+- **続きからで報酬が残る・保存地点が消える**：協力プレイの参加者が別の遠征を挟んでから続きからに戻ると報酬が巻き戻らなかったり、保存の失敗で再開地点が消えたりすることがありました。 / **Continue kept rewards or lost its checkpoint**: guests who played another run in between were not rewound, and a failed save could delete the resume point.
+- **取引の結果がホストと参加者で食い違う**：購入・換金・分解の途中でゲーム本体の処理が失敗すると、結果が食い違うことがありました。 / **Trade results could differ between host and guest** when the game's currency step failed midway.
+- **取れない星・選べない刻印**：空殻の「瞬歩の備え」・ミストの「足運びの備え」、空殻の「風傷の芯」など元のダメージを増やす刻印（セトゥス・ミスト・ユバールにも各1つ）、空殻の外周4の第2案が取れませんでした。 / **Stars and sigils that could not be taken**: Husk's Flash Step Readiness, Mist's Fast Feet Readiness, base-damage sigils such as Husk's Core of the Wind Scar (one each for Cetus, Mist and Yubar too), and Husk's outer-4 second option.
+- **MOD の画面を開いているとエラーが大量に出る**：画面表示中にゲーム本体の UI 判定でエラーが毎フレーム出て、重くなることがありました。 / **Error spam while mod panels were open**, which could cause slowdowns.
+
+---
+
+## v2.3.1 — インフィニティと重さの修正（2026-10-06）
+
+v2.3.0 でインフィニティが使えなかった問題と、遊んでいると重くなる問題を直しました。 / Fixes Infinity being unusable in v2.3.0 and several causes of heavy slowdowns.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.3.0 と同じです）。 / Saves carry over (same format as v2.3.0).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください（Protocol 21 のままですが、ホストの判定が変わっています）。 / Everyone in co-op should update (still Protocol 21, but host-side checks changed).
+
+### 不具合の修正 / Bug fixes
+
+- **インフィニティを開始できない**：ロビーで理由なく「インフィニティは無効です」と出たり、ソロやホストでも「全員の対応MODが必要です」と出て開始できなかったりしました。ホスト自身は確認の対象から外し、参加者だけを確認するようにしました。参加者の画面では、ホストの返事を待つ間「ホストの設定を待っています…」と表示します。 / **Infinity could not start**: the lobby showed "Infinity is disabled" without a reason, and solo or host games were blocked by the "everyone needs a compatible mod" check. The host is no longer checked against itself; only joining players are. Joining players see "Waiting for the host's settings…" until the host answers.
+- **インフィニティで開始しても通常のマップになる**：開始直後のマップ作成で MOD 側の処理が失敗し、インフィニティが止まって通常のマップとボス部屋になっていました。最初のマップから正しくインフィニティになるようにしました。 / **Infinity started on a normal map**: a failure right after the first map was generated turned Infinity off, leaving the normal map with a boss room. Infinity now applies from the first map.
+- **夢のダストへの変換で固まる**：鞄が満杯のときに敵をたくさん倒すと、あふれた遺物1個ごとに保存が走り、ゲームが大きくカクついたり固まったりしていました。あふれはまとめて処理し、保存は1回にしました。どの遺物がダストになるか・量は変わりません。 / **Freezes when overflow turns into Dream Dust**: with a full satchel, every overflowing relic triggered a full save, causing heavy stutter during mass kills. Overflow is now settled in one batch with a single save; which relics convert and the amounts are unchanged.
+- **爆発が多いと重くなる**：「華麗なる芸術家」など爆発をたくさん起こす記憶や多段ヒットで、MOD の命中ごとの処理が増えて重くなっていました。効果は変えずに処理を軽くしました。 / **Slowdown with many explosions**: memories such as Explosion Artist and multi-hit attacks multiplied the mod's per-hit work. It is now much lighter, with no change to effects.
+- **ビスマスの記憶スロットが空になる（ホスト）**：Q と R に同じ本を装備して始めると、記憶が装備されないことがありました。 / **Bismuth's memory slots were empty (host)**: starting with the same book in Q and R could leave memories unequipped.
+- **同じ記憶を2枠に入れると星・連携が動かなくなる**：同じ記憶を2つの枠に装備すると、ほかの記憶の星や連携まで動かなくなることがありました。 / **Stars and links stopped with the same memory in two slots**: it could also stop stars and links of your other memories.
+- **装備タブのボタンが画面外に出る**：変更と払い戻しの欄が出ているとき、装備タブの左の欄をスクロールできるようにし、下のボタンが押せるようにしました。 / **Gear tab buttons off screen**: the gear tab's left column now scrolls, so its lower buttons stay reachable while the refund panel is open.
+
+---
+
+## v2.3.0 — 星図の作り直しと遊びやすさの改善（2026-10-05）
+
+星図を見やすく作り直し、鞄・鍛冶・遠征の終わり方などの扱いを変えました。見つかった不具合も直しています。 / A clearer star map, changes to the satchel, the forge and how a run ends, plus bug fixes.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.2.0 と同じです）。 / Saves carry over (same format as v2.2.0).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素・変更 / New and changed
+
+- **星図の配置**：星を記憶ごとの区画にまとめ、星団ごとに並べ直しました。どの星がどの集まりに属するかが分かりやすくなり、線が重なって見づらい所も大きく減りました。 / **Star map layout**: stars are grouped into a sector per memory and laid out by cluster, so it is clear which group each star belongs to, with far fewer overlapping lines.
+- **星の説明**：説明の最初に「何が増えるか・減るか」を出し、続けて「いつ・何に・どう働くか」を書くようにしました。連携の相手は「記憶『◯◯』」「エッセンス『◯◯』」と種類と名前で示します。取れない星には、何が足りないか（隣の星が未取得、ポイント不足など）を表示します。 / **Star descriptions**: each starts with what goes up or down, then when, on what and how it works. Links name the Memory or Essence. Locked stars say what is missing.
+- **星図の左の一覧**：星ごとに名前・効果の要約・状態（取得済み／取得可能／条件不足）を表示し、クリックするとその星へ移動します。 / **Star list on the left**: shows each star's name, a short effect summary and its state; click to jump to it.
+- **鞄があふれたとき**：遠征中に鞄の上限を超えたら、レア度の低い遺物から、その遺物の持ち主の夢のダストに換えるようにしました（これまでは一番弱い遺物を欠片に換えていました）。道標の効果で報酬が得られないときは、今までどおり何も得られません。 / **Satchel overflow**: extra relics now turn into the owner's Dream Dust, lowest rarity first (previously the weakest became shards).
+- **鍛冶の強化の失敗**：失敗しても +0 に戻らなくなりました。失敗したときは、半分の確率で強化値はそのまま、半分の確率で1段だけ下がります。 / **Forge failures**: a failed enhancement no longer resets to +0. Half the time nothing changes; otherwise it drops one level.
+- **「ロビーに戻る」**：遠征中にホストが「ロビーに戻る」を選ぶと、その遠征は失敗（敗北）として精算されるようになりました。「メニューに戻る」「デスクトップに戻る」は今までどおり中断で、「続きから」で再開できます。 / **Return to Lobby**: when the host chooses it mid-run, the run now ends as a defeat. Return to Menu and Quit to Desktop still suspend the run for Continue.
+
+### 不具合の修正 / Fixes
+
+- **装備のボタンが見えない**：ロビーの装備画面で、装着・外す・鍵のボタンが画面の外に押し出され、見えなくなっていました。ボタンを詳細の上に移しました。 / **Missing gear buttons**: in the lobby the equip/unequip/lock buttons were pushed off the window. They now sit above the details.
+- **ボスが悪夢化する**：一部の道標を組み合わせると、ボスが悪夢化することがありました。 / **Nightmare bosses**: some waypoint combinations could turn bosses into nightmares.
+- **インフィニティの配当**：保存の照合が合わず報酬を止めているあいだも、夢の圧の配当だけが入ってしまうことがありました。 / **Infinity dividends**: pressure dividends could still pay out while rewards were halted after a save mismatch.
+
+この版の変更は、コードとシミュレーションで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and simulation, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.2.0 — インフィニティモード（2026-10-05）
+
+新しい遊び方「インフィニティモード」を追加しました。ひとつの世界で、終わりなく遠征を続けられます。 / Adds Infinity Mode: an endless run in a single world.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**。 / Saves carry over.
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい要素 / New
+
+- **インフィニティモード**：ロビーの「夢の深さ」の近くで ON にできます（ホストが設定し、参加者にも伝わります）。最初のゾーンの世界から出ずに、部屋を進み続けます。 / **Infinity Mode**: turn it on in the lobby next to Dream Depth (the host decides; everyone sees it). You stay in the first zone's world and keep going.
+  - 戦闘の部屋を決まった数（10・15・20 から選べます）クリアするたびに、そのゾーンのボスが現れます。 / Every 10, 15 or 20 cleared combat rooms (your choice), the zone's boss appears.
+  - ボスを倒して報酬を受け取ると、確保の画面が出ます。「確保して帰還」でその遠征を終え、「深く潜る」でそのまま続けます。 / After the boss and its reward, the secure screen opens: secure and return to end the run, or delve to keep going.
+  - クリアした部屋が増えるほど、敵が少しずつ手ごわくなります（上限あり）。 / Enemies grow tougher as cleared rooms add up (capped).
+  - 「続きから」で再開しても、進み具合が戻ります。 / Progress is restored when you resume with Continue.
+
+### 不具合の修正 / Fixes
+
+- **ゲームの更新や他の MOD と合わない機能**：起動時の確認で合わない所が見つかっても、一部の連携（LastStarlight）がそのまま動き、本体のスキルの処理を途中で打ち切ることがありました。合わない機能だけを使わないようにし、想定外の動きのときは本体の処理をそのまま通すようにしました。 / **Features that no longer match the game or other mods**: one boss gear link (LastStarlight) could stay active after a mismatch and cut a game skill short. Only the mismatched feature is now turned off, and unexpected cases fall back to the game's own behavior.
+
+インフィニティモードはコードとシミュレーションで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / Infinity Mode was verified by code and simulation, not yet in the live game or co-op. Please report anything odd.
+
+---
+
+## v2.1.2 — 鍛冶の遺物が消える不具合の修正（2026-10-05）
+
+「続きから」で遠征を再開したあとに鍛冶で遺物を作ると、遺物が消えることがある不具合を直しました。 / Fixes relics disappearing when crafting after resuming a run with "Continue".
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.1.1 と同じです）。 / Saves carry over (same format as v2.1.1).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update to this version.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Fixes
+
+- **鍛冶で作った遺物が消える**：ロビーで遺物を作ってから「続きから」で遠征を再開し、もう一度遺物を作ると、前に作った遺物とまったく同じ遺物（内部の識別番号が同じもの）ができることがありました。その場合、セーブを読み込み直すと片方が消え、支払った欠片も戻りませんでした。再開しても前の製作の続きから抽選するようにし、同じ識別番号の遺物ができないようにしました。 / **Crafted relics vanishing**: crafting in the lobby, resuming with "Continue" and crafting again could produce an exact copy of the earlier relic (same internal ID). On reload one copy was dropped and the shards were not refunded. Rolls now continue from the earlier craft after resuming, and duplicate IDs are no longer created.
+
+この修正はコードとテストで確認したもので、実際のゲームでの確認はまだです。おかしな点があれば教えてください。 / This fix was verified by code and tests, not yet in the live game. Please report anything odd.
+
+---
+
+## v2.1.1 — 起動しない不具合の緊急修正（2026-10-05）
+
+v2.1.0 で、MOD が起動しない（入れても動かない）ことがある不具合を直した緊急の修正版です。 / Urgent fix for v2.1.0: the mod could fail to start at all.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.1.0 と同じです）。 / Saves carry over (same format as v2.1.0).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。 / Everyone in co-op should update to this version.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Fixes
+
+- **MOD が起動しない**：v2.1.0 では、起動時の確認でゲーム本体や他の MOD との違いが1つでも見つかると、MOD 全体が止まり、入れても何も表示されないことがありました。確認で問題が見つかっても MOD 全体は止めず、合わない部分だけを使わないようにしました。 / **Mod not starting**: in v2.1.0, a single mismatch with the game or another mod found at startup stopped the whole mod. Now only the affected part is turned off and the rest keeps working.
+- **ボス装備のアイコン**：v2.1.0 の配布ファイルで、ボス装備の専用アイコンが正しい場所に入っておらず、表示されていませんでした。 / **Boss gear icons**: the v2.1.0 package put the boss gear icons in the wrong folder, so they did not show.
+
+---
+
+## v2.1.0 — ボス限定の装備セット（2026-10-05）
+
+14体のボスに、それぞれのボスだけが落とす装備セットを追加しました。 / Fourteen bosses now each drop their own exclusive gear set.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.0.3〜v2.0.5 と同じです）。 / Saves carry over (same format as v2.0.3–v2.0.5).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 追加 / New
+
+- **ボス限定の装備セット（14セット・84部位）**：森の悪魔、スコール、インフェルヌス、白夜、暗月、ニュクス、エレボス、シーカー、アズラク、プリムス、光の精霊、大顎、オブリヴィアクス、ポラリスの14体が、それぞれ全部位（6部位）の専用セットを落とします。そのボスを倒したときにしか手に入りません。 / **Boss-exclusive sets (14 sets, 84 pieces)**: each of fourteen bosses drops its own full six-piece set, obtainable only by defeating that boss.
+- **ボスの技を使う装備**：各部位とセット効果は、そのボスの技をプレイヤーが使える形にしたものです。2・3・6部位とそろえるごとに、戦い方が変わります。たとえば森の悪魔のセットでは、踏みつけの衝撃波や、時間差で噴き出す樹木で戦います。 / **Gear that fights like the boss**: piece and set effects turn the boss's own moves into player abilities, and the way you fight changes at 2, 3 and 6 pieces — the Forest Demon set, for example, stomps and grows trees that burst out after a delay.
+- **記憶・エッセンスとの連携**：そのボスが落とす記憶やエッセンスと一緒に装備すると、それらの固有の効果に作用する連携効果が発動します。2・4・6部位で段階的に強くなります。セットだけでも、記憶・エッセンスだけでも、これまでどおり使えます。 / **Links with the boss's memory or essence**: equipping the matching memory or essence adds a link that changes how that reward works, growing at 2, 4 and 6 pieces. Each still works on its own.
+- **専用のアイコン**：84部位すべてに、ボスごとの色と意匠でそろえた専用のアイコンを付けました。 / **Dedicated icons**: all 84 pieces have their own icons, styled per boss.
+- **確認用のコマンド**：開発者用のコマンドで、セットの受け取りや、ボス撃破の抽選を試せます（開発者モードのときだけ）。 / Developer-only console commands let you grant a set or test the boss drop roll.
+
+### 不具合の修正 / Fixes
+
+- **「続きから」の再開**：メニューからロビーに戻り、タイトルの「続きから」で再開したとき、ゲーム本体だけが前の保存地点に戻り、MOD の鞄や撃破の記録は戻らないことがありました。巻き戻った部屋の報酬を二重に得られる可能性があったので、MOD の状態も同じ保存地点にそろえるようにしました。あわせて、ロビーで中断中の遠征があるときは、その旨と、遠征を終えるまで利用できない操作を表示します。 / **Continue**: after returning to the lobby and using Continue, the game could roll back to an earlier save point while the mod's satchel and kill records did not, allowing rewards to be earned twice. The mod now rolls back to the same point, and the lobby shows when an expedition is suspended and what is locked until it ends.
+
+追加した効果の多くは、まだ通常のプレイや協力プレイでのテストが十分ではありません。おかしな点があれば教えてください。 / Many of the new effects are not yet fully tested in the live game and co-op. Please report anything odd.
+
+---
+
+## v2.0.5 — 分解・純白ルート・起動時の読み込みの修正（2026-10-05）
+
+v2.0.4 のあとに見つかった不具合を3つ直しました。 / This release fixes three bugs found after v2.0.4.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（形式は v2.0.3・v2.0.4 と同じです）。 / Saves carry over (same format as v2.0.3 and v2.0.4).
+- **協力プレイでは、参加者全員がこのバージョンに更新**してください。通信の仕組みが変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Fixes
+
+- **分解と確保**：遺物の分解を待っているあいだに確保すると、遺物が保管庫に残ったまま、分解の対価も受け取れてしまうことがありました。分解を待っている遺物は、結果が出るまで別枠で保管するようにしました。 / **Salvage and secure**: securing while a salvage was still pending could keep the relic in your stash and also pay out the salvage. Relics waiting on a salvage are now set aside until the result arrives.
+- **純白ルートの協力プレイ**：ホストが選択を確定すると、参加者の保留中の報酬が、参加者本人が確保か潜行かを選ぶ前に、潜行として精算されていました。本人が選ぶまで精算を待つようにしました。 / **Pure-white route in co-op**: when the host decided, participants' pending rewards were settled as a delve before they chose to secure or delve. They now wait for each player's own choice.
+- **起動時の読み込み**：セーブデータの初回の読み込みでエラーが起きると、MOD がまったく動かなくなっていました。修正後は、読み取り専用で起動して画面で知らせ、セーブデータを上書きせずに、自動で読み込み直します。 / **Loading at startup**: a read error on the first save load stopped the mod entirely. It now starts read-only, tells you on screen and retries automatically, without overwriting your save.
+
+---
+
+## v2.0.4 — 夢の圧の追加報酬の修正（2026-10-05）
+
+v2.0.3 で見つかった、報酬の不具合を1つ直しました。 / This release fixes one reward bug found after v2.0.3.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**（v2.0.3 と同じ形式です）。 / Saves carry over (same format as v2.0.3).
+- **協力プレイでは、全員このバージョンに更新**してください。 / Everyone in co-op should use this version.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Fixes
+
+- **夢の圧の追加報酬**：コインバーストや忘却の咆哮でとどめを刺したときに、夢の圧の効果で未確保の欠片が1個追加されることがあります。v2.0.2 以降、この抽選が行われていなかった不具合を直しました。 / **Dream-pressure bonus**: finishing enemies with Coin Burst or Shout of Oblivion can grant one extra unsecured shard through dream pressure. Since v2.0.2 this roll never happened; it works again.
+
+---
+
+## v2.0.3 — 不具合の修正と軽量化（2026-10-05）
+
+v2.0.2 のあとにまとめて見直しを行い、見つかった不具合を直しました。長いプレイで重くなる問題も、さらに軽くしています。 / After a full review following v2.0.2, this release fixes the bugs it found and further reduces slowdowns on long runs.
+
+### 更新前に確認 / Before updating
+
+- **セーブデータはそのまま引き継げます**。ただし、この版で一度セーブするとセーブデータの形式が新しくなり、古い版の MOD ではそのセーブデータを読み込めなくなります（セーブデータが消えるわけではありません）。古い版に戻すかもしれない場合は、更新の前にセーブデータを控えておいてください。 / Saves carry over. Once this version saves, the save format is upgraded and older mod versions can no longer load that save (it is not deleted). If you might roll back, back up your save before updating.
+- **協力プレイは全員この版に**してください。通信の仕組みが変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Fixes
+
+- **遠征が進まなくなる**：協力プレイで撃破の記録が1件でも届かないと、確保や遠征の決着が止まったままになることがありました。届かない記録は30秒で打ち切り、遠征が先に進むようにしました。 / **Runs getting stuck**: in co-op, one missing kill record could stop securing and the end of the run indefinitely. A missing record is now settled after 30 seconds so the run moves on.
+- **進行が失われる**：セーブの書き込みに失敗したとき、やり直さずにそのままになっていました。失敗したら再試行するようにしました。報酬を付与する途中で問題が起きても、撃破の報酬が消えないようにしました。 / **Lost progress**: a failed save write was never retried; it now is. Kill rewards are no longer lost if something goes wrong while granting them.
+- **商人**：購入の応答が遅れたとき、同じ商人から何度も買えたり、次のゾーンの商人が消えたり、品物の質が購入時と違う深さで決まったりしていました。 / **Merchant**: when a purchase reply was slow, you could buy from the same merchant again, the next zone's merchant could vanish, and item quality could use the wrong delve depth.
+- **純白ルート**：選択を保留したまま倒した敵が、戦った深さとは違う深さで精算されていました。勝ったときに深さや確保のボーナスが1段多くなることもありました。 / **Pure-white route**: kills made while the choice was pending were settled at the wrong depth, and winning could add one extra depth step to bonuses.
+- **潜行を深めると敵が回復する**：純白で潜行を深めたとき、削った敵の HP が一緒に増えていました。 / **Enemies healing on delve**: deepening the delve in the pure-white route raised damaged enemies' current HP.
+- **通知の名前**：星図ポイントや熟練度の通知に、旅人の内部名（Hero_Vesper など）が出ていました。 / **Notification names**: star-point and mastery notices showed internal traveler IDs such as Hero_Vesper.
+- **ホストの処理が止まる**：ホスト側で1か所に問題が起きると、ほかの処理まで止まっていました。悪夢・変種の敵の名前表示が一斉に消えることもありました。 / **Host processing stalls**: one failing step on the host stopped everything after it, and nightmare/variant nameplates could all disappear at once.
+- **長いプレイで重くなる**：戦闘中の処理の負荷と、撃破の記録の再送、セーブデータの大きさを減らしました。途中参加や再接続でホストが固まることも減ります。 / **Slowdowns on long runs**: combat work, kill-record resends and save size are reduced, and hosts no longer freeze when someone joins mid-run or reconnects.
+
+不具合の多くはコードから原因を突き止めて直したもので、実際のゲームと協力プレイでの確認は一部まだです。おかしな点があれば教えてください。 / Many fixes were found by reading the code and are not yet fully checked in the live game and co-op. Please report anything odd.
+
+---
+
+## v2.0.2 — 刻印を最大3つまで・不具合の修正（2026-10-05）
+
+今回の版では、刻印を最大3つまで選べるようにし、v2.0.1 のあとに報告された不具合をまとめて直しました。 / This release lets you choose up to three keystones and fixes the bugs reported since v2.0.1.
+
+### 更新前に確認 / Before updating
+
+- **保存データはそのまま引き継げます**。振った星と刻印の選択もそのまま残ります。 / Saves carry over, including spent stars and chosen keystones.
+- **協力プレイは全員この版に**してください。通信の版が変わりました。 / Everyone in co-op must update; the network protocol changed.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 追加 / New
+
+- **刻印を最大3つまで選べます**。星のレベル200で2つ、400で3つになります。 / **Up to three keystones**: a second slot at star level 200 and a third at 400.
+
+### 不具合の修正 / Fixes
+
+- **封じられた宝庫**：ボスを倒したあとの戦利品が、ゾーンを移ると消えていた問題を直しました。払い出しは「×3」と表示され、HUD でため込んだ数も見えるようになりました。悪夢化した敵の討伐ログが、払い出しの通知に押し流されることもなくなりました。 / **Sealed Hoard**: post-boss loot no longer vanishes when you travel, payouts show as "x3" with the held count on the HUD, and nightmare kill notices are no longer pushed out by payout messages.
+- **純白ルート**：入ったときに、道標・確保/潜行・契約の選択がきちんと出るようになりました。ボスを倒すと確保され、持ち帰れます。選択を保留したまま戦っても、敵の強さは正しく上がります。 / **Pure-white route**: the waypoint, Secure/Delve and pact choices now appear, defeating its boss secures your loot, and enemies scale correctly even while the choice is pending.
+- **長いプレイで重くなる・固まる**：敵を倒すたびに保存していたのを、まとめて保存するようにしました。ボスを倒すと雑魚が一斉に倒れる場面で、固まりにくくなります。 / **Slowdowns and freezes on long runs**: saves are now batched instead of written on every kill, which helps when a boss dies and every enemy dies with it.
+- **刻印**：複数の刻印を選んだとき、条件を満たしていない刻印の効果が、別の刻印の条件で動いてしまう問題を直しました。 / **Keystones**: with several keystones chosen, one keystone's effect can no longer activate on another keystone's conditions.
+
+### 星図 / Star map
+
+- **ドラッグ**：星を選んでいるときに、ドラッグが引っかかる・図が飛ぶ・意図せず星が選ばれる、といった問題を直しました。 / **Dragging**: no more stutter, jumps or accidental star picks while a star is selected.
+- **二択の星**：両方の候補を左右に並べて、比べられるようにしました。マウスを乗せた星と、つながっている星を色付きの輪で示します。 / **Choice stars**: both options are shown side by side, and rings highlight the hovered star and its connected stars.
+
+不具合の多くはコードから原因を突き止めて直したもので、実際のゲームと協力プレイでの確認は一部まだです。おかしな点があれば教えてください。 / Many fixes were found by reading the code and are not yet fully checked in the live game and co-op. Please report anything odd.
+
+---
+
+## v2.0.1 — 取引の安全性と図鑑の修正（2026-10-04）
+
+v2.0.0 後の不具合の修正です。新しい機能はありません。**実機（ゲーム本体・2台での協力プレイ）での確認はまだ**のため、試験版（pre-release）として公開します。 / Fixes since v2.0.0; no new features. Not yet verified in the real game or in two-player co-op, so this is published as a pre-release.
+
+### 更新前に確認 / Before updating
+
+- **保存データはそのまま引き継げます**。未確定の取引も保存されます。 / Saves carry over; unresolved trades are saved too.
+- **協力プレイは全員を同じ版に**してください。 / Everyone in co-op must use the same version.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 修正 / Fixes
+
+- **図鑑**：銘品と組の分類をゲーム画面から選べるようにしました（#28）。初期装備の銘品も銘品として図鑑に記録され、すでに受け取った分も起動時に補われます（#29）。 / The codex screen now offers Named and Mini sets; starter named relics are recorded as such, and already-granted ones are backfilled.
+- **鍛冶**：エピックを36回洗い直したときに費用が負になり、欠片が増えてしまう不具合を直しました（#30）。 / Fixed the epic affix-reroll cost going negative on the 36th reroll.
+- **取引**：10秒を過ぎても取引を捨てず、ホストの確定結果を照会して、支払い済みの対価を一度だけ受け取るか、未実行なら遺物を返します。取引idに世代を付け、MODの再読み込みで過去の取引と衝突しないようにしました（#26 #27）。未確定の取引は保存されます。**協力プレイは全員を同じ版に**してください。 / Late trade responses are no longer lost: unresolved trades are kept, queried against the host and settled exactly once; trade ids carry a generation and the host rejects a reused id with a different request.
+- **取引**：ホストの取引台帳が失われた（ホストのMOD再読み込み・接続の変更・記録の上限超過）あとでも、「記録がない」ことを「未実行」と見なさず、決済済みの購入・交換・分解を取り消さないようにしました（#36）。ホストの台帳の識別子を取引に結び付け、確かめられない取引は返却も対価も確定せず保留します（手放すにはコンソールで `dreamforge_trades_giveup`）。未確定の取引は全種類で64件までしか始められず、保存・読込・復元の上限も揃えたので、受け付けた取引は再読み込みの後でも解決できます（旧版が書いた65件以上も全件復元）（#37）。 / A trade is no longer cancelled just because the host has no record of it: each trade is bound to the host ledger it was sent to, and when that ledger changed (host reload, new connection, history cap) the result is held instead of refunded. Unresolved trades are capped at 64 for every kind and the cap now matches save, load and restore (older saves above 64 restore in full).
+- **取引**：購入・交換・分解の要求を、記録（取引の識別子・内容・ホストの台帳・分解の予約）がディスクへ確実に保存できてからホストへ送るようにしました（#40）。書き込みに失敗したとき、または保存先が無効なときは、取引を送らず（ホストの通貨は動かず）、メッセージを出してやり直せる状態に戻します。これまでは、ホストが支払いを済ませた後に保存の失敗や異常終了が起きると、結果を照会するための識別子を失い、対価を受け取れないことがありました。 / A trade request is now sent to the host only after its record (id, contents, host ledger, salvage reservation) is confirmed written to disk. If the write fails or saving is unavailable, nothing is sent (host currency is untouched) and the trade can be retried. Before, a save failure or crash after the host had charged could lose the id needed to settle the trade.
+
+---
+
+## v2.0.0 — 装備の種類を大きく増やしました（2026-10-04）
+
+これまでの版をまとめた正式版です。以前のリリースは取り下げ、この版に一本化しました。 / This release consolidates all earlier versions; previous releases have been withdrawn.
+
+### 更新前に確認 / Before updating
+
+- **保存データはそのまま引き継げます**（星図・遺物・図鑑など）。 / Saves carry over.
+- **協力プレイは全員を同じ版に**してください。 / Everyone in co-op must use the same version.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新しい装備 / New gear
+
+- **土台が各枠60種から100種に**（合計600種）。新しい240種はすべて専用のアイコン付きです。 / **Bases per slot 60 → 100** (600 total); all 240 new bases have their own icons.
+- **家系**：土台は「氷霜・炎・光・闇・守り・疾風・癒し・召喚・記憶・無垢」の10の家系に分かれ、家系ごとに出やすい特性と固有効果があります。遺物の説明と図鑑に家系が表示されます。 / **Families**: bases belong to 10 families that favour certain affixes and powers; shown in tooltips and the codex.
+- **銘品（360種）**：アンコモン・レア・エピックに、固有の名前・一言・決まった固有効果を持つ遺物が加わりました。特性は通常どおり抽選されます。 / **Named relics (360)**: uncommon, rare and epic relics with their own name, lore line and fixed powers; affixes still roll normally.
+- **小さな組（30組）**：一部の銘品は2〜3点の組になっていて、そろえると小さなボーナスが付きます。 / **Mini sets (30)**: some named relics form 2–3 piece sets with small bonuses.
+- 図鑑に銘品と組の分類が加わりました。 / The codex lists named relics and mini sets.
+
+### この MOD について / About this mod
+
+遠征ごとに持ち帰れる遺物、ゾーンごとの「確保するか潜るか」の選択、旅人ごとの大きな星図（700星以上）、鍛冶と工房、長く続く目標を Shape of Dreams に加えます。協力プレイに対応しています。過去の変更の詳細は CHANGELOG にあります。 / Adds keepable relics, a secure-or-delve choice per zone, large per-traveler star maps (700+ stars), a forge and workshop, and long-term goals. Co-op ready.
+
+## v1.31.0 — 星図を10倍に（2026-10-04・Pre）
+
+9人の旅人すべての星図が、約70個から**700〜860個の星**へ広がりました。記憶ごとの星団、2つの記憶をつなぐ橋、外縁の星団、旅人ごとに8〜10個の刻印から、遊び方に合わせて伸ばし方を選べます。 / Every traveler's star map grows from about 70 to **700–860 stars**: memory clusters, bridges between two memories, outer clusters and 8–10 keystones per traveler.
+
+### 更新前に確認 / Before updating
+
+- **協力プレイは全員を同じ版に**してください（通信の版13）。版が違うとホストと参加者の画面に警告が出ます。 / Everyone in co-op must use the same version (protocol 13); a mismatch shows a warning.
+- **保存データはそのまま引き継げます**（保存形式4。リセットはありません）。振っていた星・ポイント・刻印はそのまま残ります。効果が変わった既存の星は、読み込み時に一度だけ外され、使ったポイントが全額戻ります（戻した星は画面で知らせます）。 / Saves carry over (format 4, no reset). Stars, points and keystones are kept; existing stars whose effect changed are cleared once on load with a full refund, and you are told which.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 星図 / Star map
+
+- **星が10倍に**：Vesper 838・Cetus 856・Husk 835・Lacerta 831・Mist 842・Yubar 833・Aurena 714・Bismuth 701・Nachia 698（共有の外縁160を含む）。記憶の仕掛けの効果量・持続・範囲・対象数を伸ばす星、記憶から別の記憶へクールダウンを渡す星、橋の合わせ技を強める星、味方を守る星などがあります。 / **10× stars** with memory-gimmick, recharge, bridge-combo and ally-ward stars.
+- **ポイント上限を500に**（従来150、図鑑のボーナスで最大504）。経験の曲線はそのまま延長し、初期ポイントの配布はありません。夢の圧は振った星の数に応じて従来どおり増えます。 / **Star point cap 500** (was 150; up to 504 with codex). The XP curve continues unchanged; no free starting points; dream pressure keeps scaling with spent stars.
+- **2択の星**：2つの効果を並べて見比べ、遠征の外なら無料で切り替えられます。 / **Choice stars**: compare both effects side by side; switch for free outside expeditions.
+- **刻印**：説明は「利点」と「代償」に分かれました。代償で既に振った星が効かなくなるときは、外れる星とポイントを一覧で示し、承認すると払い戻してから刻印を選びます。 / **Keystones** show benefit and drawback separately; if a drawback disables stars you own, they are listed and refunded after you approve.
+- **見やすさ**：星図はほぼ全画面になり、星団の一覧から移動・始まりに戻る・検索（名前や効果で光らせ「次の星へ」）・凡例に対応しました。取得した効果の一覧は同じ効果をまとめて表示します。 / Near full-screen map, cluster list, back-to-start, search, legend, and an acquired-effects list that merges identical effects.
+- **軽さ**：800星超の星図でも描画は軽く、500ポイント振った状態でも星を買う操作はすぐに反映されます。 / Large maps stay smooth and buying stays responsive even at 500 points.
+- 星の名前は、効果が想像できる自然な名前にしました。 / Stars have natural, distinct names.
+
+### 装備と鍛冶 / Gear and forge
+
+- **セットが6部位に**：48のセットすべてに3部位を加え、6つそろえたときのセット効果を追加しました。 / **Six-piece sets**: all 48 sets gain 3 pieces and a 6-piece bonus.
+- **特性の洗い直し**（鍛冶タブ）：遺物の特性をまとめて引き直します。強化値や固有効果などはそのままです。 / **Affix reroll** keeps enhancement, unique powers and the rest.
+- **強化に失敗の可能性**：失敗すると強化値が+0に戻ります（遺物は残ります）。確定前に確率を表示し、危険なときは2回押しで確定します。 / **Enhancement can fail** (resets to +0; the relic is kept); the chance is shown first.
+- **まとめて分解のレア度を選択**：コモン／アンコモン／レア／エピックまで。レア以上を含むときは2回押しで確定します。 / **Bulk salvage rarity** selectable; rare+ needs two presses.
+- **鞄と保管庫を大きく**（工房）：鞄は最大80個、保管庫は最大420個まで広げられます。 / **Satchel up to 80, stash up to 420** (Workshop).
+
+### 遠征と調整 / Expeditions and balance
+
+- **夢の深さで部屋が増える**：深さ1ごとに各ゾーンの部屋が2つ増えます（深さ5で+10）。 / Each depth step adds 2 rooms per zone.
+- **悪夢化「棘皮」と棘を返す変種を弱めました**：跳ね返すダメージは与えたダメージの15%で、1回につき攻撃した旅人の最大HPの1.5%まで、同じ敵からは0.4秒に1回までです。 / **Thorns weakened**: 15% of damage dealt, capped at 1.5% of the attacker's max HP per hit, once per 0.4 s per enemy.
+
+### 不具合の修正 / Fixes
+
+- 協力プレイの再接続・途中参加・MOD再読み込みで、報酬や道標が正しく引き継がれるようにしました。 / Co-op reconnect, late join and mod reload keep rewards and waypoints correct.
+- 他のMODと組み合わせたとき、精髄の枠が増え続けることがある不具合を直しました。 / Essence slots no longer keep growing alongside other mods.
+- 日本語の画面に英語の警告や内部の名前が出ていた箇所を直しました。旅人の名前も日本語で表示します。 / No more English warnings or internal names in the Japanese UI; traveler names are shown in Japanese.
+- アイコン：土台360種すべて、新しい夢の出来事、星の記号に絵が付きました。 / Icons for all 360 bases, new dream events and star symbols.
+
+### 確認したこと / Verification
+
+- Coreの試験2,851件が成功。9人それぞれ、星図の登録・全星への到達・最大ポイントまでの購入と協力通信の送受信を試験しています。 / 2,851 Core tests pass, including per-traveler registration, reachability, max-point purchases and co-op build transfer.
+- ゲーム内で9人の星図の表示・ツールチップ・購入の反応（450ポイント以上でも約55ms）・遠征を確認しました。新しい星の効果を戦闘ですべて確かめたわけではありません。気づいた点は Issue で教えてください。 / Checked in game: all 9 maps, tooltips, purchase latency (~55 ms at 450+ points) and an expedition. Not every new star effect has been verified in combat; please report issues.
+
+## v1.30.3 — 協力プレイで参加者に報酬が入らない不具合の修正（2026-10-03・Pre）
+
+- **協力プレイの参加者（ゲスト）に、確保地点が出ず、遺物も星の経験も入らない不具合を直しました。** 参加者の PC ではゲーム本体のゾーン情報がホストより少し遅れて届くことがあり、その間に遠征が始まるとゾーン番号が「不明」のまま記録され、ホストから届く遠征の決まりを適用できずにいました。ゾーン番号が分かってから遠征を始め、すでに始まっていた場合も正しい番号に直します。 / **Fixed co-op participants getting no secure point, relics or star XP.** A participant could start the run before the game's zone info arrived, recording an unknown zone and never applying the host's run rules.
+- **星図のポイントが301〜304点になると、装備画面が開かず装備の効果も送れなくなる不具合を直しました**（図鑑のボーナスを含めた上限は304点）。 / Fixed the gear tab and build sending failing when star points reached 301–304 (codex bonus included).
+- 協力プレイは v1.30.2 のホストとも遊べます（通信の版12のまま）。直るのは参加者側なので、**参加する人は v1.30.3 にしてください**。保存形式は3のままです。 / Compatible with v1.30.2 hosts (protocol 12); participants should update. Save format 3 unchanged.
+- 実機での協力プレイの確認はまだです。Core の試験で、ゾーン番号が遅れて分かった場合に報酬が払われることを確かめています。 / Not yet verified in live co-op; covered by a Core regression test.
+
+## v1.30.2 — 装備の画像・詳しい図鑑・見やすい星図・不具合の修正（2026-10-03・Pre）
+
+- **装備の画像が足りなかった不具合を直しました**：v1.30.1 までは、v1.29 で増えた装備の土台約180種に画像が付いていませんでした。土台360種すべてに画像が付きます。夢の出来事13種と星図の星の記号30種の画像も追加しました。 / **Fixed missing gear images**: the ~180 bases added in v1.29 had no icon in v1.30.1; all 360 bases now have one, plus 13 dream-event illustrations and 30 star-map symbols.
+- **図鑑が詳しくなりました**（記録タブ→「図鑑を開く」）：固有品・土台・セット・固有効果を、枠・系統・発見状態で絞り込み、名前や効果で検索できます。右に詳細（効果・特性・セットの部位）を出します。未発見の固有品・セット・固有効果は「？？？」で伏せます。 / **Detailed codex**: filter by slot, line and found state, search by name or effect, with a detail pane; unfound legendaries, sets and powers stay hidden.
+- **夢の深さで部屋が増えます**：深さ1段につき各ゾーンの部屋が2つ増えます（深さ5で+10）。深さの表示に「部屋 +N」を出します。 / **Dream depth adds rooms**: +2 rooms per zone per depth level.
+- **「レア度の幸運」の表記を「良い遺物の出やすさ +X%」に直しました**（抽選の中身は同じです）。 / The "rarity luck" label is now "better relics +X%" (same underlying roll).
+- **星のポイントの上限が500になりました**（旅人ごと）。夢の圧の星の係数は据え置きで、500振るとそのぶん圧が増えます。 / Star points per traveler now cap at 500; the pressure coefficient per star is unchanged.
+- **協力は全員この版へ更新してください**：通信の版が12になりました（ビルドの集約と分割送信）。保存形式は3のままで、プロフィールの初期化はありません。 / **All co-op players must update**: protocol 12; save format 3 unchanged, no reset.
+- **星図が見やすくなりました**：開くと木の全体が収まります（「全体を表示」で戻せます）。拡大縮小は0.15〜3倍。星は丸く、種類ごとの記号と段の数を表示します。刻印は紫の大きな星で、上部の「刻印」の一覧から探して選べます。合わせ技の橋は水色です。星図タブではメニューを画面いっぱいに広げます。星をつなぐ線が、画面の拡大率によって別の場所に描かれていた不具合も直しました。 / **Clearer star map**: the whole tree fits on open ("Show all" restores it), zoom 0.15–3x, round stars with type symbols and ranks, keystones as large purple stars plus a keystone bar, combo bridges in cyan, a full-screen window on the star map tab, and connection lines no longer drawn in the wrong place at some UI scales.
+- **アイコンの追加**：v1.29で増えた装備の土台と、新しい夢の出来事に絵を付けました（順次）。 / **New icons** for the bases and dream events added in v1.29.
+- **#20：確保地点の確定が遅れたままゾーンを移ると**、撃破の報酬と遠征の精算が止まることがありました。前のゾーンの報酬をそのゾーンの決まりで払ってから、次の確保地点を開きます。 / **#20**: moving zones while a secure-point confirmation was delayed could stall kill rewards and run settlement. The previous zone is now paid under its own rules before the next secure point opens.
+- **#21：ホストだけMODを読み直すと**、参加者が新しい道標を受け取れなくなることがありました。ホストごとの世代番号を付け、新しいホストの選択をすぐ反映し、古い通知では戻らないようにしました（通信の版10）。 / **#21**: after a host-only reload, participants could ignore new waypoint choices. Snapshots now carry a host generation (protocol 10).
+- **#22：連携印の脆さ**が通常ダメージへ反映されます。4秒間の2/3/4%で、同じ旅人から同じ敵への連携印・仕掛け・属性反応のExposeは最大値だけを使います。追加生成ダメージは増幅せず、装備解除やゾーン移動で印を消します。 / **#22: Combo-mark vulnerability** now affects normal damage for four seconds at 2/3/4%. Only the strongest Expose from that hero's combo marks, gimmicks, or elemental reactions applies to each enemy. Generated damage is excluded; unequipping either memory or changing zones clears the marks.
+- **#23：ナキアの「輪舞の呼吸」「狼の見守り」**は、本人が基本攻撃を撃ったときに働きます。空振りでも発動し、多段命中で回数は増えません。召喚獣の存在、狼の見守りの4秒間の発動窓と1秒間隔は維持します。 / **#23: Nachia's Round Dance Breath and Wolf's Watch** now trigger when she fires a basic attack, including misses, without extra triggers from multiple hits. The summon requirement, Wolf's Watch's four-second window, and its one-second interval remain unchanged.
+- **#24：「夢の圧」の依頼**を引き直した後も、現在の圧が条件を満たしていれば次の報告で達成します。同じ圧の報告が続いても報酬は一度だけで、新しい遠征へ前回の圧は持ち越しません。 / **#24: Dream Pressure bounties** rerolled during an expedition now complete on the next report if the current pressure meets their target. Repeated reports grant rewards only once, and a new expedition does not inherit the previous pressure.
+- 試験1,699件すべて成功、Releaseビルド成功。実機での戦闘・協力通信は未検証です。 / All 1,699 tests and the Release build pass. Live combat and co-op are not yet verified.
+
+## v1.30.1 — 不撓の心：スタンから立て直す（2026-10-03・Pre）
+
+- **不撓の心**を「敵からスタンを受けると、最大HPの4〜8%の障壁とアンストッパブルを各4秒間得る（8秒に1回）」へ変更して有効化。装備を重ねた通常の合計上限は12%。障壁が壊れてもアンストッパブルは4秒間持続します。
+- スロウ・ノックバック・自分や味方によるスタンでは発動しません。すでに妨害無効中の付与でも再発動しません。本体のアンストッパブルが既に受けているスタンも抑制します。
+- 保留していた固有品16個とセット1組（3部位）を追加。固有品は計1,190個（一般1,046＋セット品144）、セット48組、連携付き357個。
+- 保存形式3・Protocol 9は継続。v1.30.0からの更新で追加のプロフィール初期化はありません。形式3より前からの更新は、下記v1.30.0の移行説明を確認してください。協力では全員同じ版を使ってください。
+- 全1,615件の試験と本体参照のReleaseビルドが成功。検証結果は 実装記録 に記載。実機での戦闘と協力通信は未検証です。
+
+## v1.30.0 — 記憶の合わせ技と、遠征の選択肢（2026-10-03・Pre）
+
+v1.28〜v1.30の変更をまとめたプレリリースです。自動試験・ビルドは通っていますが、今回の追加分の実機戦闘・協力通信・画面表示は未検証です。
+
+### 更新前に確認
+
+- **保存形式は3です。形式3より前のDreamforgeプロフィールは、旧ファイルとバックアップの写しを残して、新しいプロフィールで開始します。** v1.27.1からの更新はこの対象です。写しの作成に失敗すると保存を止めます。更新前にも `QuickSave/Mods/DreamforgeRPG` を別の場所へバックアップしてください。
+- **協力プレイは全員この版へ更新してください。通信はProtocol 9です。**
+- ゲームを終了し、ZIP内の `DreamforgeRPG` フォルダをゲームの `Mods` に配置してから起動してください。ライブリロードでの更新は避けてください。
+
+### 追加・変更
+
+- **記憶の合わせ技62個**：星図の橋へ両側の記憶を組み合わせる効果を追加。枝を違う枠どうしが隣り合う順へ変更し、両側の星と記憶の装着を条件にします。印・発動待ち・記憶の再使用短縮などを、レビュー後の定義で実装しました。
+- **道標24種**：確保地点で3枚から1枚を選び、次のゾーンだけの決まりを変えます。協力ではホストが選択します。
+- **夢の深さ0〜5**：遠征開始時に難度と報酬の段を選べます。
+- **属性の反応4種**：蒸気・蝕・燃え殻・氷晶。元の属性スタックは消費せず、反応の追加ダメージから連鎖しません。
+- **新しい固有効果43個を有効化**：障壁、立ち位置、撃破、回復、召喚獣などを使った効果。仕掛けの効果11種と、近くの味方の旅人を条件にする絆も追加しました。
+- **装備と遠征の内容を拡張**：土台360、固有品1,171（一般1,030＋セット部位141）、セット47種、絆の固有品18個。契約40、今日の夢60、実績90、工房6、夢の出来事26、依頼の種類44。
+- **敵側を拡張**：変種30種、悪夢化の性質20種。弱点・耐性と区画の知らせを追加。耐性は30%までに制限します。
+- **星図と装備の調整**：つながりで開く星図、パン・ズーム表示、装備の攻撃力・魔力の固定値を追加。条件つき攻撃力・魔力の装備固有効果に覚醒前120%の共通上限を設けました。次の通常攻撃への上乗せは最大の1つだけを消費します。
+- 合わせ技の発動IDと初回・終端爆発の判別を接続し、ゾーン移動で古い印や発動待ちを破棄。燃え殻の設計値を火1スタックへ揃え、Husk専用効果の一般装備への混入も修正しました。
+
+### 検証と既知の制限
+
+- Core試験 **1,611件成功、失敗0、スキップ0**。
+- Releaseビルド成功。既存のUnity API非推奨警告2件。
+- 300人×30遠征の育成・報酬シミュレーション完走。戦闘バランスや協力通信の実測ではありません。
+- 「不撓の心」は敵由来ノックバックを確実に判定できないため無効。その効果を使う固有品16個とセット1種は配布に含めていません。
+- Issue #18 を修正：ホスト処理の解除時に星図由来の追加エッセンス枠だけを戻し、他の効果による枠を保持します。満杯・部分失敗・繰り返し解除を、製品の接続層を直接使う試験で検証しました。旧版の後片付けは旧コードで実行されるため、旧版からの初回更新はゲームを終了・再起動してください。
+- 実機での戦闘・画面表示・協力時の遅延・W/Eロードアウトは未検証です。
+
+詳細な統合記録は docs/specs/v1.30-handoff-integration.md を参照してください。
+
+---
+
+## v1.27.1 — 回復量・シールド量・召喚獣の力・HP を捧げる量（2026-10-03）
+
+Nachia・Aurena・Cetus など、回復・シールド・召喚獣・HP を捧げる戦い方を支える能力値を足しました。
+
+**新しい能力値**
+- 回復量：その旅人が与える回復が増えます（味方への回復も。上限60%）。
+- シールド量：その旅人が与えるシールドが増えます（味方へのシールドも。上限60%）。
+- 召喚獣の力：その旅人の召喚獣が与えるダメージが増えます（上限80%）。
+- 捧げる量の軽減：HP を捧げる技（ゴールデンバースト・還元など）の消費が減ります（上限40%）。本体の固有星座の軽減とも重なります。
+- MOD の吸収・魂喰い・護りの灯・溢れる命なども、回復量・シールド量で増えます。
+
+**どこで手に入るか**
+- 星図：Nachia（回復・シールド・召喚獣）、Aurena（回復・捧げる量の軽減）、Cetus（シールド）、Vesper と Bismuth（シールド）の記憶ルートで、合っていなかった星を置き換えました。それぞれの記憶が実際に回復・シールド・召喚・HP を捧げる場面に合わせています。
+- 装備：アクセサリー・鎧・頭の特性に、回復量とシールド量が付くようになりました。
+- 固有品：回復・シールド・仲間・低HP を題材にした固有品を12種足しました（全559種）。
+
+**試験**：全920件。
+
+**実機**：未確認です（Pre）。特に、召喚獣への効き方と、HP を捧げる量が実際に減るかは、ゲームの中で確かめていません。
+
+**実装**：GPT 6 Astra（OMP 経由）。仕様・レビュー・取り込みは Claude。
+
+---
+
+## v1.27.0 — 旅人ごとの大きな星図、夢の圧、限界突破、覚醒の3段（2026-10-03）
+
+大きな更新です。v1.26（記憶・エッセンス・旅人に連携する固有品）も、この版にまとめて入っています（下の v1.26.0 の項目）。
+
+**プロフィールは新しく始まります**
+- 大きな変更のため、この版を入れて最初に起動すると、プロフィール（夢のレベル・所持品・素材・星図・図鑑・実績）が新しく始まります。
+- 前のデータは消えません。同じフォルダに `profile.v1-archive-日時.json` として残ります。
+- 協力プレイでは、全員がこの版を入れてください（通信の版は5です）。
+
+**旅人ごとの大きな星図**
+- 星図のポイントは**旅人ごと**になりました。その旅人で敵を倒すと「星の経験」が溜まります（通常1・エリート5・ボス20、悪夢化は2倍、確保20・踏破100）。最大150ポイントで、最後まで取るには長く遊べます。図鑑のボーナスは全員に足されます。
+- 星図は「核」（いままでの刻印）と、**記憶ごとのルート**、「夢の輪」からなります。
+  - ルートは、各旅人の**アイデンティティ記憶2つ・旅人記憶5つ**それぞれに1本ずつ（Bismuth は固有のアイデンティティが1つなので、共通のアイデンティティ「華麗なる芸術家」のルートを入れて7本）。
+  - 1本は星6つ＋頂点の星。前の星に振ると次が開きます。半分ほどは**その記憶を装着しているときだけ**効く星です。
+  - 夢の輪：旅人ごとに8つ、各5段の汎用の星です。
+  - 全部で63ルート・540星。1人の容量は約220ポイントで、150ポイントでは全部取れません。どのルートを伸ばすかを選んでください。
+- ルートは、本体のデータ（アイデンティティ記憶・旅人記憶・旅人ごとの星座）と、コミュニティで強いとされる戦い方を調べて組みました。伸びる値（攻撃力・魔力・最大HP）と発動条件は、その記憶に合わせています。エッセンスや本体の星座で手に入りやすい効果（記憶加速・会心だけ・移動速度など）は減らしました。
+- **エッセンスの枠**：アイデンティティ記憶のルートの頂点の先に「記憶の器を広げる」、移動の記憶のルートの頂点の先に「回避の器を広げる」があります（1段・5ポイント）。アイデンティティ記憶と回避に、エッセンスをもう1つはめられます（アイデンティティは2本取っても +1 まで）。
+- いままで振っていた刻印は、新しいプロフィールで振り直しになります。
+
+**夢の圧（難易度）**
+- 星図が大きくなった分、敵も強くなります。ホストが、ゲームにいる全員の夢のレベルと振った星の数の**平均**から、敵のHPと与ダメージを上げます。
+  - 敵のHP：1 + 0.025 ×（夢のレベル − 5、0未満は0）+ 0.005 × 振った星
+  - 敵の与ダメージ：1 + 0.012 ×（夢のレベル − 5、0未満は0）+ 0.0025 × 振った星
+  - 最大で HP 約2.4倍・与ダメージ約1.7倍。
+- 協力プレイでは平均を使うので、人数で圧が増えることはありません。レベルの低い人が入ると圧は下がります。
+- 上部の表示に、いまの倍率が出ます。
+
+**限界突破（強化の上限を広げる）**
+- 強化が上限に達した遺物は、同じ枠・同じレア度以上の遺物を1つと、調律石・欠片を使って「限界突破」できます。1回ごとに上限が +5 広がります。
+  - レア1回（+10）、エピック2回（+15）、伝説3回（+20）。
+  - 費用：調律石 5・10・20、欠片 200・400・800。+6 以降の強化は欠片 180〜440（+11〜+15 は1.5倍、+16〜+20 は2倍）。
+- +6 以降は、基礎能力と特性が +1 ごとに4%、固有効果が3%伸びます。
+- 節目を足しました：+10 と +15 で特性が1行増え、+20（伝説）で固有効果1つが1.2倍になります。
+- 鍛冶タブに「限界突破」のボタンと、素材にする遺物の一覧があります。
+
+**覚醒を3段に**
+- 覚醒の力 2000・6000・15000 で覚醒Ⅰ・Ⅱ・Ⅲ（固有効果 1.25・1.5・1.8倍、特性 1.1・1.2・1.3倍）。いままでの 500 は1回の遠征で届いてしまうため、長く使い込む目標にしました。
+- 連携の値も覚醒で伸びます。表示とホストの値はそろえてあります（記憶加速は覚醒しても90%まで）。
+
+**攻撃力と魔力**（本体の旅人は9人中7人が魔力で伸びるため）
+- 烈火・雷鎖・爆砕・旋風・四元の共鳴・回避の残響は、攻撃力か魔力の**高い方**で計算します。爆砕と旋風は、魔力の方が高ければ魔法ダメージになります。
+- 処刑・先制は通常攻撃への上乗せなので、攻撃力のままです。
+- 逆襲・万全・過負荷は、攻撃力と魔力の両方を上げます。
+- 足の装備にも攻撃力・魔力の特性が付き、手の装備のエピックにも技で発動する効果（過負荷・終幕）が付くようになりました。
+
+**属性の重ね方**（本体の上限：闇と光は5、火は上限なし、冷気は重ならない）
+- 火種・輝き・影は、値が100を超えると毎回確実に付くようにしました。例：60なら「60%の確率で1つ」、160なら「毎回1つ、さらに60%の確率でもう1つ」。影は会心で当たるともう1つ重なります。霜は確率のままです。
+- 装備と刻印の値も、それに合わせて上げました（Husk の「虚ろの刃」は 35 → 100）。
+
+**回避の効果**
+- 回避の残響：記憶のクールダウン短縮をやめ、回避した後3秒以内の次の通常攻撃に、攻撃力か魔力の高い方の X% を上乗せします。
+- 疾駆：回避した後の3秒間、移動速度に加えて攻撃速度も上がります。見切り：3秒 → 4秒。
+- Lacerta の「連装」と Vesper の「四の型」（4発目を早める）は、奥の星・1段まで・4ポイントにしました。
+
+**説明文**
+- 重なる効果には「N回まで」「上限なし」「重ならず時間を延長」のどれかを書きました。内部の間隔（吸収0.15秒など）と、障壁の持続時間も書きました。
+- 共鳴の説明を実際の動きに合わせました（味方への分は半分）。
+
+**直したこと**
+- 烈火：4発目が外れたとき、次の別の攻撃で発動していました。
+- 覚醒Ⅱ・Ⅲになったとき、ホストへの能力の送り直しが遅れていました（issue #15）。
+- 覚醒後の連携の値が、表示とホストで食い違っていました（issue #14）。
+
+**試験**：全896件。
+
+**実機**：未確認です（Pre）。特に、星図の画面、エッセンスの枠が実際に増えるか、協力プレイでの夢の圧は、ゲームの中で確かめていません。
+
+**実装**：大きな星図と夢の圧は GPT 6 Astra（OMP 経由）、攻撃力と魔力の計算・属性の量・回避の効果・限界突破・エッセンスの枠の仕組みは GLM-5.3（OMP 経由）、調査、星図の見直し、覚醒、装備、説明文、試験、バランス調整は Claude。
+
+---
+
+## v1.26.0 — 記憶・エッセンス・旅人に連携する固有品（2026-10-03、単独では出さず v1.27.0 に含めた）
+
+特定の記憶・エッセンス・旅人と一緒に使うと、追加の効果が出る固有品を121種追加しました（固有品は全547種）。
+
+**連携の条件**（すべて満たしているときに効きます）
+- 1つ：記憶、エッセンス、旅人のどれか（記憶26・エッセンス19・旅人9）
+- 2つの組み合わせ：記憶×記憶、記憶×エッセンス、エッセンス×エッセンス、旅人×記憶、旅人×エッセンス
+- 3つの組み合わせ：旅人×記憶×エッセンス、旅人×旅人記憶×旅人記憶、記憶×記憶×エッセンス、記憶×エッセンス×エッセンス
+- レジェンダリー以上の記憶17種・エッセンス19種は、どれも「1つの連携」と「組み合わせの連携」の両方に出てきます。9人の旅人には、それぞれ旅人記憶との組み合わせがあります。
+
+**連携の効果**
+- 同調：条件を満たしている間、攻撃力・魔力が上がる
+- 守り：条件を満たしている間、最大HPと防御が上がる
+- 記憶加速：条件の記憶を使うと、そのクールダウンが早く戻る
+- 記憶の余韻：条件の記憶を使った後の5秒間、攻撃力・魔力が上がる（重ならず、時間だけ延びる）
+- 条件が多いほど値の上限が大きくなります（2つで1.6倍、3つで2.2倍）。強化では伸びず、覚醒で1.5倍になります。
+
+**画面**：遺物の詳細に、連携の条件と効果を出します。条件ごとに ✓（満たしている）か ・（まだ）が付きます。装備の「現在の強さ」には、いま効いている連携を並べます。
+
+**通信**：装備の情報に連携を加えたので、通信の版を4に上げました。協力プレイでは全員がこの版を入れてください。
+
+**試験**：連携の判定・上限・説明文・送受信・覚醒、全種の網羅を確かめる試験を追加しました（全726件）。
+
+**実機**：未確認です。記憶とエッセンスの判定はゲームの型名で行います。
+
+**実装**：仕組みは GLM-5.3（OMP 経由）、固有品のデータ・説明文・試験の調整は Claude。
+
+---
+
+## v1.25.2 — 実際に遊んだ人の声から（2026-10-02）
+
+v1.20 を遊んだ方のフィードバックをもとに直しました。ありがとうございます。
+
+**直したこと**
+- **確保地点で装備を変えられない**：「確保する」を押すと付け替えの時間が終わってしまい、持ち帰ったばかりの遺物を着けられませんでした。確保地点に着いてから、次の戦闘で敵を倒すまでは付け替えられるようにしました（「深く潜る」を選んだときも同じです）。
+- **ロビーで「まとめて分解」が押せない**：前の遠征の記録が残っていると、ロビーでも遠征中として扱われていました。工房と狙い系統も同じでした。ゲームに入っていなければ使えるようにしました。
+- **潜行で付いた呪いが、確保しても消えない**：悪夢の契約が解けても、その代償の本体の呪いが残っていました（仕様ではありません）。確保して契約が解けたとき、遠征が終わったときに、ホストが契約の呪いを外すようにしました。
+
+**見やすさ**
+- 確保などの知らせを、画面の右側（本体の呪いの表示と重なる場所）から、左側の上部表示の下に移しました。文字も大きくし（15→18）、一度に出すのは新しい6件までにしました。
+- 上部の表示（HUD）を、Discord のオーバーレイと重ならないよう画面の左上に移しました。
+
+**通信**：契約の呪いを外す知らせを増やしたので、通信の版を3に上げました。協力プレイでは全員がこの版を入れてください。
+
+**試験**：確保地点の付け替えの時間（確保・潜行の後も使える、次の撃破で終わる、保存と読み込み）を確かめる試験を追加しました（全703件）。
+
+**実装**：ルールとホストは GLM-5.3（OMP 経由）、画面の配置は Claude。実装の途中で消えていた「総撃破数を数える処理」は、試験で見つけて戻しました。
+
+---
+
+## v1.25.1 — issue #12・#13 の表示の修正（2026-10-02）
+
+GitHub の issue で報告された、表示の食い違いを直しました。
+
+**直したこと**
+- **#12 まとめて分解**：再調律の候補を選んでいる途中の遺物も対象に数えていたため、実際には分解されないのに「欠片を得ました」と多く表示していました。その遺物を対象から外し、表示と実行で同じ判定を使うようにしました。知らせは、実際に分解できた数と、実際に増えた欠片・調律石で出します。
+- **#13 遺物一覧の印**：鍵をかけたり外したり、覚醒・強化したりしても、一覧の行（「鍵」や ✦）がすぐに変わらないことがありました。遺物の状態が変わったら、次の描画で一覧を作り直すようにしました。
+
+**試験**：候補選択中の遺物だけのとき・ほかの遺物と混ざっているとき・候補を選び終えた後で、知らせの数と実際の変化が一致することを確かめる試験を追加しました（全698件）。
+
+**実装**：GLM-5.3（OMP 経由）。確認と取り込みは Claude。
+
+---
+
+## v1.25.0 — モンスター側のつり合い・夢の変種・装備をさらに増やす（2026-10-02）
+
+プレイヤー側（6枠・固有品・星図・覚醒・新しい固有効果）が大きく伸びたので、モンスター側も合わせて強く、面白くしました。あわせて装備をさらに増やしています（計画では v1.24 と v1.25 に分けていた内容を、まとめて出します）。
+
+**敵が深度に合わせて強くなる**
+- 悪夢化していない敵も、深度1ごとに最大HP +8%・攻撃力 +4% になります（深度3から防御 +10）。ボスは深度4から最大HP +10%/深度です。深く潜るほど、遺物だけでなく手応えも増えます。
+- パーティの中でいちばん強い装備に合わせて、悪夢化の確率が最大1.5倍になります。強い装備で潜るほど、悪夢の敵が増えます。
+
+**新しい悪夢の性質（4つ）**
+- **結界**：出現時に最大HPの25%の障壁をまとう。
+- **棘皮**：受けたダメージの20%を、攻撃した旅人に返す。
+- **飢渇**：与えたダメージの15%だけ回復する。
+- **破甲**：攻撃が当たると、相手の防御を4秒間 20 下げる。
+
+**夢の変種（13種）**
+- 深度2以降、本体の敵がまれに「夢の変種」になって現れます（部屋に1体まで。深度が深いほど出やすい）。名札・色・大きさで見分けられます。
+- 例：蝕む猟犬（速く、防御を削る）、鏡殻のスカラベ（強すぎる一撃を受け流す）、焔の殉教者（倒れると爆ぜる）、吸命の学徒（斬るたびに命を吸う）、欠片喰らい（倒すと欠片がたくさん）など。
+- 倒すと悪夢と同じく一段上の戦利品が出ます。記録タブに「夢の変種」の一覧と、倒した数を出します。
+
+**新しい固有効果（4種、全42種）**
+- **止水**：自分の技で敵をスタンさせると、障壁を得る。
+- **散財の護り**：ゴールドを100使うごとに、障壁を得る。
+- **見切り**：回避の無敵で攻撃を実際にかわしたとき、攻撃速度が上がる。
+- **明晰**：有効な明晰夢（悪い夢）の数だけ、攻撃力・魔力が上がる。
+
+**装備をさらに増やす**
+- 土台を各枠 +5（全180種、すべてに絵）。嵐・鴉・墨・氷・陽などの新しい意匠です。
+- 固有品を60種追加しました（全426種、一般354・セット品72）。v1.23 の新しい固有効果を多めに使っています。
+
+**試験**：深度の上乗せ・装備の強さの係数・新しい悪夢の性質・夢の変種・新しい固有効果・装備の数を確かめる試験を追加しました。言語の切り替えが並行する試験どうしで干渉していたので、試験は順番に走らせるようにしました（全695件）。
+
+**実機での確認**：深度5の戦闘で、夢の変種（鏡殻のスカラベ）の出現、悪夢の「結界」「棘皮」、固有効果「足枷」「会心の余韻」の発動を確かめました。MOD の処理は1フレームあたり約0.1ミリ秒（157fps）のままです。飢渇・破甲・新しい固有効果4種・変種の色と大きさは、まだ確かめていません（発動すると Player.log に一度だけ出ます）。
+
+**通信**：夢の変種の知らせを増やしたので、通信の版を2に上げました。協力プレイでは、全員がこの版を入れてください。
+
+---
+
+## v1.23.0 — 本体の効果と噛み合う、新しい固有効果（2026-10-02）
+
+本体の仕組みを調べ、これまでの30種がまだ触れていなかった本体の要素（Q・W・Eの使い分け、会心、状態異常、超過回復、エッセンスの品質、ハンター、聖堂、火の燃え広がり）に反応する固有効果を8種追加しました。
+
+**新しい固有効果**
+- **終曲**：Q・W・Eを8秒以内にすべて使うと、Ultimate の残りクールダウンが縮む（10秒に1回）。
+- **会心の余韻**：通常攻撃が会心で当たると、Q・W・Eのクールダウンが縮む。
+- **足枷**：スタン・スロウ・冷気のどれかが乗った敵へのダメージが上がる。本体のスタンやスロウを付ける記憶・エッセンスと組み合わせて。
+- **結晶共鳴**：装着中のエッセンスの品質の合計100%ごとに、攻撃力・魔力が上がる（8段まで）。エッセンスの合成が、そのまま強さになります。
+- **獲物の誇り**：ハンターの追跡度1ごとに、攻撃力・魔力が上がる（3まで）。追われるほど強くなります。
+- **溢れる命**：最大HPを超えた回復の一部が、3秒の障壁になる。
+- **祈願**：聖堂を使うたび、そのゾーンの間 攻撃力・魔力が上がる（5回まで）。寄り道が戦いの力になります。
+- **飛び火**：火が3つ以上重なった敵に火を付けると、近くの敵にも火が1つ移ることがある。
+
+**アイテム**
+- 新しい固有効果を使う固有品を32種（各4種）追加しました。固有品は全366種（一般294・セット品72）です。
+- 新しい固有効果は、エピック・レアの候補（枠ごと）にも入り、銘も付きます（終曲の・余韻の・枷の・結晶の・誇り高き・満ちる・祈りの・飛び火の）。
+
+**実機での確認**
+- 会心の余韻・溢れる命は、実際の戦闘で発動を確かめました。
+- 終曲・足枷・結晶共鳴・獲物の誇り・祈願・飛び火は、発動の条件（Q・W・Eがそろった旅人、スタン、エッセンス、ハンター、聖堂、火の重ね付け）がそろわなかったため、まだ確かめていません。発動すると記録（Player.log）に一度だけ出るようにしてあります。
+
+**試験**：新しい固有効果の時間・回数・上限、能力の送受信、説明文と銘を確かめる試験を追加しました（全647件）。
+
+---
+
+## v1.22.0 — レア度にふさわしい固有効果とセット24種（2026-10-02）
+
+レア度が高い遺物ほど、手に入れたときに「当たり」と分かるようにしました。あわせて、新しい枠を使うセットを増やしました。
+
+**レア度ごとの固有効果**
+- **レア**：その枠の固有効果を1つ持つようになりました（範囲の下半分の、弱めの値）。
+- **エピック**：固有効果が2つになりました（1つは範囲どおり、もう1つは弱め。同じ固有効果は重なりません）。
+- **エピックの銘**：1つ目の固有効果から決まる銘が、名前の前に付きます（例：「猛火の 連なりの剣」「燻る 炎の握り」）。30種の固有効果それぞれに銘があります。これまでに手に入れたエピックにも付きます。
+- 伝説（固有品）は、決まった2つの固有効果と言い伝え・覚醒で、いちばん特別なままです。
+- 強化+5の節目：レアも固有効果を持つようになったので、+5では特性が1行増えます。
+- すでに持っている遺物の固有効果は変わりません（新しく手に入れた物から）。
+
+**セットを24種に**
+- 頭・手・足を使うセットを6種、新旧の枠をまたぐセットを6種、計12種（36部位）追加しました。
+  - 頭・手・足：凍土の装い（棘・霜）、修羅道の装い（血の渇き・吸命）、風舞の装い（旋風・疾駆）、天穹の誓い（終の昂り・星の加護）、闇討ちの装い（影・先制）、灰走りの装い（火種・追い風）
+  - 枠をまたぐ：施療の誓い（護りの灯・共鳴の環）、鉄騎の誓い（棘・守護霊）、月蝕の装い（影・吸魂）、迅雷の武装（雷鎖・乱戦）、万象の装い（四元・過負荷）、払暁の誓い（輝き・万全）
+- 固有品は全334種（一般262・セット品72）になりました。
+- セットが増えても集めやすいよう、すでに持っているセットの未所持部位の重みを 40→60、セット品の重みを 5→4 にしました。模擬（30回の遠征）で、セットを1つもそろえられない人の割合は 38%（v1.21）→ 34% です。
+
+**試験**：レアとエピックの固有効果の数と範囲、銘、レアの+5の節目、セット24種と新しい枠のセットの完成を確かめる試験を追加しました（全600件）。実機でも、銘の表示とセット品を確かめました。
+
+---
+
+## v1.21.0 — 各枠の装備を大幅に増やす（2026-10-02）
+
+枠が6つに増えたので、どの枠でも選ぶ楽しみがあるよう、装備の種類を大きく増やしました。
+
+**土台**
+- すべての枠に土台を10種ずつ足し、各枠25種、全150種にしました（すべてに絵を付けています）。
+- 火・冷気・光・闇の属性を伸ばす土台や、系統の偏りが少なくなるように選んでいます。
+
+**固有品**
+- 固有品を114種足しました。どの枠にも、セット品を除いて40種以上の固有品があります（全298種、うち一般262・セット品36）。
+  - 頭・手・足：各40種（+28）
+  - 主装備：51種、防具：47種、装飾品：44種（各+10）
+- 新しい土台には、それぞれ1つ以上の固有品があります。
+- 同じ枠の中で、固有効果の組み合わせが重ならないようにしました。これまで重なっていた12種は、固有効果を1つ入れ替えています（例：疾風の弓は「先制」と「追い風」、月喰いの鎌は「影」と「血の渇き」）。すでに持っている遺物は変わりません。
+
+**特性（接辞）**
+- 枠ごとの特性の種類を、どの枠も13種にそろえました（これまでは防具が8種など、枠によって少なめでした）。足した能力値は、その枠らしくないものなので出にくくしてあります。
+
+**落ち方の調整**
+- 固有品が増えてもセットがそろいやすいよう、すでに持っているセットの未所持部位が出る重みを上げました（25→40）。セット品そのものの重みも 3→5 にしました。
+- 模擬（30回の遠征）で、セットを1つもそろえられない人の割合は 51%（v1.19）→ 38% になりました。
+
+**画面**
+- 遺物の詳細で、固有効果を特性より先に出すようにしました（固有品の個性がすぐ分かるように）。鍛冶の詳細欄も高くして、固有効果まで見えるようにしました。
+
+**試験**：全ての枠が土台25種・固有品40種以上であること、全ての土台に固有品があること、名前・IDの重複がないこと、同じ枠で固有効果の組み合わせが重ならないこと、上限を超えないことを確かめる試験を追加しました（全594件）。
+
+---
+
+## v1.20.0 — 鍛冶を数値だけにしない（2026-10-02）
+
+鍛冶と強化が「数値が少し上がるだけ」にならないよう、それぞれの操作に節目と選択を入れました。
+
+**強化の節目**
+- **+3** で、特性が1行増えます（その枠の候補から、まだ持っていない能力値）。
+- **+5** で、固有効果を持たない遺物（コモン〜レア）は、その枠の固有効果が1つ宿ります。すでに固有効果を持つ遺物（エピック・固有品）は、特性がもう1行増えます。
+- コモンでも+5まで育てれば固有効果を持つので、気に入った土台を使い続けられます。
+- 鍛冶の画面に「次の節目」を出し、節目を越えたときは知らせで何が増えたかを伝えます。祈りの泉・鍛冶の祠で強化されたときも同じです。
+- これまでに+3・+5にしていた遺物には、起動したときに一度だけ節目を付けます。
+
+**再調律は3つから選ぶ**
+- 調律石を払うと、特性の候補が3つ出ます（できるだけ別の能力値）。1つ選ぶか、元のままにできます。いまの値と同じ能力値の候補には ▲▼ を付けます。
+- 払った調律石と回数は、選ばなくても戻りません。候補は保存されるので、読み直しても変わりません。
+- 候補を選んでいる途中の遺物は、強化・分解・合成の材料にはなりません。
+
+**合成の結果の枠を選べる**
+- 鍛冶の絞り込みで枠を選んでいるときは、合成の結果をその枠にできます（欠片1.5倍）。「すべて」のときは、これまでどおり枠は運で、費用も同じです。
+
+**画面**：6枠になって製作の行が増えたため、鍛冶の右の欄をスクロールできるようにしました。
+
+**試験**：強化の節目、以前に強化した遺物への補完、再調律の候補と選択・保存、合成の枠の指定を確かめる試験を追加しました（全590件）。実機でも、次の節目の表示、再調律の3択と選択を確かめました。
+
+---
+
+## v1.19.0 — 装備の枠と種類を増やす（2026-10-02）
+
+装備の枠が3つでは、遺物を集めて組み合わせる楽しみの土台として少なかったので、6枠にしました。
+
+**新しい枠：頭・手・足**
+- 装備の枠が「主装備・頭・防具・手・足・装飾品」の6つになりました。
+- 新しい枠にそれぞれ15種の土台（計45種）を足し、すべてに絵を付けました。遺物の土台は全90種です。
+- 新しい枠の固有品を各12種（計36種）足しました。固有品は全184種（一般148・セット品36）です。これまで付いている固有品が少なかった固有効果（星の加護・過負荷・旋風・乱戦・万全・先制・疾駆・吸魂）を多めに使っています。
+- 枠ごとに性格を変えています。頭は魔力・スキル加速・Ultimate・守り、手は攻撃・会心・属性・処刑、足は移動・回避・守りの特性と固有効果が出やすくなります。
+- すでに遊んでいる人には、新しい3枠のアンコモンを1つずつ保管庫に入れます（一度だけ）。
+
+**系統のボーナス**
+- 同じ系統の遺物を4個・6個そろえたときのボーナスを追加しました（2個・3個はこれまでどおり）。
+  - 破壊：4個で会心率+4%、6個で攻撃力・魔力+8%
+  - 生命：4個で行動妨害耐性+12、6個で防御+12・最大HP+6%
+  - 想像：4個でスキル加速+8、6個で魔力+8%・移動速度+4%
+
+**画面**
+- 装備タブの左に6つの枠を並べ、真ん中の枠の切り替えを2段にしました。ボタンには、その枠の遺物の数を添えています。
+- 鍛冶の絞り込みも2段になり、製作は6つの枠から選べます。
+
+**落ちる量**
+- 枠が倍になると、1つの枠あたりの更新が遅くなりすぎるので、通常の敵・エリートが遺物を落とす確率を約3割上げました（ボスは変わらず）。1回の遠征で見つかる遺物は、模擬で約11.5個から約13.5個になりました。
+- 6つの枠すべてを伝説でそろえるのは、これまでより長い目標になります（模擬：30回の遠征で、装備の平均レア度は3枠のとき3.96、6枠で3.59）。
+
+**保存**：これまでの保存はそのまま使えます（主装備・防具・装飾品の装着はそのまま）。
+
+**試験**：6枠の保存と古い保存（3枠）の読み込み、新しい枠の土台・固有品・候補、系統の段、既存の人への一度だけの配布、ドロップが6枠に散ることを確かめる試験を追加しました（全582件）。
+
+---
+
+
+## v1.18.0 — 星図を広げる（2026-10-02）
+
+既存の要素を見直したところ、旅人の星図が狭すぎました。星図ポイントは夢のレベル30と図鑑で最大33あるのに、旅人の星図には17しか振れず、夢のレベル18あたりで埋まっていました。新しい仕組みは足さずに、星図そのものを広げました。
+
+**奥の星**
+- 旅人9人それぞれに、新しい星を6つ追加しました（計54）。手前の星に6ポイント振ると開きます。
+- 6つのうち3つは能力値、3つは**固有効果を1段ごとに少しずつ伸ばす星**です。固有品や到達刻印と同じ固有効果を、星図からも育てられます。
+  - 例：Mist は旋風・追い風・乱戦、Lacerta は烈火・火種・先制、Bismuth は火種・霜・影（四つの本の属性をそろえる遊び方を後押しします）。
+- 旅人の星図は最大35ポイントになり、夢のレベル30まで振り先が残ります。合計の上限はこれまでどおりです。
+
+**画面**
+- 星図タブを「手前の星｜奥の星｜到達刻印」の3列にしました。奥の星は、開くまであと何ポイントかを出します。
+- 星の段は ●○○ で表し、効果は「（1段ごと）」の値で書きます。固有効果の星は紫で区別します。
+- 到達刻印のボタンは、足りない物を短く出します（例：あと：6ポイント・熟練度3（いま0））。
+
+**試験**：奥の星の開く条件、1段ごとの固有効果、上限、保存と読み込み、全旅人が33ポイントを使い切れる広さを確かめる試験を追加しました（全552件）。
+
+**次**：装備の枠と種類を増やします（いまの3枠は土台として少ないため）。
+
+---
+
+## v1.17.0 — 遺物の覚醒（2026-10-02）
+
+固有品（伝説）を使い込むと、目覚めて強くなるようにしました。手に入れて終わりではなく、気に入った1本を育てる楽しみと、次の遠征へ出る理由になります。
+
+**遺物の覚醒**
+- 固有品（セット品を含む）を装着した旅人で敵を倒すと、その遺物に「覚醒の力」が溜まります。通常の敵は1、エリートは5、ボスは20で、悪夢化した敵は2倍です。
+- 500 溜まると覚醒し、その遺物の固有効果が1.5倍、特性が1.2倍になります（基礎能力はそのまま。合計の上限はこれまでどおり）。目安は遠征2回ほどです。
+- 覚醒した遺物は名前の前に「✦」が付きます。遺物の詳細には、覚醒までの進み具合を棒で出します。
+- 覚醒の力が溜まっている遺物や覚醒済みの遺物を分解しようとすると、確認の文で「覚醒が失われます」と知らせます。
+- 偉業を2つ追加しました：「目覚めの刻」（1つ覚醒させる）、「覚醒の主」（5つ覚醒させる）。偉業は全45個になりました。
+
+**遊びやすさ**
+- ロビーでメニューを開くと、ロビーで選んでいる旅人の装備を表示するようにしました（これまでは先頭の旅人が出ていました）。
+
+**試験**：覚醒の力の量、覚醒する瞬間、装着していない物や伝説以外が対象外であること、倍率、保存と読み込み、偉業を確かめる試験を追加しました（全529件）。実機でも、ボスを倒して覚醒し、表示と知らせが出ることを確かめました。
+
+---
+
+## v1.16.1 — 実機で見つけた細部（2026-10-02）
+
+v1.16 を実機の遠征で確かめ、見つけた点を直しました。保管庫に入りきらないときの警告と、出来事の2回押しの確認が正しく動くことも確かめました。
+
+**画面**
+- 確保地点の窓の下に大きな余白が出ていたので、中身の高さに合わせて窓の大きさを変えるようにしました。
+- 上部の表示の「まだ持ち帰っていない物：…」が幅に収まらず途中で折り返していたので、短い「未確保：」にしました。
+
+**文章**
+- 本体の用語を、本体の日本語版に合わせました。Memory→記憶、Essence→エッセンス、Chaos→混沌、Icy Veins→氷の血脈、Exotic Matter→エキゾチック物質、祭壇→聖堂。
+- 悪夢の契約の説明に、代償の呪いは本体の呪いと同じもので、契約した人の旅人にだけ付くことを書きました。
+
+**試験**：全504件が通過。
+
+---
+
+## v1.16.0 — 仕上げ その2「押す前に分かる」（2026-10-02）
+
+実機で各タブを見直し、「押してから失敗に気づく」「押したら取り返せない」「何のための数字か分からない」所を直しました。
+
+**直したこと**
+- 装備タブで遺物を装着しても、一覧の印が「▲」のまま「★」に変わらなかったのを直しました。
+- 遠征中、確保地点でなくても鍛冶で装着中の遺物を分解できてしまったのを直しました。装着中の遺物は、確保地点か遠征の外でだけ分解できます。
+
+**押す前に分かるように**
+- 分解：調律石ももらえるときはボタンに出します。鍵をかけた物は「鍵を外すと分解できます」と表示して押せません。装着中の物とエピック以上は、確認の文に名前が入ります。
+- 再調律：ボタンに調律石の数を出し、足りないときは押せません（所持数も表示）。特性を選ぶ前は「上の特性を1つ選んでください」、使い切ったら「使い切りました（3/3）」と出ます。
+- 確保地点：保管庫に入りきらないときは、何個が欠片になるかを押す前に赤で出します。上の表示は「遺物 n/上限」になりました。
+- 遺失物があるときは、上の表示に「遺失物の回収：戦闘部屋 1/3」と進み具合を出します。
+- 夢の出来事のボタンを「捧げる」「賭ける」「溶かす」「獏に食べさせる」など、何が起きるか分かる言葉にしました。遺物や欠片を失う出来事（祈りの泉・賭けの杯・錬金の釜・夢喰いの獏）は2回押しで確定します。
+- 記録タブの、鞄の遺物をドリームダストに分解するボタンも2回押しで確定します。行にはアイコンとレア度を出します。
+- 工房：いまの値と解放後の値を並べます（例：鞄の上限 30 → 35）。説明も文にしました。
+- 星図の到達刻印：何が足りないかを書きます（例：このツリーにあと4ポイント・熟練度を3に）。別の到達刻印を選んでいるときは「こちらに付け替える（無料）」と出ます。
+- 熟練度の横に、熟練度3で到達刻印を選べることを書きました。
+- 偉業：まだ達成していない偉業にも報酬を出します。
+- 合成：鍵をかけた物・装着中の物は使わず、弱い順に3つを使うこと、エピック3つからは固有品が生まれることを書きました。製作はアイテムレベルを表示します。
+
+**文章と数値**
+- 取引に失敗したとき、「gold」などの内部の言葉ではなく「ゴールドが足りません」などの文で出します。
+- 記録タブの「ボスがエピック以上を落とす確率」は、実際には救済（エピックが確定する確率）だけの数字だったので、そのとおりに書き直しました。
+- 悪夢化の説明を「通常の敵の○%、エリートの○%（ボスは対象外）」にしました。潜行が上限のときは「これ以上は深くなりません」と出します。
+- 今日の夢が切り替わる時刻を、遊んでいる人の時計で出します。
+- 「戦闘部屋を3つ」「6ポイント」「+5まで」「25%」などの数字を、ルールの定数から作るようにしました。
+- 「買った（未確保）」などを「買いました（まだ持ち帰っていません）」にそろえました。「星見の契約」は「星読みの契約」にしました。
+- 遊び方に、鞄に入る数の上限と、あふれたときのことを書きました。
+- ようこそと遠征の結果の窓を、文章の量に合わせた高さにしました。
+
+**試験**：遠征中・確保地点・遠征の外での、装着中の遺物の分解を確かめる試験を5件追加しました（全504件）。
+
+**次**：引き続き仕上げ（実機で確保地点・出来事の確認ボタンを確かめる）と、遊びの幅を広げる新しい要素。
+
+---
+
+## v1.15.1 — 説明と効果のずれの修正（2026-10-02）
+
+GitHub の issue #9・#10・#11 で報告された点を直しました（どれも v1.15 の作業の途中で入ったものです）。
+
+**直したこと**
+- **#10 夢喰いの獏**：鞄にエピック以上の遺物しかないときにも選べてしまい、何も食べずに出来事だけ消えていたのを直しました。食べられる遺物（エピック未満）があるときだけ選べます。エピック以上を食べない・欠片を保管庫に直接入れる動きは v1.15.0 で入っています。
+- **#11 星読みの塔・幸運の星**：説明の数値と効果の数値を、同じ定数から取るようにしました。今後、片方だけ変わることはありません。
+- **#9 画像の後片付け**：画像の読み込みに失敗したとき、作りかけの画像を捨てるようにしました（MODを終える・読み直すときに画像を捨てる処理は v1.15.0 で入っています）。
+
+**試験**：夢喰いの獏（対象0〜3個）と星読みの塔の説明と効果の一致を確かめる試験を5件追加しました（全499件）。
+
+---
+
+## v1.15.0 — 仕上げ（2026-10-02）
+
+細かいところを詰めて、遊んでいて引っかかる所を減らしました。
+
+**遊びやすさ**
+- 遺物の一覧に印を付けました。「▲」はいま装着している物より強い遺物、「NEW」は新しく手に入れた遺物です（一度選ぶと消えます）。
+- 鍛冶タブに「コモンとアンコモンをまとめて分解」を加えました（2回押して確定。鍵をかけた物と装着中の物は使いません）。
+- 強化・製作は、素材が足りないときは押せないようにしました。
+
+**画面の不具合**
+- メニューを開いている間に、下に隠れた確保地点のボタン（確保する・深く潜る）が押せてしまうことがあったので、メニューを開いている間は確保地点と遠征結果を隠すようにしました。ヒントの下にあるボタンも押せないようにしました。
+- ボタンを押した瞬間に表示が変わると、メニューが閉じてしまうことがあったのを直しました。
+- 鍛冶・装備の右の欄が画面からはみ出す場合があったので、スクロールできるようにしました。確保地点は画面の中に収まるようにし、遠征結果は内容に合わせて高さを変えます。
+- アイコンが無いときや空の装着枠にも枠を描くようにしました。
+
+**表示の誤り**
+- 確保地点で、潜行のボーナス（「呪われた財宝」「守銭奴」の2倍）や、今日の夢で増える悪夢化の確率が正しく表示されていなかったのを直しました。記録タブの依頼の報酬も、今日の夢の倍率を反映します。
+- 「確保すると潜行は遠征を始めたときの深さに戻ります」は誤りだったので「0に戻ります」に直しました。
+- 今日の夢と悪夢の契約の説明は、数値から自動で作るようにしました。説明と実際の効果が食い違うことがなくなります。
+- 到達刻印は、固有効果と同じ文で効果を示し、その下に向いている戦い方を書くようにしました。
+
+**ルールの修正**
+- 夢喰いの獏：エピック以上は食べず、欠片は分解と同じ量（すぐ保管庫へ、潜行ボーナスの対象外）、調律石は3つごとに1つにしました（稼ぎすぎを防ぐため）。
+- 遺物の良し悪しはレア度を最優先で比べるようにしました（アイテムレベルが高いだけのコモンを、レアより良いと扱わない）。
+- 錬金の釜で作る遺物のアイテムレベルを、溶かした遺物に合わせました。
+- 依頼「レア以上を見つける」が、夢の出来事で手に入れた遺物でも進むようにしました。依頼「固有品を見つける」「セット品を見つける」は出にくくしました（低い潜行では達成が難しいため）。
+- 偉業は、合成・製作などの後や、記録タブを開いたときにも達成を判定するようにしました。
+- 先制の判定に、攻撃が当たる前のHPを使うようにしました。
+- 勇気の門で潜行が変わったら、すぐにホストへ伝えるようにしました。
+
+**数値の調整**
+- 星読みの塔は遺物+30%（50%から）、幸運の星は少しだけ（0.6から0.4）にしました。無料で手に入る効果が、代償のある契約より強くなっていたためです。
+- 星見の契約に遺物+15%を足し、見えざる重荷のレア度の上がり方を強めました（ほかの契約の下位互換になっていたため）。
+- 依頼の夢を、静かな夢と同じ内容から「依頼の報酬×1.5、欠片×1.25」に変えました。
+- 中身が同じだった固有品6組の効果を作り分けました。燎原の軍装の2点効果を残火の誓約と違うものにしました。先制の効果の値を下げました。
+- 名前の重複を直しました（到達刻印「終わらない舞」→「舞い続ける者」、固有効果「不屈」→「万全」、熟練度の称号「旅人」→「旅慣れ」）。Bismuth の2つ目の到達刻印を、Yubar と同じ効果から「雷鳴の章」（雷鎖）に変えました。
+
+**軽さ**
+- メニューの描画で毎回していた並べ替えや計算を、使い回すようにしました。ホストの戦闘処理の無駄なメモリ確保も減らしました。アイコンは起動時に先読みします。
+
+**文章**：通知・ヒント・設定・Workshop の説明文を、自然な文に整えました。
+
+**試験**：仕上げで直したルールの試験を5件追加し、獏と星読みの塔の試験を新しい値に合わせました（全494件）。
+
+---
+
+## v1.14.1 — 分解の返事待ちに遠征が終わったとき（2026-10-02）
+
+**直したこと**
+- **#8 分解の返事を待っている間に遠征が終わると、遺物が残ったままダストも付く**
+  返事を待っている遺物は、遠征の精算（確保・遺失物への移動・あふれた分の欠片化）から外して「預かり」に入れるようにしました。成功の返事が来たら預かりから取り除き、失敗したときや返事が来ないときは、勝ったなら保管庫、負けたなら遺失物へ戻します。ゲームを再起動したときに預かりに残っている遺物も、同じように戻します。
+
+**確認**：1人プレイで遠征の終了（踏破）が今まで通り動くことを、ゲーム画面で確かめました。協力プレイ（2台）での確認はまだです。
+
+**試験**：遠征の終了と分解の返事が前後する場合の試験を7件追加しました（全489件）。
+
+---
+
+## v1.14.0 — 見た目（2026-10-02）
+
+画面に絵を入れて、遊んでいて楽しい見た目にしました。
+
+**追加**
+- **遺物のアイコン 45種**：装備の土台すべてに、手描き風のアイコンを用意しました。系統ごとに差し色が違います（破壊は赤い残り火、生命は緑の光、想像は紫の星屑）。遺物の一覧の各行、装着中の3枠、遺物の詳細（大きく表示）に出ます。
+- **夢の出来事の挿絵 12種**：確保地点で出来事が出たとき、説明の左に丸い挿絵が出ます。
+- **確保地点に、持ち帰れる遺物を並べて表示**：まだ持ち帰っていない遺物を、良い物から順にアイコンで並べます。何を持ち帰れるのか一目で分かります。
+
+**変更**
+- アイコンの枠の色でレア度が分かるようにしました（コモン灰・アンコモン緑・レア青・エピック紫・伝説金）。セット品は橙にして、ほかの伝説と見分けられるようにしました。
+- 遺物の一覧の行を少し高くし、アイコンを見やすくしました。
+
+**画像について**：アイコンは Codex の画像生成、挿絵はセルフホストの画像生成（Qwen Image）で、このMODのために新しく作った物です。128×128 に縮めて同梱しています（合計約1.9MB）。アイコンは必要なときに一度だけ読み込むので、動作の重さは変わりません。
+
+**確認**：ゲーム画面で、装備タブの一覧・詳細のアイコン、確保地点の挿絵と持ち帰れる遺物の並びを確かめました。
+
+---
+
+## v1.13.1 — 取引と同期の不具合修正（2026-10-02）
+
+GitHub の issue で報告された不具合を直しました。
+
+**直したこと**
+- **#5 取引の返事より先に確保・潜行すると、通貨だけ減る**
+  ドリームダストの交換や夢の商人の購入で、ホストの返事を待っている間は、確保・潜行・契約を選べないようにしました（ボタンもキー操作も）。さらに、支払いが確定したら、その間に確保地点や遠征が終わっていても、欠片や遺物を必ず受け取れるようにしました（遠征が終わっていれば遺物は保管庫に入ります）。
+- **#6 分解が失敗しても遺物が消える**
+  まだ持ち帰っていない遺物を分解するとき、遺物はホストから成功の返事が来たときに初めて取り除くようにしました。失敗したときや送れなかったときは、遺物はそのまま残ります。返事を待っている遺物は、ほかの操作に使えません。30秒たっても返事がなければ、遺物は元に戻ります。
+- **#7 ホストだけMODを読み直すと、参加者の装備の効果が戻らない**
+  参加者は30秒ごとに装備の内容をホストへ送り直し、ホストは同じ内容なら付け直さずに確認だけ返すようにしました。ホストを読み直しても、30秒以内に全員の効果が戻ります。
+
+**変更**
+- MOD名を「Dreamforge」に統一しました。日本語の画面でも「夢鍛」は使わず、「Dreamforge」と書きます。
+
+**確認**：1人プレイで確保・潜行が今まで通り動くことを、ゲーム画面で確かめました。協力プレイ（2台）での確認はまだです。
+
+**試験**：取引の修正を確かめる試験を5件追加し、取引の失敗時の扱いを確かめる既存の試験を新しい動きに合わせました（全482件）。
+
+---
+
+## v1.13.0 — 刻印の選択肢と依頼（2026-10-02）
+
+**旅人の刻印：45 → 63**
+9人の旅人それぞれに、小さな強化を1つと、**2つ目の到達刻印**を加えました。到達刻印は今まで通り1つしか有効にできないので、戦い方に合わせてどちらかを選びます（遠征に出ていないときなら、いつでも付け替えられます）。
+
+| 旅人 | これまでの到達刻印 | 新しい到達刻印 |
+| --- | --- | --- |
+| Vesper | 審問の構え（被弾後に攻撃力アップ） | 鉄壁の審問（周りの敵が多いほど攻撃速度アップ） |
+| Lacerta | サラマンダーの火種（火を付ける） | 一番手の銃声（HPの多い敵に上乗せダメージ） |
+| Cetus | 凍てつく潮（冷気を付ける） | 渦潮（回避で周りにダメージ） |
+| Yubar | 収束する星（Ultimate後に攻撃力・魔力アップ） | 星の盾（Ultimateで障壁） |
+| Husk | 虚ろの刃（闇を付ける） | 魂喰い（敵を倒すと回復） |
+| Mist | 残像の決闘（回避でクールダウン短縮） | 疾風の歩法（回避後に移動速度アップ） |
+| Nachia | 共に在る（味方と共鳴） | 祈りの過負荷（スキル後に魔力アップ） |
+| Aurena | 血の献身（HPが減ると攻撃速度アップ） | 満ちた聖杯（HPが多い間は攻撃力アップ） |
+| Bismuth | 四つの物語（四元の共鳴） | 終章（Ultimate後に攻撃力・魔力アップ） |
+
+星図タブでは、小さな強化を先に、到達刻印2つを後にまとめて並べ、「どちらか1つを選ぶ」ことを説明に書きました。
+
+**依頼：15種 → 22種**
+固有品を見つける・エピック以上を見つける・夢の出来事を選ぶ・確保する・「深く潜る」を選ぶ・セット品を見つける・悪夢の契約を結んだまま確保する、の7種を加えました。
+
+**確認**：ゲーム画面で、星図タブの新しい並びと説明を確かめました。
+
+**試験**：旅人のツリーの構成を確かめる試験を新しい形に合わせ、2つ目の到達刻印と新しい依頼の試験を5件追加しました（全477件）。
+
+---
+
+## v1.12.0 — 新しい固有効果（2026-10-02）
+
+戦闘中の動き方で強くなる固有効果を8種加えました（22種 → 30種）。どれも今ある効果と同じきっかけ（命中・撃破・被弾・スキル・回避）で働きます。
+
+**新しい固有効果**
+- **吸魂**：敵を倒すと、最大HPの一部を回復します。
+- **旋風**：回避すると、周りの敵にダメージを与えます（2秒に1回）。
+- **乱戦**：周りの敵が多いほど、攻撃速度が上がります（5体まで）。
+- **先制**：HPが90%以上の敵への通常攻撃のダメージが上がります。
+- **星の加護**：Ultimateを使うと、障壁を張ります。
+- **疾駆**：回避した後の3秒間、移動速度が上がります。
+- **不屈**：HPが80%以上の間、攻撃力が上がります。
+- **過負荷**：スキルを使った後の4秒間、魔力が上がります。
+
+エピックの遺物にも、これらの効果が付くことがあります。
+
+**新しい固有品 12種**：魂の灯籠、竜巻の外套、乱闘者の籠手、一番星の弓、星守りの外套、白兎の舞衣、屈せぬ冠、過負荷の核、刈り入れの鎌、嵐舞の太鼓、狂戦士の斧、暁の伝令（一般の固有品は112種、セット部位を含めると148種）。
+
+**今日の夢**：灯の日・疾風の日・血の日・雷の日で、新しい効果も+50%されるようにしました。
+
+**確認**：ゲーム画面で「白兎の舞衣」（疾駆）を装着し、回避すると移動速度+25%が付いて3秒後に外れることを、ホストの処理の記録で確かめました。ほかの7種は、同じ仕組みの試験で動きを確かめています。
+
+**試験**：新しい固有効果の試験を7件追加しました（全472件）。
+
+---
+
+## v1.11.0 — 遊びの幅を広げる（2026-10-02）
+
+遠征中の選択と、長く遊ぶ目標を増やしました。
+
+**夢の出来事：4種 → 12種**
+確保地点で出ることがある出来事に、8種を加えました。その場で使える物だけが候補になります。
+- **鍛冶の祠**：まだ持ち帰っていない欠片を20払うと、まだ持ち帰っていない遺物のうち一番強い物が+1強化されます。
+- **双子の鏡**：欠片を30払うと、一番強い遺物と同じ種類・同じレア度の遺物がもう1つ手に入ります（伝説はエピックになります）。
+- **星読みの塔**：次に確保するまで、遺物が50%多く落ちます。
+- **錬金の釜**：コモンかアンコモンの遺物を3つ溶かし、1つ上のレア度の遺物を1つ作ります。
+- **夢喰いの獏**：まだ持ち帰っていない遺物をすべて食べさせ、欠片と調律石に換えます。
+- **勇気の門**：潜行が1段深くなる代わりに、欠片が40増えます。
+- **記憶の書庫**：夢のレベルの経験値がもらえます（深く潜っているほど多い）。
+- **幸運の星**：次に確保するまで、レア度の高い遺物が出やすくなります。
+
+**偉業（新しい仕組み）：43個**
+- 敵を倒した数、遠征・踏破の回数、見つけた固有品、図鑑の埋まり具合、確保した潜行の深さ、悪夢化した敵、夢のレベル、契約・出来事・依頼の回数、そろえたセットの数で、段階的な目標を用意しました。
+- 達成すると通知が出て、記録タブの「偉業」で報酬（欠片・調律石）を受け取れます。受け取れる物があるときは、左の夢鍛パネルに件数が出ます。
+- 記録タブには、まだの偉業を種類ごとに次の1段だけ、進み具合つきで表示します（例：「敵を合計500体倒す 120/500」）。
+
+**直したこと**
+- 夢の商人で伝説を買ったとき、伝説の発見数に数えられていなかったのを直しました。
+- 夢の商人はゴールドで支払うので、欠片の量で出来事の候補から外れないようにしました。
+- 確保地点の契約のボタンを2行にして、長い説明も最後まで読めるようにしました。
+
+**確認**：ゲーム画面で、確保地点の新しい出来事（幸運の星）、出来事を選んだときの通知、偉業の達成通知、記録タブの偉業の欄、報酬の受け取り（欠片0→30、左のパネルの件数が3→2）、2行になった契約のボタンを確かめました。
+
+**試験**：新しい出来事と偉業の試験を10件追加しました（全465件）。
+
+---
+
+## v1.10.0 — コンテンツを100以上へ（2026-10-02）
+
+固有品を100種（セット部位を含めると136種）まで増やしました。ほかの種類も大きく増やしています。
+
+| 種類 | v1.8 | v1.9 | v1.10 |
+| --- | ---: | ---: | ---: |
+| 装備の土台 | 18 | 27 | **45** |
+| 固有品（セット品を除く） | 22 | 34 | **100** |
+| セット（部位） | 4（12） | 6（18） | **12（36）** |
+| 固有品の合計 | 34 | 52 | **136** |
+| 悪夢の契約 | 8 | 12 | **20** |
+| 今日の夢 | 10 | 14 | **30** |
+
+**追加**
+- **装備の土台 18種**：狩人の短弓・戦斧・城壁の槍・誓いの戦棍・夢見の杖・星の竪琴（主装備）、狩人の革鎧・燠火の鎧・根の鎖帷子・甲羅の鎧・霧の法衣・祈りの肩掛け（防具）、牙の首飾り・戦太鼓・守護の封印・石の心臓・夢見の水晶・影の仮面（装飾品）。各部位とも、破壊・生命・想像が2種ずつ増えます。
+- **固有品 66種**：疾風の弓、首狩りの斧、鳳凰の大剣、星座を奏でる竪琴、霧を歩む者、亀王の甲羅、狼王の牙、虹の水晶、悪夢の仮面など。どれも2つの固有効果の組み合わせで、強さはこれまでの固有品と同じ範囲に収めています。
+- **セット 6つ**：《狩猟団の装備》（会心・処刑）、《不落城の装い》（防御・守護霊）、《燎原の軍装》（火・爆砕）、《古森の守り》（回復・灯守）、《夢想の楽団》（共鳴・輝き）、《幻影の一座》（闇・回避の残響）。
+- **悪夢の契約 8つ**：血の代価、鉄の誓約、虚ろな王冠、盗人の取引、星見の契約、放浪者の契約、守銭奴、血月の契約。
+- **今日の夢 16種**：疾風・血・星・棘・火・月・雷・守り・響きの日と、豊作・悪夢の祭り・宝・修練・職人・静寂の森・混沌の夢。
+
+**調整**
+- 固有品が大きく増えて、伝説の候補の中でセット品が出る割合が薄まるので、セット品そのものの重みを2倍から3倍に、持っているセットの足りない部位の重みを10倍から25倍に上げました。シミュレーターでは、30回遊んだときにどれか1つのセットがそろう人は約61%です（v1.9は約52%）。
+- 記録タブの図鑑は、見つけた固有品だけを並べ、まだ見つけていない物は件数を1行で表示するようにしました（136行も並ぶと読みにくいため）。
+
+**確認**：新しいセット《幻影の一座》の部位、新しい固有品「虚無の杖」、新しい今日の夢「悪夢の祭り」、図鑑の新しい表示を、ゲーム画面で確認しました。名前・言い伝え・数値は、仕様書の表と自動で照合して全件一致しています。
+
+**試験**：全455件（土台の数を確かめていた試験を新しい数に合わせ、内容量の下限を引き上げ）
+
+---
+
+## v1.9.0 — コンテンツを増やす（2026-10-02）
+
+遊べる内容を大きく増やしました。新しい仕組みは足さず、今ある仕組みの上に装備や契約を足しています。
+
+| 種類 | これまで | v1.9 |
+| --- | ---: | ---: |
+| 装備の土台 | 18 | 27 |
+| 固有品（セット品を除く） | 22 | 34 |
+| セット | 4 | 6 |
+| 接辞 | 26 | 32 |
+| 悪夢の契約 | 8 | 12 |
+| 今日の夢 | 10 | 14 |
+
+**追加**
+- **装備の土台 9種**：霜穂の槍・黄昏の大鎌・灯火の杖（主装備）、霜の上衣・舞手の衣・星読みの外套（防具）、残り火のロケット・月の鈴・鉄の羽根（装飾品）。破壊・生命・想像の3系統が9種ずつになるようにそろえました。
+- **固有品 12種**：氷河の槍、月喰いの鎌、夜明けの灯台、冬の誓い、渦巻く舞衣、天球の外套、不死鳥のロケット、月夜の鈴、鉄翼、嵐を呼ぶ剣、飢える闇、最後の砦。
+  効果の強さは、これまでの固有品と同じ範囲に収めています。
+- **セット 2つ**
+  - 《冬枯れの誓約》（冷気・守り）：2つで冷気の効果と防御が上がり、3つそろうと霜と鉄の輪が付きます。
+  - 《星詠みの装束》（スキル・Ultimate）：2つでスキル加速と魔力が上がり、3つそろうと終の昂りと回避の残響が付きます。
+- **接辞 6つ**：主装備に「通常攻撃の射程」「冷気の効果」、防具に「スキル加速」「光の効果」、装飾品に「行動妨害耐性」「会心ダメージ」。
+- **悪夢の契約 4つ**：暴食、夜の学徒、賭け師の誓い、深淵の眼。
+- **今日の夢 4つ**：灯の日、嵐の日、学びの夢、依頼の夢。
+
+**調整**
+- 固有品が増えて伝説の候補が薄まるので、持っているセットの足りない部位が選ばれやすくなる倍率を、6倍から10倍に上げました。シミュレーターで30回遊んだ場合、どれか1つのセットがそろう人の割合はほぼ前と同じ（約52%）です。
+
+**確認**：新しいセット部位と固有品が、装備画面で正しい名前・系統・効果の説明つきで表示されることを、ゲーム画面で確認しました。
+
+**試験**：全455件（土台の数を確かめていた試験2件を新しい数に合わせ、内容量の下限を引き上げ）
+
+---
+
+## v1.8.1 — 軽量化の最上段「最大」（2026-10-02）
+
+**追加**
+- 軽量化に「最大（Max）」を追加しました。「強め」の内容に加えて、描画解像度を0.75倍に下げます。画面は少しぼやけますが、描画の重さ（GPUの負荷）が大きく減ります。見た目より軽さを優先したいときに選んでください。
+
+**実機での計測**（2026-10-02、1920x1080・垂直同期オフ、戦闘部屋の中でスキルと攻撃を連打）
+| 状態 | 1フレームの時間（平均） |
+| --- | --- |
+| 軽量化なし | 約6.1ms |
+| 強め | 約5.6ms（約8%改善） |
+| 最大 | 約5.6ms（約8%改善） |
+| 軽量化なし・描画解像度2倍（低性能PCの模擬） | 約8.0ms |
+| 最大・描画解像度0.75倍 | 約5.6ms（上の行より約30%軽い） |
+
+このPCでは描画より処理（CPU）が先に限界になるため、「強め」と「最大」の差はほとんど出ませんでした。描画解像度を2倍にして描画の負荷を重くすると、フレーム時間は約6.1msから約8.0msまで伸びます。描画が重いPCほど、「最大」で解像度を下げる効果は大きくなります。
+
+**確認用**：`dreamforge_lightweight 0〜3`、`dreamforge_renderscale <倍率>`（描画解像度の変更）を追加しました。どれも開発者向けのコンソールコマンドです。
+
+**実戦での計測**（ゲームが使えるCPUを2コアに絞って弱いPCを模擬し、描画解像度は1倍。戦闘部屋で敵と戦って倒されるまで）
+| 状態 | 1フレームの時間（平均） | 引っかかり（最大） |
+| --- | --- | --- |
+| 軽量化なし（敵9体と戦闘） | 約9.6〜11.4ms | 40〜150ms |
+| 強め（敵3体と戦闘、別の部屋） | 約11.4〜13.6ms | 32〜140ms |
+| 最大（敵のいない部屋） | 約8.7〜9.1ms | 27〜38ms |
+
+戦闘部屋の中身は毎回ランダムで、敵の数や種類が違います。そのため実戦どうしの比較では、軽量化の段階による差より、部屋ごとの差の方が大きく出ました。実戦での効果は、この計測からは言えません。どの段階でも、弱いCPUの模擬では戦闘中に40ms以上の引っかかりが出ており、本体側の処理（敵の数）が重さの主な原因と考えられます。
+
+---
+
+## v1.8.0 — ゲーム全体を軽くする（2026-10-02）
+
+このMODの処理だけでなく、ゲーム全体を軽くする設定を加えました。どちらもゲームのMOD設定から変更できます。
+
+**追加**
+- **ゲームが裏にあるときのFPS上限**（既定は20。0にすると無効）
+  Alt+Tab などでゲームが裏に回っている間は、フレーム数を抑えて電力と発熱を減らします。ゲームに戻ると、本体の設定どおりのフレーム数に戻ります。協力プレイのホストの処理が粗くならないよう、20未満にはできません。
+- **軽量化**（なし／軽め／強め。既定は「なし」）
+  本体の設定画面に無い描画の調整をまとめたものです。
+  - 軽め：影の届く距離を6割にし、影の段階を2つまで、追加ライトを2つまでに減らします。遠くの物を早めに粗く描き、キャラのメッシュの焼き込み間隔を0.15秒にします。
+  - 強め：さらに影を4割・1段階にし、エフェクトの品質を本体の「低」相当に下げ、アンチエイリアス（MSAA）をオフにし、メッシュの焼き込み間隔を0.2秒にします。
+  - 見た目と描画だけを変え、ゲームの進行や協力プレイの同期には触れません。「なし」に戻すと、変える前の値に戻ります。
+
+**実機での計測**（2026-10-02、1920x1080・垂直同期オフ・最初のゾーンで戦闘なし）
+| 状態 | 1フレームの時間 |
+| --- | --- |
+| 軽量化なし | 約5.6ms（約179fps） |
+| 軽め | 約5.5ms（約182fps） |
+| 強め | 約5.4ms（約184fps） |
+| ゲームが裏にあるとき | 50ms（20fps） |
+
+スキル（Q/W/E/R）と通常攻撃を連打してエフェクトを出し続けた状態でも計りました（同じ遠征の中で「なし」と「強め」を交互に4回ずつ、各20〜30秒）。
+| 状態 | 1フレームの時間（平均） | 引っかかり（10秒ごとの最大） |
+| --- | --- | --- |
+| 軽量化なし | 約5.5〜5.9ms | 10〜40ms |
+| 強め | 約5.3〜5.6ms | 9〜17ms |
+
+平均は4〜6%速くなり、エフェクトが重なったときの引っかかりが小さくなりました。
+性能の低いPCに近づけるため、描画解像度を2倍（画素数4倍）にして描画の負荷を重くした状態でも計りました（スキル連打中）。「なし」約7.0ms → 「強め」約6.7msで、約4〜5%の改善でした。描画の重さが増えても改善の割合はあまり変わらず、このMODの軽量化は「数%軽くし、エフェクトが重なったときの引っかかりを抑える」程度の効果だと分かりました。大きく軽くしたい場合は、本体の設定（影・エフェクト・霧の品質、動的解像度）と組み合わせてください。
+高性能なPCで、戦闘をしていない場面だと差は3〜4%ほどでした。エフェクトが多い戦闘中や、性能の低いPCではもっと差が出る見込みですが、まだ確かめていません。ゲームが裏にあるときの上限は、確実に効いています（約180fps→20fps、戻すと元に戻る）。
+
+**調査で分かったこと**：本体はすでに最適化が進んでいて、毎フレームの重い探索はほとんどありません。そのため、本体の処理をキャッシュして軽くする方法は効果が小さいと判断し、見送りました。
+
+**確認用**：コンソールコマンド `dreamforge_lightweight 0|1|2` で軽量化の段階を切り替えられます。
+
+**次**：テストプレイの結果を受けて調整
+
+---
+
+## v1.7.0 — 分かりやすさとバランス（2026-10-02）
+
+**画面と文章**
+- 固有効果の説明を、何が・いつ・どれだけ起きるのかが分かる文章にしました。
+  例：「火種 30」→「通常攻撃が当たると30%の確率で、敵に火を付ける」
+- セットの説明を「2つ装着」「3つ装着」に分けて書き、装着画面には、いま何点そろっていて、あと1つで何が起きるのかを表示するようにしました。
+- メニューの各タブの先頭に「ここでできること」を1文で表示するようにしました。
+- 確保地点では、「確保する」と「深く潜る」のそれぞれを選ぶと何が起き、何を失う危険があるのかを1文ずつ表示するようにしました。
+- 「遊び方」を、このMODの目的 → 1回の遠征の流れ → 確保と潜行の考え方 → 装備の育て方、の順に書き直しました。
+- 悪夢の契約は「代償：…。見返り：…。」の形で説明するようにしました。ようこその案内・ヒント・夢の出来事・依頼の報酬の文章も、自然な日本語に整えました。
+- メニューを少し高くし、「装着する」ボタンが枠の外に出ないようにしました。図鑑の未発見の項目も読める色にしました。
+
+**バランス**（バランス用シミュレーター `tools/BalanceSim` で、300人が30回ずつ遊んだ場合を模擬して決めました）
+- エリートとボスが落とす遺物のレア度の上振れを抑え、伝説の基本確率も少し下げました。初めて伝説を手に入れるまでの回数が、中央値で2回から3回になります。
+- 夢のレベルの上がり方を、後半ほどゆっくりにしました。レベル20に届くまでが6回から14回になり、15回ほどで上限の30に届いていたのが、30回遊んでもまだ届かなくなります。
+- 鍛冶の強化費用を上げました（+1〜+5の合計が230から335へ）。
+- セット品をそろえやすくしました。伝説の抽選ではセット品が2倍選ばれやすくなり、すでに持っているセットのまだ持っていない部位は、さらに6倍選ばれやすくなります。
+  合成を使わない場合、30回までにどれか1つのセットがそろう人の割合は4%から55%に上がります。実際には合成でも伝説が手に入るので、もっと早くそろう見込みです。
+
+**ツール**
+- バランス用シミュレーター `tools/BalanceSim` を追加しました（遠征の中身は仮定です。詳しくは同じフォルダの README を見てください）。
+
+**試験**：全455件（強化費用の変更に合わせて期待値を1件更新）
+
+**次**：v1.8「ゲーム全体を軽くする」
+
+---
+
+## v1.6.0 — 四元のセット（2026-10-02）
+
+**追加**
+- **セットを2つ追加し、本体の4属性すべてに**（合計4セット・各3部位）
+  - 《残火の誓約》（火）：2点で火の増幅+10・攻撃力+5%、3点で火種30%・烈火（4発目に攻撃力50%の追加ダメージ）。
+  - 《黄昏の狩装》（闇）：2点で闇の増幅+10・会心率+4%、3点で影30%・処刑人（HP30%未満の敵へ攻撃力40%の追加ダメージ）。
+  - 既存の《潮鳴りの装い》（冷気）《灯守の誓い》（光）と合わせ、四元の共鳴へ寄せる組み合わせが増えた。
+
+**確認**（2026-10-02 実機）
+- 初回起動の流れ：タイトルに「ようこそ、夢鍛へ」→「メニューを開く」で保管庫に初期遺物3つ→遠征開始で空き枠へ自動装備し、ヒントを表示。
+- 遠征中の負荷：MOD の Update 約0.012ms・OnGUI 約0.07ms/回、ゲーム全体 110〜135fps。
+
+**内容量**（試験で下限を記録）：基本装備18・固有品34（うちセット12）・セット4・星図15（到達刻印3）・旅人の刻印45・接辞26・固有効果の枠22・悪夢の契約8・悪夢化の接頭6・今日の夢10・夢の出来事5・依頼15種・ヒント12・工房3
+
+**試験**：2件増（全455件）
+
+**次**：テストプレイの結果を受けて調整
+
+---
+
+## v1.5.1 — 重さの根本原因を修正（2026-10-02）
+
+**修正**
+- **ロード後に非常に重くなる問題の根本原因**：本体のマネージャー参照 `NetworkedManagerBase<T>.instance` / `ManagerBase<T>.instance` は、そのマネージャーが存在しない場面（タイトル・ロビーなど）で毎回 `FindObjectOfType` を2回実行する。MODが毎フレーム（Update と OnGUI の両方）でこれを呼んでいたため、フレームごとに全オブジェクト走査が発生していた。全箇所を `softInstance`（走査しない参照）に置き換えた。
+
+**実機計測**（`perf.flag` 有効、サブディスプレイ 1920x1080）
+| 場面 | 修正前 | 修正後 |
+| --- | --- | --- |
+| MODの Update 平均 | 約38ms | 約0.004ms |
+| MODの OnGUI 平均（1回） | 約16ms | 約0.006ms（タイトルでも最大0.64ms） |
+| ゲーム全体 | 約13fps | 約131〜137fps（約7.4ms/フレーム） |
+
+**次**：テストプレイの結果を受けて調整
+
+---
+
+## v1.5.0 — 経済の橋渡しと仕上げ（2026-10-02）
+
+**追加**
+- **本体の通貨での取引**：通貨を動かすのはホストだけ。クライアントが依頼し、ホストが残高を確かめて支払い・受け取りを行い、成功したときだけ遺物側を確定する（応答の重複や失敗では確定しない）。
+  - 夢の商人は**ゴールド払い**（本体の難易度補正 `GetAdjustedGoldAmount_Cost` を通した価格）。
+  - 確保地点で**ドリームダスト100→欠片10**（1回に最大1000まで）。
+  - 遠征中、**未確保の遺物を分解するとドリームダスト**（記録タブ）。
+- **HUD の表示量**：MOD設定で「詳しく／簡潔／なし」。
+
+**変更**
+- **夢の工房の縮小**：遺失物の灯・残響の増幅・契約の目利きを廃止。解放済みなら読み込み時に費用（欠片・調律石）を返す。大きな鞄・広い保管庫・依頼の引き直しは残す。
+- `dreamforge_perf` にゲーム全体のフレーム時間（FPS）を追加。
+
+**試験**：4件増（全453件）
+
+**次**：テストプレイの結果を受けて調整
+
+---
+
+## v1.4.0 — 実際に遊べる形へ（2026-10-02）
+
+目標：実際に遊ぶことを考えた最適化・初めての動線・ボリューム。
+
+**最適化**（「ロードすると重い」への対処）
+- HUD：毎フレーム GUILayout で十数個の文字列を組み立てていたのをやめ、0.25秒ごとに作り直した1枚のラベルとして描く（毎フレームの文字列生成とGCを削減）。
+- メニュー・確保地点・結果・ヒントのパネルが無いときは、IMGUI のレイアウト処理（`useGUILayout`）自体を止める。ラベルは描画イベントでだけ描く。
+- 通知と悪夢の名札は、大きさの計測を1回だけにしてキャッシュ。メニューの強さの集計は1フレームに1回。
+- 保存を別スレッドへ：JSON化だけメインで行い、ディスクへの書き込み・読み戻し・置換は作業スレッドで最新の1件だけ。定期保存の間隔を10秒→30秒。
+- 拾得ごとのログ出力をやめた。ホスト：出現待ち行列に寿命、能力の再計算は値が変わったときだけ、呪いの候補をキャッシュ。
+- `dreamforge_perf`：このMODの Update / OnGUI の平均・最大時間を表示。
+- 性能の試験：撃破1回 0.1ms 未満、強さの集計 0.2ms 未満、保存のJSON化 15ms 未満を自動試験で確認。
+
+**初めての動線**
+- 初回起動で「ようこそ、夢鍛へ」の案内（メニューを開くボタン付き）と、初期装備（各枠1つずつアンコモン）。最初の遠征で、何も装備していない旅人に自動で装備する。
+- 場面別ヒント12種（初めての拾得・確保地点・確保・潜行・全滅・刻印ポイント・到達刻印・悪夢・依頼・鍛冶など）。一度だけ表示、「今後ヒントを出さない」、記録タブから再表示。
+
+**ボリューム**
+- 本体の旅人9人それぞれの専用固有品（固有品は全22種＋セット部位6）。
+- 今日の夢「影の日」「霜の日」（全10種）、依頼「悪夢の契約を結ぶ」（全15種）。
+
+**試験**：14件追加（全449件）
+
+**次**：v1.5 経済の橋渡しと仕上げ
+
+---
+
+## v1.3.0 — 呪いの契約と系統の統一（2026-10-01）
+
+シナジー再評価 の第3弾。
+
+**変更**
+- **悪夢の契約の代償＝本体の呪い**：契約を結ぶと、本体の呪い（Hatred の祭壇と同じ `CurseStatusEffect`）がランダムに1つ自分のキャラに付く。強度は契約に応じて弱・中・強。呪いの効果と解除の依頼は本体のものがそのまま動く。協力時は契約した人のキャラだけ。
+  - MOD独自の能力値の代償（最大HP減・防御減など）は廃止。見返りは今までどおり次の確保まで。
+- **系統を本体の星座系統に統一**：攻勢・守勢・共鳴 → 破壊・生命・想像（内部IDは同じなので保存はそのまま）。
+- **セット遺物のテーマ**：《潮鳴りの装い》＝冷気・回避（2点：冷気増幅＋移動、3点：霜＋回避の残響）、《灯守の誓い》＝光・回復（2点：光増幅＋最大HP、3点：輝き＋灯守）。
+
+**試験**：契約・セットの試験を更新（全435件）
+
+**次**：v1.4 実際に遊べる形へ
+
+---
+
+## v1.2.0 — 旅人の刻印（2026-10-01）
+
+シナジー再評価 の第2弾。本体の星座と重なっていた汎用の星図を、旅人ごとの刻印へ置き換えた。
+
+**変更**
+- **旅人の刻印**：本体の旅人9人それぞれに、キットに効く刻印ツリー（小ノード4つ×3段＋到達刻印1つ）。
+  - Vesper（四の型・炎・不動・光／審問の構え）、Lacerta（連装・火薬・長銃身・速射／サラマンダーの火種）、Cetus（冷気・氷の殻・潮の呼吸・不屈／凍てつく潮）、Yubar（星の加速・星明かり・宇宙の理・遠い星／収束する星）、空殻（深い影・急所・影走り・暗殺術／虚ろの刃）、Mist（剣舞・見切り・一閃・決闘者／残像の決闘）、Nachia（祝福の光・絆の力・呼び声・守護の誓い／共に在る）、Aurena（生命の器・黄金の光・再生・献身／血の献身）、Bismuth（炎・光・闇の章・物語の続き／四つの物語）
+  - 本体以外の旅人（他MODのキャラ）は従来の汎用ツリー。
+- **新しい能力値**：通常攻撃の射程（本体の `attackRangePercentage`）、4発目の位置（本体の `everyFourAttackStartIndexFlat`、上限2）。
+- **熟練度**：汎用の能力%（攻撃力・魔力・最大HP+1%/段）を廃止。熟練度3で到達刻印を解放する条件に変更。
+- **保存の移行**：本体の旅人に振っていた汎用ノードのポイントは読み込み時に自動で戻る。
+
+**試験**：6件追加（全435件）
+
+**次**：v1.3 呪いの契約と系統の統一
+
+---
+
+## v1.1.0 — 本体のエリートと Limbo（2026-10-01）
+
+シナジー再評価 の第1弾。本体と並走していた要素を本体の仕組みへ乗せ替えた。
+
+**変更**
+- **悪夢化＝本体のエリート**：悪夢化した敵に本体のエリート効果（MirageSkin：見た目と専用攻撃）を付ける。接頭が2つ以上の深い悪夢は上位の tier も候補。本体がすでにエリート化した敵には重ねない。MOD側の体力上乗せは +80% → +40% に減らした。
+- **開始深度を廃止し、本体の Limbo に統合**：Limbo 深度1ごとに遺物ドロップ率+10%・レア度上昇。古い保存の開始深度は無視する。
+- **「夢の深度」を「潜行」に改名**（本体の Limbo 深度と区別）。代償を防御・最大HPの減少から、本体の処理（`takenDamageProcessor`）による**被ダメージ増加（+6%/段）**へ。
+
+**試験**：開始深度の試験を Limbo・潜行の試験に置き換え（全429件）
+
+**次**：v1.2 旅人の刻印
+
+---
+
+## v1.0.0 — 本体とのシナジー（2026-10-01）
+
+方針の改定：Dreamforge は Shape of Dreams の **MOD** であり、本体の仕組みに乗ってそれを強めるものを優先する。
+
+**追加**
+- **属性の遺物**：特性に「火・冷気・光・闇の効果増幅」（本体の `ApplyElemental` が増幅値として使う）。
+- **属性を付与する固有効果**：火種・霜・輝き・影（通常攻撃の命中時に確率で本体の属性を1スタック）。Lacerta（火）・Cetus（冷気）・Yubar/Aurena/Nachia（光）・空殻（闇）のキットと噛み合う。光3重の確定会心も本体どおり働く。
+- **四元の共鳴**：敵に火・冷気・光・闇が揃った瞬間に爆発（同じ敵へ6秒に1回）。
+- **回避の残響**：回避（Movement）のたびに Q/W/E のクールダウン短縮。**終の昂り**：Ultimate（R）の後5秒 攻撃力・魔力上昇。
+- **本体の行動を依頼に**：Chaos の祭壇、商人での購入、Memory/Essence の強化・合成・分解、ハンターの領域へ踏み込む。
+- 固有品：四元の時計・残像の外套・暁を呼ぶ杖。
+
+**変更**
+- **烈火**を本体の4発目（`isThisAttackFourthAttack`）で発動するよう変更。Vesper・Lacerta の4発目キットや 4発目の位置を進める効果と連動する。
+- 今日の夢「烈火の日」「共鳴の日」が属性の固有効果も強化。
+
+**試験**：18件追加（全430件）
+
+**次**：v1.1 本体のエリートと Limbo
+
+---
+
+## v0.9.0 — 夢の出来事とセット遺物（2026-10-01）
+
+**追加**
+- **夢の出来事**（Slay the Spire の「？」部屋に近い）：確保地点に50%の確率で出来事が1つ現れ、使うかどうかを選べる。
+  - 夢の商人：欠片で正体不明の遺物を買う（アンコモン以上、深いほど良い）
+  - 祈りの泉：未確保の最も弱い遺物を捧げ、最も強い未確保の遺物を+1強化
+  - 賭けの杯：未確保の欠片を賭ける（50%で2倍、外れで失う）
+  - 迷い人の灯：遺失物を1つその場で取り戻す（遺失物があるときだけ）
+- **セット遺物**（Diablo のセット装備）：《潮鳴りの装い》（攻撃速度・移動、3点で連撃＋追い風）と《灯守の誓い》（最大HP・スキル加速、3点で護りの灯＋共鳴）。各3部位。固有品として落ち、装備画面に進み具合を表示。
+
+**試験**：11件追加（全412件）
+
+**次**：v1.0 本体とのシナジー
+
+---
+
+## v0.8.0 — 夢の工房（2026-10-01）
+
+**追加**
+- **夢の工房**（Hades の「鏡」に近い）：メニューの「工房」タブで、欠片と調律石を払ってアカウント共通の恒久強化を解放する。強さそのものは上げず、遊びやすさと選択肢を増やす。
+  - 大きな鞄（未確保の鞄 +5、3段階）／広い保管庫（+20、3段階）／依頼の引き直し（遠征ごと +1回、2段階）
+  - 遺失物の灯（回収に必要な戦闘部屋 3→2）／残響の増幅（全滅時に持ち帰る欠片 25%→45%、2段階）／契約の目利き（契約の選択肢 3→4）
+- **依頼の引き直し**：記録タブから、未達成の依頼を別の種類に引き直せる（工房の段階に応じた回数）。
+
+**試験**：9件追加（全401件）
+
+**次**：v0.9 夢の出来事とセット遺物
+
+---
+
+## v0.7.0 — 深淵と新たな力（2026-10-01）
+
+**追加**
+- **開始深度（深淵の段階）**：これまでに確保できた最高深度から遠征を始められる。確保すると深度0ではなく開始深度へ戻る。踏破したときの最も深い開始深度を記録。
+- **新しい固有効果 4種**：雷鎖（命中時25%で近くの敵2体へ魔法ダメージ）・爆砕（撃破時に周囲へダメージ）・守護霊（大きな一撃で障壁、20秒に1回）・血の渇き（HP50%未満で攻撃速度上昇）。エピックの抽選先にも追加。
+- **新しい固有品 4種**：雷鳴の双牙・砕けた星核・守護霊の衣・血塗れの大槌（固有品は全10種）。
+
+**修正**（Codexレビュー3回目）
+- 悪夢化の確率を、遠征開始日の「今日の夢」で計算するよう変更（日付をまたいでも変わらない）。
+- 悪夢化した敵を5秒ごとに全員へ送り直す（途中参加・取りこぼし対策）。まだ出現していない敵の情報を10秒保持。
+- 誰の能力情報も届いていない間に出現した敵は、悪夢化の抽選を待つ。
+- 熟練度が上がったときの能力の再送をキャラごとに判定。
+- 依頼達成の通知に「静かな夢」の倍率後の報酬を表示。合成ボタンは欠片の不足も確認。
+
+**試験**：11件追加（全392件）
+
+**次**：v0.8 夢の工房
+
+---
+
+## v0.6.0 — 今日の夢と熟練度（2026-10-01）
+
+**追加**
+- **今日の夢**：日付で決まる8種の変化（烈火の日・鋼の日・共鳴の日・黄金の夢・豊穣の夢・悪夢の夜・星降る夢・静かな夢）。遠征開始日の夢がその遠征中ずっと効く。HUD と記録に表示。
+- **旅人の熟練度**：キャラごとの撃破数で熟練度0〜10と称号（新参〜伝説）。レベルごとに攻撃力・魔力・最大HP+1%。
+
+**試験**：17件追加（全381件）
+
+---
+
+## v0.5.0 — 悪夢化エリート（2026-10-01）
+
+**追加**
+- **悪夢化エリート**（Diablo のチャンピオンに相当）：パーティの最大深度に応じて、ホストが敵の一部を悪夢化する。HP+80%に加え、鋼殻・狂暴・巨躯・疾風・再生・魔力から1〜3つ（深度3で2つ、5で3つ）。頭上に名札が出て、倒すと1段上の格の戦利品（通常→エリート相当、エリート→ボス相当）。ボスは対象外。
+- 依頼「悪夢化した敵を倒す」、記録に討伐数。
+
+**修正**（Codexレビュー2回目）
+- 結果の開始レベルをラン開始時の値に。保管庫あふれで欠片化した遺物は確保数・収集依頼に数えない。確保中に得た依頼の欠片を確保欠片に含める。契約の説明を「撃破で得る」に限定。中断したランの精算結果も表示。狙い系統ボタンの有効条件をルールと一致。
+
+**試験**：19件追加（全364件）
+
+---
+
+## v0.4.0 — 悪夢の契約（2026-10-01）
+
+**追加**
+- **悪夢の契約**（Hades の「罰の契約」に近い）：深く潜るとき、提示された3つから1つを結べる。硝子の心臓・鈍き刃・無防備・重い足・狂乱・呪われた財宝・乾いた夢・見えざる重荷の8種。デメリットと見返りが次の確保まで重なって効く。
+- **合成**：鍵なし・未装着の同じレア度3つから1つ上のレア度を1つ（エピック3つ→固有品）。
+- **図鑑の節目**：遺物の種類を6種集めるごとに星図ポイント+1（最大+4）。
+
+**試験**：15件追加（全345件）
+
+---
+
+## v0.3.0 — 依頼（2026-10-01）
+
+**追加**
+- **依頼**：遠征ごとに小目標が3つ（撃破数・エリート・ボス・確保数・深度・レア発見・部屋突破）。達成すると欠片・調律石（未確保として鞄へ）と経験値。HUD・記録・結果パネルに表示。
+
+**試験**：10件追加（全330件）
+
+---
+
+## v0.2.0 — 狙い系統とセット効果（2026-10-01）
+
+**追加**
+- **狙い系統**：攻勢・守勢・共鳴のどれかを選ぶと、その系統の遺物が2倍出やすい。
+- **系統セット**：同じ系統の遺物2つ・3つでボーナス。
+- **遠征結果パネル**：撃破・発見・確保・遺失・最高深度・レベル変化。
+
+**修正**（Codexレビュー1回目・実機確認）
+- 「未知の結末」エンディングを勝利扱いに。報酬なしの敵（演出・召喚・ハンターの追加敵）を除外。最初に突破した戦闘部屋を数え損ねる不具合。遺失物の回収で鞄の上限を超える不具合。ライブリロード時にUIのフォント・画像が残る不具合。ホストでプロトコル版を検証。
+- メニューのクリックがゲームのUIへ貫通する不具合、開始直後の最初のゾーンでも確保地点が出る不具合、通知の文字切れ。
+
+**試験**：12件追加（全320件）
+
+---
+
+## v0.1.0 — 最初に遊べる版（2026-10-01）
+
+**追加**
+- **遺物**：敵を倒すと各プレイヤーに個別の装備が落ちる。主装備・防具・装飾品の3枠、レア度5段階、基礎18種、固有品6種、固有効果11種。
+- **確保と夢の深度**：拾った物はまず未確保。新しいゾーンで「確保する」か「深く潜る」か（ドロップ率・レア度が上がり、守りが下がる）。
+- **遺失物**：全滅すると未確保の遺物は遺失物へ、欠片は25%だけ持ち帰る。次の遠征で戦闘部屋3つ突破で1つ取り戻す。
+- **夢のレベルと星図**：キャラごとに攻勢・守勢・共鳴へポイントを配分、6ptで刻印。
+- **鍛冶**：強化（+5まで）・再調律・分解・製作。
+- **協力プレイ**：能力の反映はホスト、抽選と保存は各自。
+- 日本語/英語のUI（F6 メニュー、F7 確保、F8 深く潜る）、Workshop 登録用の about 一式。
+
+**試験**：58件追加（全308件）。実機（r.1.4.0.13_s）で読み込み・UI・能力反映・ライブリロードを確認。

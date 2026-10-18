@@ -1,0 +1,11 @@
+name: 要望 / Request
+description: 追加や変更の要望を送る / Suggest an addition or change
+labels: [enhancement]
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: 要望 / Request
+      description: 何をどう変えてほしいか、その理由 / What you would like changed, and why
+    validations:
+      required: true

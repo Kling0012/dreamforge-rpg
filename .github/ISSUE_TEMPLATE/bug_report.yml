@@ -1,0 +1,33 @@
+name: 不具合の報告 / Bug report
+description: 遊んでいて起きた不具合を知らせる / Report something that went wrong
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: MOD のバージョン / Mod version
+      placeholder: v3.7.6
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 遊び方 / Mode
+      options:
+        - ソロ / Solo
+        - 協力プレイ（ホスト） / Co-op (host)
+        - 協力プレイ（参加者） / Co-op (guest)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 起きたこと / What happened
+      description: 旅人・場所・操作と、期待していた動き / Traveler, location, what you did, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: ログ（任意） / Log (optional)
+      description: "%USERPROFILE%\\AppData\\LocalLow\\Lizard Smoothie\\Shape of Dreams\\Player.log をここに貼るか、ファイルを添付してください / Paste or attach Player.log"
