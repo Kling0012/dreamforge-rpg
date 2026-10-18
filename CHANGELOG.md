@@ -6,6 +6,27 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.6 — Fixes for face attachments, balance tables, saving, and camera rotation（2026-10-19）
+
+装飾品の追従、鍛錬の数値表、保存、カメラの回転に関する不具合を直しました。 / Fixed issues with face attachments, run-growth balance tables, saving, and camera rotation.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 装飾品を顔に追従させる処理を軽くする仕組みでエラーが起きると、毎フレーム同じ処理をやり直していた問題を直しました。エラーが起きたあとはこの軽量化だけを止め、ゲーム本来の追従処理を使います。 / Fixed the face-attachment optimization retrying every frame after an error. After a failure, only this optimization is turned off and the game's own attachment behavior is used.
+- 鍛錬の数値表に必須の項目が欠けているとき、原因の分かりにくいエラーが出ていた問題を直しました。どの書き方が求められているかを示すエラーを出します。 / Fixed run-growth balance tables with missing required entries producing an unclear error. The error now explains the expected format.
+- 保存先のファイルがあるかどうかを確かめられなかったときは、保存を止めるようにしました。今あるセーブデータを上書きして失うことを防ぎます。 / Saving now pauses when the game cannot check whether a save file exists, so your existing data is not overwritten.
+- カメラの角度が負のゼロ（`-0f`）のときも、元の角度で回転を計算するようにしました。 / Camera rotation now uses the original angle when the angle is negative zero (`-0f`).
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.5 — Fixes for allied effects, ingredient warnings, and star map layouts, plus wiki updates（2026-10-19）
 
 協力プレイ中の味方への効果、料理素材の警告、星図の配置などに関する不具合を直しました。Wiki も更新しました。 / Fixed several issues with allied effects in co-op, cooking ingredient warnings, star map layouts, and more. The wiki has also been updated.
