@@ -6,6 +6,25 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.3 — Japanese IME input in search fields and support for game r1.4.1.2（2026-10-19）
+
+装備・鍛冶・星図・交換・図鑑の検索欄で日本語を入力できるようにし、ゲーム本体 r1.4.1.2 に対応しました。 / Japanese input now works in in-game search fields, and the mod now supports game version r1.4.1.2.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 装備・鍛冶・星図・交換・図鑑の検索欄で、日本語の IME 入力ができなかった問題を直しました。検索欄に入力している間は、変換の確定や取り消し、入力したキーでメニューが閉じたり、ゲームのショートカットが動いたりしません。 / Fixed Japanese IME input in gear, forge, star map, trade, and codex search fields. Confirming or cancelling a composition and typing in a search field no longer close the menu or trigger game shortcuts.
+- ゲーム本体 r1.4.1.2 に対応しました。 / Added support for game version r1.4.1.2.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.2 — Fish Scales fix for Vesper's training, co-op skill recovery, and performance tweaks（2026-10-19）
 
 ヴェスパーの鍛錬と「魚の鱗」の組み合わせを直し、協力プレイの参加者でスキルが使えなくなる問題への対策を広げました。動作を軽くするための細かな調整も行いました。 / A fix for Vesper's training under "Fish Scales", broader handling of co-op guests whose skills become unusable, and minor adjustments to reduce processing load.
