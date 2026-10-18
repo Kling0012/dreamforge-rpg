@@ -6,6 +6,24 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.7.7 — Bridge star names now match the star map（2026-10-18）
+
+このバージョンでは、橋の星の名前が星図と食い違う問題を直しました。 / This version fixes bridge star names not matching the star map.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 橋の星の名前が、ナビゲーション、星の参照文、払い戻し画面、割り当てエラー、Wiki で星図と違って表示される問題を直しました。 / Fixed bridge stars showing different names from the star map in navigation, star references, refund screens, allocation errors, and the wiki.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.7.6 — 細かな調整 / Minor adjustments（2026-10-18）
 
 細かな調整を行いました。 / Minor adjustments.
