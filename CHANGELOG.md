@@ -6,6 +6,31 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.5 — Fixes for allied effects, ingredient warnings, and star map layouts, plus wiki updates（2026-10-19）
+
+協力プレイ中の味方への効果、料理素材の警告、星図の配置などに関する不具合を直しました。Wiki も更新しました。 / Fixed several issues with allied effects in co-op, cooking ingredient warnings, star map layouts, and more. The wiki has also been updated.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 味方への効果で、範囲が10m未満でも距離による減衰と猶予が付いていた問題を直しました。回復と吸収は範囲が変わっても、それぞれの効果の猶予を引き継ぎます。 / Fixed allied effects with radii below 10m receiving distance falloff and grace. Heal and Siphon now keep their own grace when their radii change.
+- 元の調理上限が不正な料理素材が複数あるとき、最初の素材にしか警告が出なかった問題を直しました。素材のスタックごとに一度ずつ警告を出します。 / Fixed warnings appearing only for the first ingredient when several stacks have unsafe native cooking limits. Each ingredient stack now gets one warning.
+- 専用の星図がない旅人に、汎用の星図が専用の配置で作られていた問題を直しました。追加登録された星図があればそちらを優先し、ない場合は汎用の配置を使います。 / Fixed travelers without a dedicated tree getting the generic tree in a hero layout. Registered trees still take priority; other travelers without a dedicated tree now use the generic layout.
+- 遠征中に世界順の確認でエラーが起きると、次の遠征以降も担当外ダメージの減衰が効かなくなる問題を直しました。 / Fixed helper damage decay staying disabled in later runs after a world-order observation failure.
+
+### Wiki / Wiki
+
+- Wiki に足りなかった項目を追加し、既存の内容を今の状態に合わせて更新しました。 / Added missing topics to the wiki and updated existing pages to match the current state.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.4 — Lighter co-op processing（2026-10-19）
 
 協力プレイ中の通信まわりで不要な処理を省き、動作を少し軽くしました。 / Reduced unnecessary processing in co-op communication to slightly lighten the load.
