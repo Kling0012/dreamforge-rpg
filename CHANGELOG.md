@@ -6,6 +6,25 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.11 — Glacial Core firing interval fixes（2026-10-19）
+
+Glacial Core の射撃間隔まわりで起きうる不具合を直しました。 / Fixed potential issues with Glacial Core's firing interval.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- Glacial Core で、倒れたときや装備を外したとき、ランが変わったときに、前の状態の確認結果がそのまま使われることがある問題を直しました。 / Fixed Glacial Core sometimes reusing results from its previous state after the player died, unequipped it, or started a new run.
+- Glacial Core の報酬段階が想定外の値になったときや、報酬の設定が見つからないときに、射撃間隔を決める処理でエラーが起きる問題を直しました。このような場合は、本来の射撃間隔で発射します。 / Fixed an error when choosing Glacial Core's firing interval if its reward stage was out of range or its reward settings were missing. In these cases it now fires at its base interval.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.10 — Lighter host load with Glacial Core（2026-10-19）
 
 Glacial Core を装備しているときのホストの処理を軽くしました。 / Reduced host processing load while Glacial Core is equipped.
