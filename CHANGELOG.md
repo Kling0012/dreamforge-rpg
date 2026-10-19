@@ -6,6 +6,26 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.20 — Lighter co-op: less work for still units, kill handling, and gem cooldowns（2026-10-19）
+
+協力プレイで、向きが止まった敵や味方の処理、撃破の処理、宝石のクールダウンの送信から無駄を省き、ホストと参加者の動作を軽くしました。 / Made co-op lighter for both host and guests by cutting unnecessary work for units that have stopped turning, for kill handling, and for gem cooldown updates.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、参加者のゲームが、向きを変え終えて止まっているモンスター、召喚体、ほかのプレイヤーの英雄について、ほぼ同じ向きを毎フレーム計算し直して書き込んでいた問題を直しました。今は向きが止まっている間はこの処理を省くので、参加者のゲームが少し軽くなります。60fps で止まっている相手が80体いる場合、1秒に約4800回の無駄な処理が減る見込みです。相手が向きを変え始めると、次のフレームからこれまでどおり動きます。向きの見た目に分かるほどの違いはなく、攻撃、移動、ゲームの判定もこれまでと変わりません。 / Fixed guests' games recalculating and rewriting nearly the same facing every frame for monsters, summons, and other players' heroes that had already finished turning. This work is now skipped while their facing is still, so guests' games get a little lighter. At 60 fps with 80 still units, this is expected to cut about 4,800 wasted updates per second. When a unit starts turning again, it is handled as before from the next frame. There is no visible difference in facing, and attacks, movement, and game rules are unchanged.
+- 撃破した敵を報酬へ回す処理が、1フレームに2回走っていた問題を直しました。今は1回だけ走るので、戦闘から精算までの間、ホストと参加者の処理がわずかに軽くなります。参加者は撃破ごとにホストからの知らせを待つため、通信の状態が悪いほど効果が大きくなります。受け取る報酬や精算の結果は、これまでと変わりません。 / Fixed the step that moves defeated enemies into rewards running twice per frame. It now runs once, making both host and guests slightly lighter between combat and settlement. Because guests wait for the host's confirmation for each kill, the benefit grows when the connection is poor. Rewards and settlement results are unchanged.
+- 協力プレイで、宝石のクールダウン中、ホストが残り時間をフレームごとに参加者全員へ送り続けていた問題を直しました。今は送信を0.5秒ごとにまとめるので、ホストの送信と参加者の受信の負担が減ります。宝石4個が同時にクールダウン中の場合、参加者1人あたりの受信は1秒に約240回から約8回に減る見込みです。そのため、参加者の画面のクールダウン表示は最大0.5秒刻みで進むようになります。クールダウンの長さ、使えるようになるタイミング、ゲームの判定はこれまでと変わらず、クールダウンが終わった時点の表示はすぐに届きます。 / Fixed the host sending gem cooldown values to every guest each frame while a gem was on cooldown. These updates are now sent every 0.5 seconds, reducing the host's sending and guests' receiving work. With four gems on cooldown at once, each guest is expected to receive about 8 updates per second instead of about 240. As a result, the cooldown display on guests' screens now advances in steps of up to 0.5 seconds. Cooldown length, when gems become ready, and game rules are unchanged, and the moment a cooldown finishes is still sent right away.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.19 — Lighter co-op while holding a fully charged skill（2026-10-19）
 
 チャージ技能を溜めきって構えている間の無駄な送信を省き、協力プレイでのホストと参加者の動作を軽くしました。 / Made co-op lighter for both host and guests by cutting unnecessary sends while a charge skill is held at full charge.
