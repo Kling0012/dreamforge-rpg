@@ -6,6 +6,25 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.9 — Lighter co-op traffic for fully charged ultimates and a boss ability fix（2026-10-19）
+
+協力プレイで、ウルトが満タンのときの不要な通信を減らしました。あわせて、ボス由来の能力の使用中にホストのサーバーが止まったときの不具合も直しました。 / Reduced unneeded co-op network traffic while an ultimate is fully charged, and fixed an issue with boss-derived abilities when the host server stopped mid-cast.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、ウルトが満タンのときも、攻撃が当たったりダメージを受けたりするたびに、変わっていないチャージの情報を全員に送り直していた問題を直しました。攻撃の回数が多い英雄ほど、戦闘中の通信が軽くなります。ウルトをためている間は、これまでどおりチャージの変化が全員に伝わります。 / Fixed co-op re-sending unchanged ultimate charge information to everyone on every hit or damage event, even while the ultimate was already fully charged. This lightens network traffic in combat, especially for heroes that attack frequently. While an ultimate is charging, changes are still sent to everyone as before.
+- ボス由来の能力を使っている途中でホストのサーバーが止まると、その能力の使用情報が残ったままになり、直前の状態にも戻らない問題を直しました。 / Fixed boss-derived ability cast information not being released, and the previous cast state not being restored, if the host server stopped during a cast.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.8 — Less redundant co-op network traffic（2026-10-19）
 
 協力プレイで、変化のない情報を何度も送っていた通信を減らしました。 / Reduced redundant network traffic in co-op.
