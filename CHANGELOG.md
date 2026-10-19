@@ -6,6 +6,27 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.23 — Fix lingering pickup effects and lighter performance（2026-10-20）
+
+ドリームダストと富のエッセンスのコインを得たときの演出が、プレイヤーに残ったまま消えないことがある問題を直しました。あわせて、鍛錬の受信、ジェム枠の表示、圧力配当の精算から無駄な処理を省き、ゲームの動作を軽くしました。 / Fixed dream dust and wealth essence coin pickup effects sometimes lingering on the player. Training updates, the gem slot display, and pressure dividend payouts also do less unnecessary work, making the game lighter.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- ドリームダストを拾ったときと、富のエッセンスでコインを得たときの演出が、プレイヤーにまとわりついたまま消えないことがある問題を直しました。今は演出が始まってからおよそ30秒以内に消えます。部屋を移ったときは、その時点で消えます。手に入る量や確率は変わりません。 / Fixed the effects for picking up dream dust and gaining coins from wealth essence sometimes clinging to the player instead of disappearing. These effects now disappear within about 30 seconds after they start, or right away when you move to another room. Amounts and chances are unchanged.
+- 協力プレイで、遠征の鍛錬の内容が変わっていなくても、ホストから同じ内容が届くたびに参加者のゲームが読み直していた問題を直しました。同じ内容なら読み直さずに済ませるので、参加者のゲームが少し軽くなります。この読み直しは多くても1人あたり5秒に1回程度だったため、軽くなる幅は小さい見込みです。鍛錬の表示と効果はこれまでと変わりません。 / Fixed guests' games in co-op re-reading run training data each time the host sent it, even when nothing had changed. Identical data is now skipped, so guests' games get a little lighter. This happened at most about once every 5 seconds per player, so the gain is expected to be small. How training is shown and how it works are unchanged.
+- ジェム枠の表示を点検する処理が、移動以外の技ボタンも毎秒調べ直していた問題を直しました。今は移動の技ボタンだけを調べるので、プレイ中のゲームが少し軽くなります。1秒あたり4〜6回の無駄な調べ直しが減る見込みです。ジェム枠の見た目と、移動の技ボタンのジェム枠が隠れたときの復帰はこれまでと変わりません。 / Fixed the gem slot display check rescanning every skill button except Movement every second. Only the Movement button is scanned now, so the game gets a little lighter during play. This is expected to remove 4 to 6 wasted scans per second. How gem slots look, and how a hidden Movement button gem slot is restored, are unchanged.
+- 精算を待っている圧力配当が1件もないときでも、毎フレームその確認を最後まで行っていた問題を直しました。今は待っている配当がなければすぐに確認を終えるので、ホストと参加者のゲームがほんの少し軽くなります。配当の額や受け取るタイミングはこれまでと変わりません。 / Fixed the game fully checking pressure dividends every frame even when none were waiting to be paid. The check now ends right away when nothing is waiting, making the game very slightly lighter for both host and guests. Dividend amounts and when you receive them are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.22 — Lighter boss attack warnings and co-op Resonance Ward display（2026-10-20）
 
 ボスの攻撃予告の表示と、協力プレイでの共鳴の盾の表示から無駄を省き、ゲームの動作を軽くしました。 / Boss attack warnings and the co-op Resonance Ward display now do less unnecessary work, making the game lighter.
