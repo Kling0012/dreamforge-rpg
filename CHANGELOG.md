@@ -6,6 +6,29 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.21 — Dynamic difficulty in the HUD summary and lighter co-op（2026-10-20）
+
+画面左上のまとめ表示に動的難易度の影響を出すようにしました。あわせて、協力プレイでの体力・マナの送信と、あふれボーナスの判定から無駄を省き、ホストと参加者の動作を軽くしました。 / The top-left HUD summary now shows the effect of dynamic difficulty, and co-op is lighter for both host and guests by cutting unnecessary HP/mana sends and overflow bonus checks.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 画面左上のまとめ表示で、動的難易度によって敵の体力と報酬がどれだけ変わっているかを確かめられるようにしました。 / The top-left HUD summary now shows how much dynamic difficulty changes enemy HP and rewards.
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで、敵や味方の能力値を計算し直すたびに、ホストが体力とマナを参加者全員へ送り直していた問題を直しました。最大体力や最大マナが変わっていなくても、計算の誤差でごくわずかに違う値になり、全員がすでに持っている値を送っていました。今はこの無駄な送信を省くので、ホストの送信と参加者の受信の負担が減ります。戦闘中は、敵や味方1体あたり1秒に数回から数十回の無駄な送信が減る見込みです。あわせて、ホスト側で体力の値がごくわずかにずれていく問題も直りました。最大体力や最大マナが変わったときの動きと、ダメージ、回復、倒れる判定はこれまでと変わりません。 / Fixed the host resending HP and mana to every guest each time a unit's stats were recalculated. Even when max HP and max mana had not changed, rounding produced a tiny difference, so values everyone already had were sent again. These wasted sends are now skipped, reducing the host's sending and guests' receiving work. During combat, this is expected to cut from a few to several dozen wasted sends per second per unit. This also fixes HP drifting by a tiny amount on the host. Behavior when max HP or max mana changes, as well as damage, healing, and death checks, is unchanged.
+- 協力プレイで、参加者のゲームがあふれボーナスの判定を毎フレーム行っていた問題を直しました。今は0.25秒ごとに判定するので、参加者のゲームが少し軽くなります。60fps で動いている場合、判定の回数は約25分の1になる見込みです。あふれが起きたときの知らせは最大0.25秒遅れることがありますが、受け取れるボーナスの額、遠征の終わりの精算、再接続直後の動きはこれまでと変わりません。 / Fixed guests' games checking the overflow bonus every frame. It is now checked every 0.25 seconds, so guests' games get a little lighter. At 60 fps, this is expected to cut the number of checks to about 1/25. Notice of an overflow may arrive up to 0.25 seconds later, but bonus amounts, end-of-run settlement, and behavior right after reconnecting are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.20 — Lighter co-op: less work for still units, kill handling, and gem cooldowns（2026-10-19）
 
 協力プレイで、向きが止まった敵や味方の処理、撃破の処理、宝石のクールダウンの送信から無駄を省き、ホストと参加者の動作を軽くしました。 / Made co-op lighter for both host and guests by cutting unnecessary work for units that have stopped turning, for kill handling, and for gem cooldown updates.
