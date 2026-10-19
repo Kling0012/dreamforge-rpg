@@ -6,6 +6,26 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.7 — Fixes for Polaris mode switching, relic icons, and stat-recalculation patches（2026-10-19）
+
+ポラリスのモード切替、遺物のアイコン、能力再計算の軽量化に関する不具合を直しました。 / Fixed issues with Polaris mode switching, relic icons, and the stat-recalculation optimization.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 共有のクールダウン表が満杯のとき、ポラリスのモード切替が止まることがある問題を直しました。入力間隔を記録できないだけなら、モードは切り替わります。 / Polaris mode switching is no longer blocked solely because its input-interval key cannot be registered in a full shared cooldown table.
+- 固有品のIDと土台のIDが同じ文字列のとき、遺物のアイコンが混ざることがある問題を直しました。 / Relic icon caches no longer collide when a unique ID and a base ID share the same string.
+- ゲーム本体の処理が変わって、能力再計算の通知を減らす軽量化の準備に失敗したとき、対になるパッチの片方だけが当たる問題を直しました。 / Fixed an issue where only one of the paired stat-recalculation notification optimization patches could be applied if preparation failed after changes to the game code.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.6 — Fixes for face attachments, balance tables, saving, and camera rotation（2026-10-19）
 
 装飾品の追従、鍛錬の数値表、保存、カメラの回転に関する不具合を直しました。 / Fixed issues with face attachments, run-growth balance tables, saving, and camera rotation.
