@@ -6,6 +6,31 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.36 — Chinese translations for 200 unique items, Chinese text fixes and a lighter merchant area（2026-10-21）
+
+中国語（簡体字）で表示される部分をさらに増やし、固有品200点の名前と説明が中国語で読めるようになりました。あわせて、中国語の星図や変異の説明の表示を直し、商人の近くにいる間の余分な処理を減らしました。 / Further expanded Chinese (Simplified) coverage: names and descriptions of 200 more unique items now appear in Chinese. This version also fixes Chinese star chart and variant description text, and cuts extra work while you are near a merchant.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 固有品200点の名前と説明、合わせて400件を中国語（簡体字）に訳しました。 / Translated the names and descriptions of 200 unique items, 400 entries in total, into Chinese (Simplified).
+- 日本語と英語の表示は、これまでと変わりません。まだ中国語に訳していない部分は、これまでどおり英語で表示されます。 / Japanese and English text is unchanged. Anything not yet translated into Chinese still falls back to English.
+
+### 不具合の修正 / Bug fixes
+
+- 中国語の星図で、費用の注記が英語に戻ってしまい、必要ポイントの行が重複して表示されていました。これを直しました。 / Fixed Chinese star chart cost notes falling back to English, which caused the point cost line to appear twice.
+- 中国語の変異の説明で、盾と防御低下の表記を直しました。契約を選べないときの案内の表記と、マウの技の説明に使う区切り記号もそろえました。 / Corrected shield and armor reduction wording in Chinese variant descriptions, aligned the messages shown when a pact cannot be chosen, and standardized separators in Maw ability descriptions.
+- 商人が止まっているときも、商人の周りの飾りの位置と向きを毎フレーム設定し直していました。値が同じ間は設定し直さないようにしたため、商人の近くにいる間は、ホストと参加者のどちらのゲームも少し軽くなります。商人の見た目は、これまでと変わりません。 / Fixed merchant decorations having their position and rotation reapplied every frame even while the merchant stood still. They are now updated only when something changes, making the game a little lighter for both host and guests while you are near a merchant. Merchants look the same as before.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.35 — More Chinese (Simplified): bosses, bounties, feats and 400 equipment entries（2026-10-21）
 
 中国語（簡体字）で表示される部分をさらに増やしました。ボス、賞金首、部屋の予兆、実績、禁忌、エッセンス、系統に加え、装備の名前と説明400件が中国語で読めるようになりました。 / Further expanded Chinese (Simplified) coverage: bosses, bounties, room omens, feats, forbidden rules, essences, families and 400 more equipment names and descriptions now appear in Chinese.
