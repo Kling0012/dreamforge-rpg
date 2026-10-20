@@ -6,6 +6,30 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.38 — Chinese translations for star chart, Daily Dreams, Nightmares, pacts and expedition training（2026-10-21）
+
+中国語（簡体字）で表示される部分をさらに増やし、星図、日替わりの夢、悪夢、契約、遠征の鍛錬の文言が中国語で読めるようになりました。あわせて、ボス装備の説明にある中国語の表記を直し、姿を隠す敵の近くにいる間の余分な処理を減らしました。 / Further expanded Chinese (Simplified) coverage: star chart, Daily Dream, Nightmare, pact and expedition training text now appears in Chinese. This version also fixes a Chinese term in boss equipment descriptions and cuts extra work while you are near stealthed enemies.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 星図、日替わりの夢、悪夢、契約、遠征の鍛錬で表示される文言、約460件を中国語（簡体字）に訳しました。星の名前や繰り返し出てくる用語は、これまでの訳とそろえています。 / Translated about 460 text entries for the star chart, Daily Dreams, Nightmares, pacts and expedition training into Chinese (Simplified). Star names and recurring terms match existing translations.
+- 日本語と英語の表示は、これまでと変わりません。まだ中国語に訳していない部分は、これまでどおり英語で表示されます。 / Japanese and English text is unchanged. Anything not yet translated into Chinese still falls back to English.
+
+### 不具合の修正 / Bug fixes
+
+- 中国語で、ボス装備の説明にある奥義の記憶の表記を、固有効果やセット効果の説明とそろえました。 / Standardized the Chinese term for Ultimate memories in boss equipment descriptions to match power and set effect descriptions.
+- 姿を隠す敵の近くに英雄や召喚体がいる間、敵の姿を現すかどうかを判定するたびに、周りの相手を必要以上に調べていました。必要な分だけ調べるようにしたため、姿を隠す敵の近くで戦っている間は、ホストのゲームが少し軽くなります。敵に囲まれた近接戦ほど効果が大きくなります。敵が姿を現すタイミングと見た目は、これまでと変わりません。 / Fixed the host checking more nearby units than needed each time it decided whether a stealthed enemy should be revealed. It now stops as soon as it has an answer, making the game a little lighter for the host while fighting near stealthed enemies, especially when surrounded in melee. Reveal timing and visuals are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.37 — Chinese codex and terminology fixes（2026-10-21）
 
 中国語（簡体字）で表示される図鑑と用語の不具合を直しました。図鑑を開いたあとに表示言語が英語へ変わる問題や、固有効果名の訳が一般の言葉にまで使われる問題が直っています。 / Fixed Chinese (Simplified) codex and terminology issues, including the display language switching to English after opening the codex and power-specific names being applied to generic text.
