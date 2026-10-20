@@ -6,6 +6,28 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.39 — Chinese display fixes and lighter guest performance（2026-10-21）
+
+中国語（簡体字）を選んでいても英語で表示されていた部分を直し、装備名や説明文の多くが中国語で表示されるようにしました。あわせて、止まっている一部のオブジェクトについて、参加者側の毎フレームの余分な処理を減らしました。 / Fixed text that appeared in English even with Chinese (Simplified) selected, so many equipment names and descriptions now display in Chinese. This version also cuts extra per-frame work on guests' games for some stationary objects.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 表示言語を中国語にしていても、訳があるのに英語で表示される部分がありました。これを直し、次の部分が中国語で表示されるようにしました。装備の名前、家系の名前、組み合わせとリンクの説明、遠征の鍛錬の効果、星図の要石と説明、Infinity の区間効果と選択の待ち受け、図鑑のサブ名、仕掛け、契約、日替わりの夢、鞄があふれたときの通知、ロードアウト欄の既定名、協力プレイの距離による効果の弱まりの説明、保存に失敗したときの案内です。 / Fixed text that appeared in English with Chinese selected even though translations existed. Chinese is now shown for equipment names, family names, combo and link descriptions, expedition training effects, star chart keystones and descriptions, Infinity segment effects and choice prompts, codex subtitles, gimmicks, pacts, Daily Dreams, bag overflow notices, default loadout names, the co-op distance falloff description and save failure messages.
+- 日本語と英語の表示は、これまでと変わりません。訳のない名前は、これまでどおり英語で表示されます。 / Japanese and English text is unchanged. Names without a translation still fall back to English.
+- 図鑑の検索で、表示言語を英語と中国語の間で切り替えたあとも、前の言語の効果文が残ることがありました。言語を切り替えると検索内容も新しい言語で作り直すようにしました。 / Fixed codex search keeping effect text from the previous language after switching between English and Chinese. Search now rebuilds in the new language.
+- 中国語表示で、まだ訳していない星の名前に中国語の接頭辞や接尾辞が付いていました。星図で使う一般的な語の訳が、ほかの場面の語にも使われないように直しました。 / Fixed Chinese prefixes and suffixes being attached to untranslated star names. Generic star-map terms are no longer translated the same way in unrelated contexts.
+- 止まっている同期オブジェクトの位置と向きを、参加者側で毎フレーム同じ値で書き直していました。値が変わらないときは書き直さないようにしたため、参加者のゲームが少し軽くなる見込みです。動いているオブジェクトの見た目や動きは、これまでと変わりません。 / Fixed guests' games rewriting the same position and rotation for stationary synced objects every frame. These writes are now skipped when nothing has changed, which should make the game a little lighter for guests. Moving objects look and behave as before.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.38 — Chinese translations for star chart, Daily Dreams, Nightmares, pacts and expedition training（2026-10-21）
 
 中国語（簡体字）で表示される部分をさらに増やし、星図、日替わりの夢、悪夢、契約、遠征の鍛錬の文言が中国語で読めるようになりました。あわせて、ボス装備の説明にある中国語の表記を直し、姿を隠す敵の近くにいる間の余分な処理を減らしました。 / Further expanded Chinese (Simplified) coverage: star chart, Daily Dream, Nightmare, pact and expedition training text now appears in Chinese. This version also fixes a Chinese term in boss equipment descriptions and cuts extra work while you are near stealthed enemies.
