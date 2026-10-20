@@ -6,6 +6,32 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.29 — Gentler dynamic difficulty and lighter performance（2026-10-20）
+
+動的難易度をやさしくしました。あわせて、混沌の神殿で報酬を選ぶとき、地面に宝珠が落ちているとき、敵が出現するときなどに起きていた余分な処理を省き、ゲームを少し軽くしました。 / Dynamic difficulty is now gentler. The game also does less extra work when you choose a reward at the Chaos Shrine, while orbs lie on the ground, and when enemies spawn, making it a little lighter. / 动态难度变得更温和。同时，我们去掉了在混沌神殿选择奖励、地面上有宝珠、敌人出现等情况下多余的处理，游戏运行会稍微流畅一些。
+
+### 更新前に確認 / Before updating / 更新前须知
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version. / 多人合作时，所有玩家都需要更新到此版本。
+- セーブデータはそのまま引き継げます。 / Saves carry over. / 存档可以直接继承。
+- 更新後はゲームを再起動してください。 / Restart the game after updating. / 更新后请重新启动游戏。
+
+### 新機能 / New features / 新功能
+
+- 動的難易度をやさしくしました。敵が強くなる量を小さくし、世界ごとに上限を設けました。苦戦しているときは、これまでより大きく敵の体力が下がります。動的難易度で敵の攻撃力が変わることはなくなりました。 / Dynamic difficulty is now gentler: enemies scale up less, the increase is capped per world, and enemy HP drops much more when you are struggling. Dynamic difficulty no longer changes enemy damage. / 动态难度变得更温和：敌人变强的幅度更小，并按世界设定了上限；苦战时，敌人生命值的下降幅度比以前大得多。动态难度不再改变敌人的攻击力。
+
+### 不具合の修正 / Bug fixes / 错误修复
+
+- 混沌の神殿で報酬を選んでいる間、選んでいる報酬を毎フレーム何度も調べ直していたので、この問題を直しました。一度調べた結果を使い回すため、この画面を開いている間はゲームが少し軽くなります。表示される報酬や選べる内容は、これまでと変わりません。 / Fixed the game re-checking the selected reward many times every frame while you chose a reward at the Chaos Shrine. It now reuses the result, so the game is a little lighter while that screen is open. The rewards shown and what you can choose are unchanged. / 修复了在混沌神殿选择奖励时，游戏每帧都会多次重新查找所选奖励的问题。现在会重复使用已查找的结果，打开该界面时游戏会稍微流畅一些。显示的奖励和可选择的内容与以前相同。
+- ゴールドや経験値などの宝珠は、地面で止まったあとも毎フレーム足元の地面を確かめ直していました。この問題を直しました。落ちている宝珠が多い場面ほど、ホストと参加者のどちらのゲームも少し軽くなります。宝珠の見た目や拾い方は、これまでと変わりません。 / Fixed orbs such as gold and experience re-checking the ground beneath them every frame even after they had come to rest. Scenes with many orbs on the ground are now a little lighter for both host and guests. How orbs look and how you pick them up are unchanged. / 修复了金币、经验等宝珠在地面静止后仍每帧重新检测脚下地面的问题。地面上宝珠越多的场景，主机和其他玩家的游戏都会稍微流畅一些。宝珠的外观和拾取方式与以前相同。
+- 敵が出現するたびに、ボスでない敵にもボスの置き換えに関する確認をしていました。この問題を直しました。ホストのゲームが少し軽くなりますが、効果は小さめです。ボスの出現の仕方は、これまでと変わりません。 / Fixed the game running boss-replacement checks every time an enemy spawned, even for non-boss enemies. The host's game is a little lighter, though the gain is small. How bosses appear is unchanged. / 修复了每次敌人出现时，即使不是首领也会进行首领替换检查的问题。主机的游戏会稍微流畅一些，但效果较小。首领的出现方式与以前相同。
+- 協力プレイでホストが敵の状態を定期的に確かめるとき、同じ確認を何度も繰り返していました。この問題を直しました。ホストのゲームが少し軽くなります。敵の体力の決まり方は、これまでと変わりません。 / Fixed the host repeating the same checks during its periodic review of enemies in co-op. The host's game is a little lighter. How enemy HP is determined is unchanged. / 修复了多人合作时主机定期检查敌人状态时重复进行相同检查的问题。主机的游戏会稍微流畅一些。敌人生命值的确定方式与以前相同。
+- ジェム枠について、何も変わっていないのに同じ知らせを5秒ごとにプレイヤーへ送り続けていました。この問題を直し、通信を少し減らしました。1回の知らせは小さいため、効果は小さめです。ジェム枠の数や装着できるジェムは、これまでと変わりません。 / Fixed the game resending the same gem slot notice to players every 5 seconds even when nothing had changed, slightly reducing network traffic. Each notice is small, so the gain is small. The number of gem slots and which gems you can equip are unchanged. / 修复了宝石槽没有任何变化时，游戏仍每5秒向玩家重复发送相同通知的问题，网络通信略有减少。每条通知很小，因此效果较小。宝石槽数量和可装备的宝石与以前相同。
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd. / 本版本的改动已通过代码和测试确认，尚未在实际游戏和多人合作中确认。如发现异常，请告诉我们。
+
+---
+
 ## v3.8.28 — Lighter enemy targeting（2026-10-20）
 
 敵が狙う相手を決めるときの余分な処理を省き、ゲームの動作を少し軽くしました。 / The game now does less extra work when enemies pick a target, making it a little lighter.
