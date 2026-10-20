@@ -6,6 +6,36 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.34 — Chinese translations for equipment, sets and game data, plus fixes（2026-10-21）
+
+中国語（簡体字）で表示される部分をさらに増やしました。装備、セット、ルールや夢の出来事などのゲームデータが中国語で読めるようになりました。あわせて、中国語の誤訳と星図の費用表示を直し、一部の場面での余分な処理を減らしました。 / Further expanded Chinese (Simplified) coverage: equipment, sets, rules, dream events and other game data now appear in Chinese. This version also fixes Chinese mistranslations and the star chart cost display, and cuts extra work in a few situations.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 基本装備の名前と、固有品の名前と説明を中国語（簡体字）に訳しました。前の版で訳した固有品に加えて、残りの固有品も中国語で読めるようになりました。 / Translated base equipment names and the names and descriptions of unique items into Chinese (Simplified). Unique items not covered in the previous version now appear in Chinese as well.
+- 通常のセット48組すべてについて、名前と2部位・3部位・6部位の効果の説明を中国語（簡体字）に訳しました。 / Translated the names and 2-, 3- and 6-piece bonus descriptions of all 48 regular sets into Chinese (Simplified).
+- 才能、固有効果、属性反応の説明も中国語（簡体字）で表示されるようにしました。 / Talents, unique effects and elemental reaction descriptions now appear in Chinese (Simplified).
+- ルールの通知、記憶やエッセンス、夢の出来事（名前・説明・ボタン・選べない理由）、変異の名前と説明を中国語（簡体字）に訳しました。 / Translated rule notifications, memories and essences, dream events (names, descriptions, buttons and reasons a choice is unavailable), and variant names and descriptions into Chinese (Simplified).
+- 協力プレイの取引、効果の説明、旅人の星と刻印、連携技、工房、道標、保存の通知なども中国語（簡体字）で表示されるようにしました。 / Co-op trading, effect descriptions, traveler stars and sigils, pair combos, the workshop, waypoints, save notifications and more now appear in Chinese (Simplified).
+- 日本語と英語の表示は、これまでと変わりません。まだ中国語に訳していない部分は、これまでどおり英語で表示されます。 / Japanese and English text is unchanged. Anything not yet translated into Chinese still falls back to English.
+
+### 不具合の修正 / Bug fixes
+
+- 中国語の星図ツールチップでは、「重点」や「地点」のように費用と関係のない「点」を含む説明でも、必要ポイントの行が省略されていました。この判定を直しました。 / Fixed the Chinese star tooltip cost check so unrelated occurrences of the character for “point” no longer suppress the point cost line.
+- 中国語の取引、契約、刻印枠、依頼の引き直しの表示と、銘品の説明にあった誤訳を直しました。銘品名と小さなセットの名前は、訳語を揃えました。 / Corrected Chinese translations for trades, pacts, keystone slots, bounty rerolls and named item lore, and aligned terminology in named item and mini-set names.
+- レッドジャイアントの被弾計測（合計ダメージ・DPS・最大ダメージ）は、値が変わらないフレームでも表示の文章を毎フレーム作り直していました。値が同じ間は作り直さないようにしたため、ホストと参加者のどちらのゲームも少し軽くなります。表示される内容は、これまでと変わりません。 / Fixed the Red Giant damage meter (total damage, DPS, max damage) rebuilding its text every frame even when the values had not changed. It is now rebuilt only when a value changes, making the game a little lighter for both host and guests. The displayed values are unchanged.
+- ボスソウルの神殿の近くにいる間や強化画面を開いている間は、ボスがいるかを確かめるたびに余分なメモリを確保していました。これをなくし、その間だけゲームが少し軽くなります。神殿を使えるかどうかの判定は、これまでと変わりません。 / Fixed the Boss Soul Shrine allocating extra memory every time it checked for a boss while you were near it or had the upgrade screen open. This makes the game a little lighter at those times. Whether the shrine can be used is unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.33 — Expanded Chinese (Simplified) translation for mod screens and items（2026-10-20）
 
 中国語（簡体字）で表示される部分を増やしました。MOD のメイン画面とほかの画面、銘品と固有品の一部の名前と説明が、中国語で読めるようになりました。 / Expanded Chinese (Simplified) coverage: the mod's main screen, other mod screens, and the names and descriptions of named items and some unique items now appear in Chinese.
