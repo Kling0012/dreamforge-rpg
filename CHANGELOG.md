@@ -6,6 +6,28 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.37 — Chinese codex and terminology fixes（2026-10-21）
+
+中国語（簡体字）で表示される図鑑と用語の不具合を直しました。図鑑を開いたあとに表示言語が英語へ変わる問題や、固有効果名の訳が一般の言葉にまで使われる問題が直っています。 / Fixed Chinese (Simplified) codex and terminology issues, including the display language switching to English after opening the codex and power-specific names being applied to generic text.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 中国語で図鑑を表示したあと、表示言語が英語に変わっていました。これを直し、図鑑を開いたあとも中国語のまま表示されるようにしました。 / Fixed the display language switching to English after the codex was generated in Chinese. It now stays in Chinese.
+- 中国語の図鑑では、固有効果名の訳が、同じ英語を使う一般の言葉にも使われていました。これを直し、固有効果名にはそれぞれの訳を表示するようにしました。 / Fixed power-specific Chinese names also being applied to generic text that shares the same English word. Codex power names now use their own translations.
+- 中国語の効果、道標、装備の説明で、奥義・共演・疑心の表記をそろえました。英語のまま残っていた「Ultimate」も中国語に直しました。 / Aligned the Chinese terms for Ultimate, Co-star and Doubt in power, waypoint and equipment text, and translated leftover English "Ultimate" references.
+- 中国語の装備説明で障壁の訳語をそろえ、魂牢の鉄羽の説明文を直しました。 / Standardized shield terminology in Chinese equipment descriptions and corrected the Soulgaol Feather description.
+- 中国語で、契約を選べないときの案内と、星図の要石に必要なポイントの表記を直しました。 / Corrected Chinese wording for unavailable pacts and star-map keystone point costs.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.36 — Chinese translations for 200 unique items, Chinese text fixes and a lighter merchant area（2026-10-21）
 
 中国語（簡体字）で表示される部分をさらに増やし、固有品200点の名前と説明が中国語で読めるようになりました。あわせて、中国語の星図や変異の説明の表示を直し、商人の近くにいる間の余分な処理を減らしました。 / Further expanded Chinese (Simplified) coverage: names and descriptions of 200 more unique items now appear in Chinese. This version also fixes Chinese star chart and variant description text, and cuts extra work while you are near a merchant.
