@@ -6,6 +6,31 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.32 — Chinese language support and lighter co-op traffic（2026-10-20）
+
+ゲーム内の言語に中国語（簡体字）を加えました。あわせて、協力プレイでの無駄な通信と、混沌の祠の画面での余分な処理を減らしました。 / Added Chinese (Simplified) as an in-game language, and cut unneeded co-op network traffic and extra work in the Corrupted Chaos Shrine screen.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- ゲーム内の言語に中国語（簡体字）を加えました。MOD設定で日本語・英語・中国語から選べます。中国語に訳していない部分は英語で表示されます。 / Added Chinese (Simplified) as an in-game language. Choose Japanese, English or Chinese in the mod settings; strings without a Chinese translation fall back to English.
+- 説明文の先頭に、英語と中国語の説明書（GitHub の docs/README.en.md・README.zh.md）への案内を入れました。 / Added links at the top of the description to English and Chinese guides (docs/README.en.md and README.zh.md on GitHub).
+
+### 不具合の修正 / Bug fixes
+
+- 協力プレイで時間がゆっくり流れる演出（スロー効果）が続いている間、ゲームの速さは変わっていないのに、同じ知らせを各プレイヤーへ送り続けていました。この問題を直し、通信を少し減らしました。ホストと参加者のどちらのゲームも少し軽くなりますが、効果は小さめです。スローの見た目と時間の流れ方は、これまでと変わりません。 / Fixed co-op continually resending the same unchanged game-speed notice to each player while a slow-motion effect was active. This slightly reduces network traffic, making the game a little lighter for both host and guests, though the gain is small. How slow motion looks and how time flows are unchanged.
+- 混沌の祠でエッセンス枠の報酬を選び、スキルの編集画面を開いている間、内容が変わらない説明文を毎フレーム作り直していました。この問題を直し、内容が同じ間は作り直さないようにしました。この画面を開いている間だけゲームが少し軽くなります。表示される文章は、これまでと変わりません。 / Fixed the Corrupted Chaos Shrine's skill edit screen rebuilding the same unchanged text every frame after choosing an essence slot reward. The text is now reused while it stays the same, making the game a little lighter while that screen is open. The displayed text is unchanged.
+- 協力プレイで、支援シールド・回復・元素での撃破といった依頼の数を、数える分がある間は毎フレーム各参加者へ送っていました。この問題を直し、1秒に1回まとめて送るようにしました。戦闘中の通信が減り、ホストと参加者のどちらのゲームも少し軽くなります。数えた合計は変わりませんが、依頼の進み具合が画面に出るまで最大1秒ほど遅れることがあります。 / Fixed co-op sending bounty counts (support shields, healing, elemental kills) to each guest every frame while there were counts to report. They are now sent together once per second, reducing network traffic in combat and making the game a little lighter for both host and guests. Totals are unchanged, but bounty progress may show up to about one second later.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.31 — Less redundant co-op traffic during the Glacial Core's burst（2026-10-20）
 
 協力プレイで氷結の核がバーストを放っている間に、同じ知らせを繰り返し送っていた無駄をなくし、通信を少し減らしました。 / Co-op no longer resends the same unchanged notice during the Glacial Core's burst, slightly reducing network traffic. / 修复了多人合作中冰结核心释放爆发期间重复发送相同通知的问题，网络通信略有减少。
