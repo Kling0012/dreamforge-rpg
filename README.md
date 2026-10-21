@@ -1,31 +1,35 @@
 # Dreamforge RPG
 
+**日本語** | [English](README.en.md) | [中文](README.zh.md)
+
+| 見たいもの | リンク |
+|---|---|
+| パッチノート | [Releases](https://github.com/Kling0012/dreamforge-rpg/releases) ・ [これまでの更新履歴](CHANGELOG.md) |
+| 不具合の報告・要望 | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
+| MOD の説明 | [日本語](docs/README.ja.md) ・ [English](docs/README.en.md) ・ [中文](docs/README.zh.md) |
+| 配布 | [Steam ワークショップ](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
+
 Shape of Dreams 用の MOD「Dreamforge RPG」の、パッチノートと不具合報告・要望の受付窓口です。
-MOD は Steam ワークショップで配布しています。ソースコードはここには置いていません。
+MOD は [Steam ワークショップ](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) で配布しています。ソースコードはここには置いていません。
 
-The patch notes and bug report / request desk for Dreamforge RPG, a Shape of Dreams mod.
-The mod is distributed on the Steam Workshop. Source code is not published here.
-
-## このMODについて / About this mod
+## このMODについて
 
 このMODは、すべてAIが作成しています。テストプレイは行っていません。遊んでいて気になる点があれば、小さなことでも報告してください。プレイヤーの皆さんからの積極的な報告を歓迎します。
 
-This mod is made entirely by AI and has not been play-tested. If anything seems off while you play, please report it, however small. Reports from players are very welcome.
+ゲーム内の表示は日本語・英語・中国語（簡体字）に対応しています。
 
-## 不具合の報告・要望 / Bug reports and requests
+## 不具合の報告・要望
 
 [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) から送ってください。日本語でも英語でもかまいません。
 
-Please open an [Issue](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose). Japanese or English is fine.
+不具合の報告では、次の情報があると原因を探しやすくなります。
 
-不具合の報告では、次の情報があると原因を探しやすくなります。 / These details help us find the cause:
+- MOD のバージョン（タイトル画面やワークショップの説明に表示されます）
+- ソロか協力プレイか。協力プレイならホストか参加者か
+- 起きたときの旅人・場所・操作
+- 可能ならログ（`%USERPROFILE%\AppData\LocalLow\Lizard Smoothie\Shape of Dreams\Player.log`）
 
-- MOD のバージョン（タイトル画面やワークショップの説明に表示されます） / Mod version
-- ソロか協力プレイか。協力プレイならホストか参加者か / Solo or co-op, and host or guest
-- 起きたときの旅人・場所・操作 / Traveler, location and what you were doing
-- 可能ならログ（`%USERPROFILE%\AppData\LocalLow\Lizard Smoothie\Shape of Dreams\Player.log`） / The log file, if possible
+## パッチノート
 
-## パッチノート / Patch notes
-
-- 各版のパッチノートは [Releases](https://github.com/Kling0012/dreamforge-rpg/releases) にあります。 / Each version's notes are in [Releases](https://github.com/Kling0012/dreamforge-rpg/releases).
-- これまでの更新履歴は [CHANGELOG.md](CHANGELOG.md) にまとめています。 / The full history is in [CHANGELOG.md](CHANGELOG.md).
+- 各版のパッチノートは [Releases](https://github.com/Kling0012/dreamforge-rpg/releases) にあります。
+- これまでの更新履歴は [CHANGELOG.md](CHANGELOG.md) にまとめています。
