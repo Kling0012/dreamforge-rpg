@@ -1,0 +1,140 @@
+name: translations
+
+on:
+  pull_request:
+    paths:
+      - 'translations/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'translations/**'
+
+permissions:
+  contents: read
+
+jobs:
+  translations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Collect files
+        id: files
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            base="$(git merge-base "origin/$BASE_REF" HEAD)"
+            listing="$(git diff --name-only --diff-filter=ACMR "$base" HEAD)"
+          else
+            listing="$(git ls-files)"
+          fi
+          files=()
+          while IFS= read -r f; do
+            if [[ "$f" =~ ^translations/[^/]+\.json$ ]] && [[ "$f" != "translations/template.json" ]]; then
+              files+=("$f")
+            fi
+          done <<< "$listing"
+          if (( ${#files[@]} > 0 )); then
+            mapfile -t files < <(printf '%s\n' "${files[@]}" | sort)
+          fi
+          template=''
+          if [[ -f translations/template.json ]]; then
+            template=translations/template.json
+          fi
+          {
+            printf 'template=%s\n' "$template"
+            printf 'count=%d\n' "${#files[@]}"
+          } >> "$GITHUB_OUTPUT"
+          if (( ${#files[@]} > 0 )); then
+            {
+              printf 'files<<TRANSLATIONS_FILES_EOF\n'
+              printf '%s\n' "${files[@]}"
+              printf 'TRANSLATIONS_FILES_EOF\n'
+            } >> "$GITHUB_OUTPUT"
+          fi
+      - name: Check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          TEMPLATE: ${{ steps.files.outputs.template }}
+          FILES: ${{ steps.files.outputs.files }}
+        run: |
+          set -uo pipefail
+          mapfile -t files <<< "${FILES:-}"
+          if [[ "${#files[@]}" -eq 0 ]] || { [[ "${#files[@]}" -eq 1 ]] && [[ -z "${files[0]}" ]]; }; then
+            {
+              printf '%s\n' '## Translations check' '' \
+                'No translations/*.json files to check.'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          args=(--json)
+          if [[ -n "$TEMPLATE" ]]; then
+            args+=(--template "$TEMPLATE")
+          fi
+          rc=0
+          python3 tools/check_translations.py "${args[@]}" "${files[@]}" \
+            > "$RUNNER_TEMP/translations-result.json" || rc=$?
+          if [[ "$rc" -eq 2 ]]; then
+            echo "translations check: usage error (rc=2)" >&2
+            exit 2
+          fi
+          EVENT_NAME="$EVENT_NAME" GITHUB_STEP_SUMMARY="$GITHUB_STEP_SUMMARY" \
+          python3 - "$RUNNER_TEMP/translations-result.json" <<'PY'
+          import json
+          import os
+          import sys
+
+          with open(sys.argv[1], encoding='utf-8') as fh:
+              data = json.load(fh)
+          files = data['files']
+
+          scope = ('all translations/*.json on main' if os.environ.get('EVENT_NAME') == 'push'
+                   else 'translations/*.json changed in this pull request')
+          lines = ['## Translations check', '', 'Checked %s.' % scope, '',
+                   '| File | Language | Result | Translated | Warnings |',
+                   '| --- | --- | --- | ---: | ---: |']
+          for f in files:
+              language = f['language'] if f['language'] else '-'
+              result = 'ok' if f['ok'] else 'fail'
+              lines.append('| `%s` | %s | %s | %d/%d | %d |'
+                           % (f['path'], language, result,
+                              f['translated'], f['total'], len(f['warnings'])))
+          lines.append('')
+
+          def bullet_list(title, messages):
+              lines.append(title)
+              lines.append('')
+              for message in messages[:20]:
+                  lines.append('- %s' % message)
+              if len(messages) > 20:
+                  lines.append('- ... and %d more' % (len(messages) - 20))
+              lines.append('')
+
+          for f in files:
+              if f['errors']:
+                  bullet_list('### `%s`' % f['path'], f['errors'])
+              if f['warnings']:
+                  lines.append('<details><summary>%d warning(s) for `%s`</summary>'
+                               % (len(f['warnings']), f['path']))
+                  lines.append('')
+                  for message in f['warnings'][:20]:
+                      lines.append('- %s' % message)
+                  if len(f['warnings']) > 20:
+                      lines.append('- ... and %d more' % (len(f['warnings']) - 20))
+                  lines.append('')
+                  lines.append('</details>')
+                  lines.append('')
+
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as fh:
+              fh.write('\n'.join(lines).rstrip() + '\n')
+          sys.exit(1 if any(not f['ok'] for f in files) else 0)
+          PY
+          exit "$?"
