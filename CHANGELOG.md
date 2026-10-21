@@ -6,6 +6,31 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.42 — Enemy nameplate display options and a lighter Double Tap for the host（2026-10-21）
+
+敵の名札を名前・印だけ・表示しないから選べる設定を追加しました。あわせて、Double Tap の効果がある間にホストのゲームが少し軽くなるようにしました。 / This version adds a setting to show enemy nameplates as names, danger marks only, or not at all, and makes the game a little lighter for the host while the Double Tap effect is active.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 悪夢の敵が画面に何体もいると、敵の名札で画面が散らかるという要望に応えました。敵の名札の表示方法を「名前」「印だけ」「表示しない」の3つから選べます。MOD 設定でも、Dreamforge のメニューの設定画面（言語ボタンと同じ並び）でも切り替えられ、文言は日本語・英語・中国語に対応しています。既定は「名前」なので、更新しただけでは見た目は変わりません。 / Players asked for a fix to screens cluttered by nameplates when many nightmare enemies are around. Enemy nameplates can now be set to names, danger marks only, or hidden. You can switch this in the mod settings or in the Dreamforge menu's settings screen (in the same row style as the language buttons), with text in Japanese, English and Chinese. The default is names, so nothing looks different until you change it.
+- 「印だけ」にすると、名前の代わりに危険度の印を出します。夢の変種は `*`、悪夢の敵は `**`、性質が3個以上ある悪夢の敵と宿敵は `***` です。印の色は今の名札と同じで、宿敵・悪夢・変種を色で見分けられます。 / With marks only, a danger mark replaces the name: `*` for dream variants, `**` for nightmare enemies, and `***` for nightmare enemies with 3 or more affixes or for Nemesis enemies. The marks keep the current nameplate colors, so Nemesis, nightmare and variant enemies can still be told apart by color.
+- 「表示しない」にすると、悪夢と変種の名札だけが消えます。撃破の担当の印と協力プレイの守りの印は、この設定にかかわらず、今までどおりそれぞれの設定に従って出ます。 / Hidden removes only the nightmare and variant nameplates. Kill ownership marks and co-op ward marks still follow their own settings as before.
+- この設定は自分の画面の表示だけに効き、ほかの参加者の表示や敵の強さ・性質・出現・報酬は変わりません。設定を変えると、すぐに新しい表示に切り替わります。 / This setting only affects your own screen. It doesn't change what other players see, or enemy strength, affixes, spawns or rewards. Changes take effect right away.
+
+### 不具合の修正 / Bug fixes
+
+- Double Tap の効果がある間、通常攻撃のたびにホストのゲームで余分に重い処理をしていました。これを軽い処理に置き換えたため、戦闘中のホストのゲームが少し軽くなる見込みです。攻撃のたびの処理なので、効果は小さめです。Double Tap の動きは、これまでと変わりません。 / Fixed the host doing unnecessarily heavy work on every normal attack while the Double Tap effect was active. This work is now lighter, which should make the game a little lighter for the host in combat, though the gain is small since it only happens on attacks. Double Tap behaves as before.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.41 — Lighter host performance for burrow attacks and Last Starlight（2026-10-21）
 
 地中から飛び出す攻撃が敵に当たるときと、黒穴が消えるまでの間に行っていた余分な処理を減らし、ホストのゲームが少し軽くなるようにしました。 / This version cuts extra work when burrow emerge attacks hit enemies and while a black hole is fading out, making the game a little lighter for the host.
