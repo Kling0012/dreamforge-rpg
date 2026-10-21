@@ -6,6 +6,33 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.43 — Auto salvage by rarity and adjustable notice lines（2026-10-21）
+
+選んだレア度未満の遺物を拾った時点で自動で分解する設定と、画面左の通知の行数を選べる設定を追加しました。あわせて、敵に攻撃が当たるたびにホストのゲームで行っていた余分な処理を減らしました。 / This version adds a setting that automatically salvages relics below a chosen rarity when you pick them up, and a setting for how many lines the left-side notices use. It also cuts extra work the host's game did every time an attack hit an enemy.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 戦闘中に戦利品の通知が増えて気が散るという要望に応えました。MOD 設定に「自動分解するレア度」を追加し、「しない」「アンコモン未満」「レア未満」「エピック未満」「レジェンダリー未満」から選べます。選んだレア度より下の遺物は、敵を倒して拾った時点でドリームダストに分解されます。既定は「しない」なので、更新しただけでは何も分解されません。 / Players asked for less distracting loot notices during combat. A new "auto salvage rarity" mod setting lets you choose Off, Below Uncommon, Below Rare, Below Epic or Below Legendary. Relics below the chosen rarity are salvaged for Dream Dust when you pick them up from defeated enemies. The default is Off, so nothing is salvaged until you change it.
+- 自動分解で得るドリームダストの量や、図鑑・偉業・依頼の数え方は、拾ってから手で分解したときと同じです。固有品とセット装備は、レア度にかかわらず自動分解しません。商人で買った品、制作・合成で作った品、取り戻した遺失物、イベントで得た品も対象外です。 / Auto salvage gives the same Dream Dust and counts toward the codex, feats and quests exactly as if you had picked the relic up and salvaged it by hand. Uniques and set gear are never auto salvaged, whatever their rarity. Items bought from merchants, crafted or combined, recovered from lost items, or received from events are not auto salvaged either.
+- 協力プレイでは、各自の設定は自分の戦利品にだけ効きます。ほかの参加者の設定で自分の遺物が分解されることはありません。この機能を持たない古い MOD を使っている参加者の分は自動分解されず、これまでどおりです。 / In co-op, each player's setting only applies to their own loot. Another player's setting never salvages your relics. Loot for a player on an older mod version without this feature is not auto salvaged and works as before.
+- 画面左の通知の最大行数を 0〜7 行から選べるようになりました。既定は7行で、以前より1行多く表示されます。0 行にするとドロップと通常の案内は出なくなりますが、レベルアップ・確保・警告などの大事な通知は、最新の1件を1行で出します。 / You can now set the maximum number of left-side notice lines from 0 to 7. The default is 7, which shows one more line than before. At 0, drop notices and general messages are hidden, but important notices such as level-ups, secured items and warnings still show the latest one on a single line.
+- 自動分解したときと、鞄があふれて欠片に変わったときの通知は、画面に出なくなりました。欠片の数は、これまでどおり HUD などの表示で確認できます。手で分解したときの案内と警告の通知は、これまでどおり出ます。 / Auto salvage and satchel-overflow notices no longer appear on screen. You can still check your shard count on the HUD and other existing displays. Notices for salvaging by hand and warnings still appear as before.
+- 2つの設定は、MOD 設定のほか、Dreamforge のメニューの設定画面（記録タブの「自動分解と通知」）でも −／＋ ボタンで切り替えられます。文言は日本語・英語・中国語に対応しています。 / Both settings can be changed in the mod settings or with the −/+ buttons in the Dreamforge menu's settings screen (the "Auto salvage and notices" section on the Records tab), with text in Japanese, English and Chinese.
+
+### 不具合の修正 / Bug fixes
+
+- 敵に攻撃が当たるたびに、ホストのゲームで同じ確認を2回していることがありました。これを1回で済むように直したため、戦闘中のホストのゲームが少し軽くなる見込みです。1回あたりの処理はごく小さいので、効果は小さめです。ゲームの動きは、これまでと変わりません。 / Fixed the host sometimes running the same check twice every time an attack hit an enemy. It now runs once, which should make the game a little lighter for the host in combat, though the gain is small since each check is tiny. Gameplay is unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.42 — Enemy nameplate display options and a lighter Double Tap for the host（2026-10-21）
 
 敵の名札を名前・印だけ・表示しないから選べる設定を追加しました。あわせて、Double Tap の効果がある間にホストのゲームが少し軽くなるようにしました。 / This version adds a setting to show enemy nameplates as names, danger marks only, or not at all, and makes the game a little lighter for the host while the Double Tap effect is active.
