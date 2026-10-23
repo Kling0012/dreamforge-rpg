@@ -6,6 +6,38 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.44 — Infinity bounty and dust cap fixes, co-op trade and auto salvage fixes, Chinese codex search（2026-10-23）
+
+この版では、インフィニティの確保帰還で依頼の進捗が失われる問題と、潜行しても分解ダストの上限が回復しない問題を直しました。協力取引と自動分解設定の不具合も直し、図鑑を中国語の名前で検索できるようにしました。 / This version fixes Infinity secured returns losing bounty progress and the salvage Dream Dust cap not recovering after a delve. It also fixes co-op trade and auto salvage setting issues, and lets you search the codex by Chinese names.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 図鑑を中国語の名前でも検索できるようになりました。中国語表示で画面に出ている名前を、そのまま入力して探せます。土台・固有品・銘品の土台の名前と、組の名前も検索できます。日本語と英語での検索はこれまでどおりです。まだ見つけていない項目も、これまでどおり伏せたままです。 / You can now search the codex by Chinese names, typing a name exactly as it appears in Chinese display. Base names, unique and named item bases, and mini-set names can be searched too. Japanese and English search work as before, and undiscovered entries stay hidden.
+
+### 不具合の修正 / Bug fixes
+
+- インフィニティで「確保して帰還」を選んだとき、まだ反映されていない依頼の進捗が失われることがありました。その進捗で達成するはずだった依頼の記録と報酬も失われていました。今は、各参加者の進捗が反映されるのを待ってから帰還します。通信の異常などで待ちきれない場合は、警告を残して帰還を続けます。 / Fixed Infinity secured returns sometimes losing bounty progress that had not been applied yet, along with the completion records and rewards that progress would have earned. Each player's progress is now applied before the return. If that cannot finish, for example because of a connection problem, a warning is logged and the return continues.
+- インフィニティで次の世界へ潜行しても、世界ごとの分解ダストの上限が回復しない問題を直しました。潜行した直後に分解すると、受け取ったダストが0と表示されることがある問題もあわせて直しています。鞄があふれたときの追加ダストで未払いになっていた分も、次の世界で支払われます。 / Fixed the per-world salvage Dream Dust cap not recovering after delving to the next world in Infinity. Salvage right after a delve also no longer shows zero Dream Dust received. Unpaid extra Dream Dust from a full bag is also paid out in the next world.
+- 再開の読み込みを30秒以内にやめると、同じセッションで次に始めた遠征でも、MOD の進行・報酬と Build の反映が止まったままになる問題を直しました。読み込みをやめた再開データは保存一覧に残り、別の遠征には使われません。 / Fixed MOD progression, rewards and Build application staying paused in later expeditions of the same session after a resume load was abandoned within 30 seconds. The abandoned resume data stays in the save list and is not applied to another expedition.
+- 協力取引で、保管庫が大きいときに起きる問題を直しました。自分の確認を送っている途中で相手の確認が届くと、提示が変わっていないのに取引が取り消されていました。 / Fixed co-op trades with a large vault being cancelled even though the offer had not changed, when the partner's confirmation arrived while yours was still being sent.
+- 古い版で行った協力取引の履歴が残っていると、更新後に新しい取引を受け付けられない問題を直しました。中断した取引の回復もできなくなっていました。 / Fixed co-op trade history from an older version preventing new trades and the recovery of interrupted trades after updating.
+- 記録タブで自動分解の設定を変えても、実際の動作に反映されない問題を直しました。協力プレイのゲストは変更を保存できない問題も直しています。今は変更した時点で反映され、保存されます。 / Fixed auto salvage changes made on the Records tab not taking effect, and co-op guests being unable to save them. Changes now take effect right away and are saved.
+- 日本語で起動すると、記録タブの自動分解設定で今の値が空欄になる問題を直しました。 / Fixed the current auto salvage value showing blank on the Records tab when starting in Japanese.
+- レッドジャイアントのダメージ計測表示の最適化を、一度 OFF にしてから ON に戻すと、OFF の間に出た表示が残ったままになる問題を直しました。 / Fixed the red giant damage meter keeping the text shown while its optimization was off after you turned it back on.
+- チャージ同期の送信を省く設定を ON から OFF にして、また ON に戻すと、参加者へ送るはずのチャージ数が送られないことがある問題を直しました。 / Fixed charge counts sometimes not being sent to other players after you turned the charge sync skipping setting off and back on.
+- 追加効果と飛び道具が多い場面で、処理が追いつくように広げた処理の枠が、場面が落ち着いた直後に狭まることがありました。今は、落ち着いた状態が3秒続いてから一段ずつ戻します。 / Fixed the processing budget widened for heavy bonus-effect and projectile scenes stepping back down right after things calmed down. It now steps back only after things have stayed calm for three seconds.
+- ミラージュスキンの軽量化設定のラベルで、3言語が1行につながっていたのを言語ごとに改行しました。 / Fixed the Mirage Skin optimization setting label running all three languages together on one line; each language now has its own line.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.43 — Auto salvage by rarity and adjustable notice lines（2026-10-21）
 
 選んだレア度未満の遺物を拾った時点で自動で分解する設定と、画面左の通知の行数を選べる設定を追加しました。あわせて、敵に攻撃が当たるたびにホストのゲームで行っていた余分な処理を減らしました。 / This version adds a setting that automatically salvages relics below a chosen rarity when you pick them up, and a setting for how many lines the left-side notices use. It also cuts extra work the host's game did every time an attack hit an enemy.
