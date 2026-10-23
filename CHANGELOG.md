@@ -6,6 +6,33 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.45 — Thorns resistance, safer Thorned reflections, and Pure Soul, essence HUD and shrine effect fixes（2026-10-23）
+
+この版では、棘皮の敵の反射で一瞬で倒される問題を直し、反射を軽減する装備の特性「棘耐性」を追加しました。Pure Soul の弾が出ない問題、5枠以上のエッセンスの表示が重なる問題、導きの聖堂を壊したときの演出が出ない問題も直しています。 / This version fixes players being killed instantly by Thorned enemy reflections and adds a Thorns resistance affix that reduces reflected damage. It also fixes Pure Soul firing no projectiles, essence sockets overlapping with five or more sockets, and Shrine of Guidance break effects not playing.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- プレイヤーからの要望を受けて、棘皮の敵から受ける反射ダメージを軽減する「棘耐性」の特性を追加しました。防具・装飾品・足の装備に付くことがあります。装備の詳細と合計値で確認でき、装備と鍛冶の一覧では棘耐性で絞り込めます。文言は日本語・英語・中国語に対応しています。棘耐性を最大まで上げても、反射ダメージがなくなるわけではありません。 / Following a player request, a new Thorns resistance affix reduces the damage reflected by Thorned enemies. It can appear on armor, charms and footwear. You can check it in gear details and stat totals, and filter by it in the gear and forge lists, with text in Japanese, English and Chinese. Even at maximum Thorns resistance, reflected damage is not fully removed.
+- 外部の翻訳ファイルで表示言語を追加できるようになりました。翻訳は公開リポジトリ Kling0012/dreamforge-rpg の `translations/` へ PR で送れます。 / Added support for external language files. Submit translations through a PR to `translations/` in the public Kling0012/dreamforge-rpg repository.
+
+### 不具合の修正 / Bug fixes
+
+- 夢の圧が高いと、敵の姿が見えないうちに棘皮の敵の反射で一瞬で倒されることがありました。反射ダメージが夢の圧・潜行・インフィニティや協力プレイの補正でさらに大きくなっていたことと、複数の棘皮の敵からの反射が同時に重なっていたことが原因です。今は反射にこれらの補正を掛けず、複数の棘皮の敵からの反射も同時に重ならないようにしています。棘皮の敵が攻撃を反射すること自体は変わりません。 / Fixed players at high dream pressure sometimes being killed instantly by Thorned reflections before even seeing the enemy. Reflected damage was being further increased by dream pressure, delve, Infinity and co-op modifiers, and reflections from several Thorned enemies could land at the same time. Reflections no longer receive these modifiers, and reflections from multiple Thorned enemies no longer stack up at once. Thorned enemies still reflect damage.
+- 処理の負荷が高い場面で、Pure Soul の弾がまったく出ないことがある問題を直しました。今は負荷が高くても、少なくとも1発は出ます。 / Fixed Pure Soul sometimes firing no projectiles at all during heavy scenes. It now always fires at least one projectile, even under heavy load.
+- エッセンスの枠が5つ以上になると、追加の枠がスキルのボタンやほかの枠と重なって表示される問題を直しました。今は4列のまま、追加の枠を上の段に並べます。1〜4枠のときとスキル欄の位置は変わりません。 / Fixed extra essence sockets overlapping skill buttons and each other with five or more sockets. Extra sockets now go on rows above, keeping four columns. Layouts with one to four sockets and the skill bar position are unchanged.
+- 導きの聖堂を壊したときの演出が、表示される前や直後に消えてしまうことがある問題を直しました。破壊の判定や報酬は変わりません。 / Fixed Shrine of Guidance break effects sometimes disappearing before or right after they appeared. Breaking, rewards and progression are unchanged.
+- 記憶の連携が成功してダメージを与えるとき、ホストのゲームで同じ確認を2回していたのを1回にしました。効果はごく小さく、ゲームの動きはこれまでと変わりません。 / Fixed the host running the same check twice when a memory link success dealt damage. It now runs once. The gain is very small, and gameplay is unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.44 — Infinity bounty and dust cap fixes, co-op trade and auto salvage fixes, Chinese codex search（2026-10-23）
 
 この版では、インフィニティの確保帰還で依頼の進捗が失われる問題と、潜行しても分解ダストの上限が回復しない問題を直しました。協力取引と自動分解設定の不具合も直し、図鑑を中国語の名前で検索できるようにしました。 / This version fixes Infinity secured returns losing bounty progress and the salvage Dream Dust cap not recovering after a delve. It also fixes co-op trade and auto salvage setting issues, and lets you search the codex by Chinese names.
