@@ -6,6 +6,26 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.52 — Accessory sharing fix and lighter camera shake and Frozen Fists handling（2026-10-24）
+
+この版では、キャラクターに付く装飾品の処理が一部の装飾品の異常で止まる問題を直しました。あわせて、カメラの揺れと Frozen Fists の効果中の攻撃で繰り返していた無駄な処理を省き、戦闘中の負荷を減らしました。 / This version fixes accessory handling that could stop entirely because of one broken accessory, and removes wasted work repeated on camera shakes and on attacks during Frozen Fists, reducing load in combat.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- キャラクターの体の表面に付く装飾品は、キャラクターの形のデータをほかの装飾品と使い回して処理を軽くしています。ところが、1つの装飾品の付け位置がキャラクターの形のデータと合わなくなると、問題のない装飾品も含めてすべての使い回しが止まっていました。キャラクターの見た目が切り替わって形のデータが小さくなったときなどに起きていました。今は合わない装飾品だけを従来の方法で処理し、ほかの装飾品の使い回しは続けます。装飾品の位置、向き、動きへの追従は変わりません。 / Accessories attached to a character's body surface share the character's shape data with each other to run lighter. When one accessory's attachment point no longer matched the character's shape data, sharing stopped for every accessory, including healthy ones. This could happen when a character's appearance changed and its shape data got smaller. Now only the mismatched accessory is handled the old way, and the other accessories keep sharing. Accessory position, orientation and how they follow movement are unchanged.
+- 戦闘中にカメラが揺れるたびに、ゲームはその揺れが Fever の爆発によるものかどうかを毎回調べ直していました。敵の撃破やボスの攻撃など、Fever と関係のない揺れでも同じでした。ホストと参加者の両方で起きていました。今は Fever の爆発が起きた時点で、その爆発による揺れを覚えておくので、揺れのたびに調べ直さずに済みます。1回ごとの差は小さいものの、ホストと参加者のどちらも、戦闘中の処理が少し軽くなります。カメラの揺れ方と、Fever の爆発による揺れの大きさの上限は変わりません。 / Every time the camera shook in combat, the game checked from scratch whether the shake came from a Fever explosion, even for shakes unrelated to Fever such as enemy kills or boss attacks. This happened on both the host and co-op players. The game now remembers a Fever explosion's shake when the explosion happens, so it no longer rechecks on every shake. The gain per shake is small, but both host and players run a little lighter in combat. How the camera shakes and the cap on Fever explosion shakes are unchanged.
+- Frozen Fists の効果中は、英雄が攻撃するたびにホストのゲームが記憶の効果に当たるかを確かめます。このとき、効果に当たらない通常の攻撃でも、結果の準備を先に済ませてから捨てていました。今は効果に当たるとわかったときだけ準備します。Frozen Fists の効果中は、ホストの処理が少し軽くなる見込みです。記憶の効果の発動と結果は変わりません。 / During Frozen Fists, the host's game checks whether each hero attack counts for a memory effect. It prepared the result before checking and threw it away for ordinary attacks that did not count. It now prepares the result only once an attack is confirmed to count. The host should run a little lighter during Frozen Fists. When memory effects trigger and what they do are unchanged.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.51 — Lighter combat sound playback（2026-10-24）
 
 この版では、戦闘中に効果音を鳴らすたびに繰り返していた無駄な処理を省き、激しい戦闘での負荷を減らしました。 / This version removes wasted work repeated every time a combat sound plays, reducing load in intense fights.
