@@ -6,6 +6,25 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.55 — Lighter cast warnings and codex search by translated names（2026-10-24）
+
+この版では、詠唱中に表示される予兆の演出で毎フレーム繰り返していた無駄な処理を省きました。あわせて、外部翻訳ファイルで表示される名前で図鑑を検索できるようにしました。 / This version removes wasted work repeated every frame for the warning effects shown during casts. It also lets you search the codex by names shown through an external translation file.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 詠唱中に表示される予兆の演出について、ゲームは毎フレーム、演出の位置と向きを設定し直していました。決まった場所に出る演出や、詠唱しているキャラクターが止まっていて値が変わらないときも同じで、ホストと参加者の両方で起きていました。今は値が変わるときだけ設定し直します。詠唱が多い場面では、処理が軽くなる見込みです。詠唱しているキャラクターが動き続けている間は、軽くなりません。予兆の見た目と動きは変わりません。 / For the warning effects shown during casts, the game reset each effect's position and direction every frame, even when the effect sat at a fixed spot or the caster was standing still and nothing had changed. This happened on both the host and co-op players. The game now resets them only when the values change. Scenes with many casts should run lighter. While the caster keeps moving, there is no gain. How the warnings look and move is unchanged.
+- 外部翻訳ファイルで表示している言語で図鑑を検索すると、画面に出ている名前で探しても項目が見つかりませんでした。たとえばフランス語の翻訳で Chain Sword を「Épée chaînée」と表示している場合、「Épée chaînée」と入力しても土台の一覧に出てきませんでした。今は画面に表示されている名前でも検索できます。日本語・英語・中国語の名前での検索はこれまでどおり使えます。別の翻訳ファイルに切り替えたときや、翻訳ファイルを読み込み直したときも、新しい表示名で検索できます。まだ見つけていない固有品・セット・固有効果などは、翻訳後の名前で検索しても、これまでどおり表示されません。 / When the game was shown in a language from an external translation file, searching the codex by the names on screen did not find the entries. For example, if a French translation displayed Chain Sword as "Épée chaînée", typing "Épée chaînée" did not bring it up among the bases. You can now search by the names shown on screen. Searching by Japanese, English and Chinese names still works as before. After switching to another translation file or reloading one, the new names are searchable too. Undiscovered unique items, sets, unique effects and similar entries still stay hidden, even when searched by their translated names.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.54 — Lighter handling of effects attached to characters（2026-10-24）
 
 この版では、キャラクターに付いて表示される演出で毎フレーム繰り返していた無駄な処理を省き、演出が多い場面の負荷を減らしました。 / This version removes wasted work repeated every frame for effects attached to characters, reducing load in scenes with many effects.
