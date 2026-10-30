@@ -7,6 +7,7 @@
 | Patch notes | [Releases](https://github.com/Kling0012/dreamforge-rpg/releases) · [Full history](CHANGELOG.md) |
 | Bug reports and requests | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
 | Mod description | [日本語](docs/README.ja.md) · [English](docs/README.en.md) · [中文](docs/README.zh.md) |
+| Translations | [Translation guide](docs/TRANSLATING.md) · [Progress per language](translations/COVERAGE.md) |
 | Download | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
 
 The patch notes and bug report / request desk for Dreamforge RPG, a Shape of Dreams mod.
@@ -28,6 +29,10 @@ These details help us find the cause of a bug:
 - Solo or co-op, and host or guest
 - Traveler, location and what you were doing
 - The log file, if possible (`%USERPROFILE%\AppData\LocalLow\Lizard Smoothie\Shape of Dreams\Player.log`)
+
+## Translations
+
+You can add your language to the mod. Put a translation file in `translations/` and open a pull request; once it passes the automatic checks, it is included in the next release. Untranslated text is shown in English, so a partial translation is welcome. See the [translation guide](docs/TRANSLATING.md) for the steps and [translations/COVERAGE.md](translations/COVERAGE.md) for the progress of each language.
 
 ## Patch notes
 

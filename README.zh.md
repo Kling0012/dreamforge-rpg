@@ -7,6 +7,7 @@
 | 更新说明 | [Releases](https://github.com/Kling0012/dreamforge-rpg/releases) · [完整更新历史](CHANGELOG.md) |
 | 问题反馈与建议 | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
 | MOD 说明 | [日本語](docs/README.ja.md) · [English](docs/README.en.md) · [中文](docs/README.zh.md) |
+| 翻译 | [翻译指南](docs/TRANSLATING.md) · [各语言进度](translations/COVERAGE.md) |
 | 下载 | [Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
 
 这里是 Shape of Dreams 的 MOD「Dreamforge RPG」的更新说明以及问题反馈与建议的窗口。
@@ -28,6 +29,10 @@ MOD 在 [Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/
 - 单人还是多人合作；多人合作时是主机还是参与者
 - 发生时使用的旅人、所在位置和进行的操作
 - 如有可能，请附上日志（`%USERPROFILE%\AppData\LocalLow\Lizard Smoothie\Shape of Dreams\Player.log`）
+
+## 翻译
+
+其他语言可以由玩家翻译添加。将翻译文件放入 `translations/` 文件夹并提交 Pull Request，通过自动检查后会包含在下一个版本中。未翻译的文本会以英文显示，因此部分翻译也很欢迎。具体步骤请参阅 [翻译指南（英文，含中文概要）](docs/TRANSLATING.md)，各语言的进度请参阅 [translations/COVERAGE.md](translations/COVERAGE.md)。
 
 ## 更新说明
 
