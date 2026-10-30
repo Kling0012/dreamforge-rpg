@@ -8,6 +8,7 @@
 | Bug reports and requests | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
 | Mod description | [日本語](docs/README.ja.md) · [English](docs/README.en.md) · [中文](docs/README.zh.md) |
 | Translations | [Translation guide](docs/TRANSLATING.md) · [Progress per language](translations/COVERAGE.md) |
+| For mod authors (integration) | [Guide](docs/MODDING.md) · [日本語](docs/MODDING.ja.md) |
 | Download | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
 
 The patch notes and bug report / request desk for Dreamforge RPG, a Shape of Dreams mod.

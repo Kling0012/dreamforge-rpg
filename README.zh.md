@@ -8,6 +8,7 @@
 | 问题反馈与建议 | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
 | MOD 说明 | [日本語](docs/README.ja.md) · [English](docs/README.en.md) · [中文](docs/README.zh.md) |
 | 翻译 | [翻译指南](docs/TRANSLATING.md) · [各语言进度](translations/COVERAGE.md) |
+| MOD 作者（联动） | [指南（英文）](docs/MODDING.md) · [日本語](docs/MODDING.ja.md) |
 | 下载 | [Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
 
 这里是 Shape of Dreams 的 MOD「Dreamforge RPG」的更新说明以及问题反馈与建议的窗口。

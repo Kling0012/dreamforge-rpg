@@ -8,6 +8,7 @@
 | 不具合の報告・要望 | [Issues](https://github.com/Kling0012/dreamforge-rpg/issues/new/choose) |
 | MOD の説明 | [日本語](docs/README.ja.md) ・ [English](docs/README.en.md) ・ [中文](docs/README.zh.md) |
 | 翻訳 | [翻訳ガイド](docs/TRANSLATING.md) ・ [言語ごとの進み具合](translations/COVERAGE.md) |
+| MOD 作者向け（連携） | [ガイド](docs/MODDING.ja.md) ・ [English](docs/MODDING.md) |
 | 配布 | [Steam ワークショップ](https://steamcommunity.com/sharedfiles/filedetails/?id=3822274988) |
 
 Shape of Dreams 用の MOD「Dreamforge RPG」の、パッチノートと不具合報告・要望の受付窓口です。
