@@ -6,6 +6,31 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.85 — Hero Connector for other mods' travelers, plus co-op and performance fixes（2026-11-01）
+
+この版では、ほかの MOD が追加した旅人を Dreamforge で使えるようにする「ヒーローコネクタ」を追加しました。あわせて、ほかの MOD の旅人で技を使うたびにエラーが出る不具合、協力プレイのゲストでスキルが使えないまま戻らないことがある不具合、長く遊ぶと部屋の移動が重くなる問題などを直しました。 / This version adds the Hero Connector, which lets travelers added by other mods be used in Dreamforge. It also fixes errors when another mod's traveler uses skills, guests in co-op sometimes staying unable to use skills, and room changes slowing down over long sessions, among other issues.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- ほかの MOD が追加した新しい旅人を、Dreamforge の装備・星図・協力プレイで使えるようにする「ヒーローコネクタ」を追加しました。 / Added the Hero Connector, which lets new travelers added by other mods use Dreamforge's gear, star maps, and co-op. MOD の作者は、JSON ファイルを1つ置くだけで対応できます。 / Mod authors only need to add one JSON file to support it. 作り方は [MOD 作者向けガイド](https://github.com/Kling0012/dreamforge-rpg/blob/main/docs/MODDING.ja.md) にあります。 / See the [guide for mod authors](https://github.com/Kling0012/dreamforge-rpg/blob/main/docs/MODDING.md) for details. 既存の9人の旅人の能力値・星・動きは変わりません。 / The existing nine travelers' stats, stars, and behavior are unchanged.
+
+### 不具合の修正 / Bug fixes
+
+- 旅人を追加する MOD「ジュアン」（ZhuangHero）を入れてジュアンで遊ぶと、技を使うたびに Dreamforge がエラーを出し、技の詠唱にまで影響していました。 / With the traveler mod Zhuang (ZhuangHero) installed, playing as Zhuang made Dreamforge raise an error every time a skill was used, and this also interfered with the skill's casting. 今は、ほかの MOD の旅人の技でもエラーを出さずに扱えます。 / Skills from other mods' travelers are now handled without errors. 本体の旅人の技の扱いは変わりません。 / Skills of the base game's travelers are handled as before.
+- 協力プレイのゲストで、スキルが使えないまま戻らないことがありました。 / In co-op, a guest's skills could sometimes stay unusable. こうなったときに復旧を試みる処理が、途中で止まってしまう場合があったのを直しました。 / Fixed a case where the recovery attempt for this could stop partway. 必殺技の充填待ちで止まっている場合も復旧の対象にし、3回試したあとも間隔を空けて試し続けます。 / Recovery now also covers skills waiting on ultimate charge, and it keeps retrying at longer intervals after three attempts.
+- 長く遊ぶほどメモリが増えて、部屋の移動が重くなる問題への対策として、MOD がもう使わないものを抱え続けていた箇所を、部屋の区切りなどで手放すようにしました。 / To address memory growing over long sessions and room changes slowing down, the MOD now lets go of things it no longer needs at room boundaries and similar points.
+- プレイ中に Player.log へ書き込む量を減らし、部屋をクリアしたときなどに起きていた引っかかりを軽くしました。 / Reduced how much is written to Player.log during play, easing the stutters that occurred when clearing rooms and in similar situations.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.84 — Fewer redundant summon checks on the host（2026-10-25）
 
 この版では、召喚体を連れた英雄がいるときに、ホストのゲームが結果の変わらない確認を繰り返していた無駄を省きました。 / This version removes redundant checks that never changed the result, which the host's game repeated while a hero had summons.
