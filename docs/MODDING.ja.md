@@ -161,6 +161,20 @@ MyHeroMod/
 }
 ```
 
+仕掛けを自分の記憶で動かすには、記憶も付け替えます。次の星は、ヴェスパーの突撃のルートの星を複製し、`St_M_Charge` の代わりに `St_Q_NovaBlink` で動くようにしたものです。
+
+```json
+{ "id": "impact", "memory": "St_Q_NovaBlink", "maxRank": 3, "requires": ["edge"],
+  "authoredEffect": { "hero": "Hero_Vesper", "star": "h.vesper.route.charge.2" } }
+```
+
+```json
+"effectBindings": {
+  "stars": { "outer.ward.a2": "ward", "h.vesper.route.charge.2": "impact" },
+  "memories": { "St_M_Charge": "St_Q_NovaBlink" }
+}
+```
+
 - 仕掛けは、ゲームのふつうの記憶の出来事（使用・命中・撃破・自分の攻撃）で動きます。あなたの記憶が、これらの出来事を出さない独自の処理でダメージを与えたり召喚したりすると、複製した仕掛けが動かないことがあります。付け替えた記憶の一覧とこの注意は、報告ファイルに出ます。
 - 特定の既存の記憶やキーストーンに結びついていて付け替えられない仕掛けもあります。その宣言は理由つきで断られます。
 

@@ -161,6 +161,20 @@ Many built-in stars carry scripted mechanisms: effects that trigger when a memor
 }
 ```
 
+To move a mechanism onto one of your own memories, map the memory as well. This star copies a star from Vesper's charge route and makes it react to `St_Q_NovaBlink` instead of `St_M_Charge`:
+
+```json
+{ "id": "impact", "memory": "St_Q_NovaBlink", "maxRank": 3, "requires": ["edge"],
+  "authoredEffect": { "hero": "Hero_Vesper", "star": "h.vesper.route.charge.2" } }
+```
+
+```json
+"effectBindings": {
+  "stars": { "outer.ward.a2": "ward", "h.vesper.route.charge.2": "impact" },
+  "memories": { "St_M_Charge": "St_Q_NovaBlink" }
+}
+```
+
 - Mechanisms react to the game's usual memory events (use, hit, kill, owned attacks). If your memory deals damage or summons through its own code path without those events, a copied mechanism may never trigger. The report file lists your mapped memories with this warning.
 - A few mechanisms are tied to one specific built-in memory or keystone and cannot be moved; those declarations are rejected with the reason.
 
