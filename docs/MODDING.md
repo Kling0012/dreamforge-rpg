@@ -22,7 +22,7 @@ Once your traveler exists in the game, Dreamforge picks it up automatically, eve
 - display names for the traveler's memories (skills) in Dreamforge's screens
 - a star map of its own: stat stars, memory stars, power stars, choice stars, clusters, gimmick stars and keystones, with your own connections and positions, checked against limits taken from the built-in travelers
 
-A declaration cannot change the built-in nine travelers or their stars. It also cannot set per-traveler difficulty or reward scaling. Pair combos and the scripted mechanisms on some built-in stars and keystones cannot be declared yet. Declared travelers always use the default scaling.
+A declaration cannot change the built-in nine travelers or their stars. It also cannot set per-traveler difficulty or reward scaling. New scripted mechanisms and pair combos cannot be written, but the ones on built-in stars can be copied (see `authoredEffect`). Declared travelers always use the default scaling.
 
 The extended star-map fields (everything beyond `stat`, `perRank`, `maxRank`, `tier`, `keystone`, `value` and `description`) arrive in the first release after v3.8.85.
 
@@ -111,6 +111,7 @@ Each star has exactly one effect:
 | Gimmick boost | `gimmickBoost`, `memory`, `maxRank` | Strengthens the gimmick on that memory. |
 | Gimmick parameter | `gimmickParam`, `perRank`, `maxRank`, `memory` | Raises one parameter of the gimmick, such as `Duration` or `Radius`. |
 | Memory modifier | `nativeModifier` or `scopedModifier`, `memory`, `maxRank` | Damage or haste for one memory, or a scoped bonus to other stars' effects, using the same units as built-in stars (100 units = 1%). |
+| Copied mechanism | `authoredEffect`, `maxRank` | Copies a scripted mechanism, pair combo or keystone from a built-in star. See below. |
 
 Placement and access, all optional:
 
@@ -138,6 +139,32 @@ Example of the extra star types, added to the `nodes` of the full example:
 ```
 
 Connections work both ways, like the built-in star maps. If the connections form a cycle, point to an unknown ID, or leave a star unreachable from the center, the traveler uses the generic star map and the reason goes to the report file.
+
+### Reusing built-in mechanisms (`authoredEffect`)
+
+Many built-in stars carry scripted mechanisms: effects that trigger when a memory hits, kills or is used, pair combos between two memories, and the mechanism keystones. You cannot write new mechanisms, but you can copy one from a built-in star and attach it to your own stars and memories.
+
+```json
+{ "id": "ward", "authoredEffect": { "hero": "Hero_Vesper", "star": "outer.ward.a2" },
+  "maxRank": 1, "requires": ["edge"] }
+```
+
+- `hero` and `star` name the built-in star to copy. For an option of a choice star, give the parent star and `"option": 0` (0-based).
+- The copied star keeps its numbers, triggers and rank table. You set `maxRank` (no higher than the original) and may set `rankCost` (no lower than the original). `perRank`, `value` and `gimmick` cannot be combined with it. A copied keystone needs `keystone: true`.
+- `starTree.effectBindings` maps what the original refers to onto your tree:
+  - `stars`: original star ID → your local star ID. Required for every star the mechanism refers to (its owner, prerequisites, both ends of a pair-combo bridge, keystone targets).
+  - `memories` (optional): original memory → your memory or a base-game memory. Memories you leave out stay as they are.
+
+```json
+"effectBindings": {
+  "stars": { "outer.ward.a2": "ward" }
+}
+```
+
+- Mechanisms react to the game's usual memory events (use, hit, kill, owned attacks). If your memory deals damage or summons through its own code path without those events, a copied mechanism may never trigger. The report file lists your mapped memories with this warning.
+- A few mechanisms are tied to one specific built-in memory or keystone and cannot be moved; those declarations are rejected with the reason.
+
+With this, the built-in Vesper and Bismuth star maps can be rebuilt from a declaration file: every star, including all keystones, except Vesper's four expedition-training stars. The [examples](examples/) folder has both as reference declarations; their star IDs are the ones you can copy.
 
 Unknown fields are ignored, so a file written for a newer format still loads the parts this version understands.
 
