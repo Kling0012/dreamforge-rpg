@@ -20,9 +20,11 @@ Once your traveler exists in the game, Dreamforge picks it up automatically, eve
 - the display name in Japanese, English and Chinese
 - whether the traveler fights in melee (Dreamforge's melee co-op rules)
 - display names for the traveler's memories (skills) in Dreamforge's screens
-- a star map of its own (stat stars and keystones), checked against limits taken from the built-in travelers
+- a star map of its own: stat stars, memory stars, power stars, choice stars, clusters, gimmick stars and keystones, with your own connections and positions, checked against limits taken from the built-in travelers
 
-A declaration cannot change the built-in nine travelers or their stars. It also cannot set per-traveler difficulty or reward scaling, pair combos, memory routes or special-effect stars. Declared travelers always use the default scaling.
+A declaration cannot change the built-in nine travelers or their stars. It also cannot set per-traveler difficulty or reward scaling. Pair combos and the scripted mechanisms on some built-in stars and keystones cannot be declared yet. Declared travelers always use the default scaling.
+
+The extended star-map fields (everything beyond `stat`, `perRank`, `maxRank`, `tier`, `keystone`, `value` and `description`) arrive in the first release after v3.8.85.
 
 ## Quick start
 
@@ -80,6 +82,8 @@ Minimal file (name only, generic star map):
 
 ## Fields
 
+### Traveler
+
 | Field | Required | Meaning |
 | --- | --- | --- |
 | `dreamforgeApi` | yes | Format version. Use `1`. |
@@ -87,27 +91,65 @@ Minimal file (name only, generic star map):
 | `key` | yes | Class name of the Hero subclass. Starts with `Hero_`; letters, digits and `_`, up to 64 characters. |
 | `name` | no | Display name with `en`, `ja` and `zh`. A missing language falls back to `en`, then to the key without `Hero_`. |
 | `melee` | no | `true` for a melee traveler. Default `false`. |
-| `memories` | no | Display names for the traveler's memories (`key` is the memory class name). Display only; this does not add them to Dreamforge's loot or links. |
-| `starTree` | no | The traveler's own star map. Without it, the traveler uses the generic star map. |
-| `nodes[].id` | yes | Lowercase letters, digits and `_`, up to 32 characters, unique within the traveler. The saved star ID is `x.<key>.<id>`. |
-| `nodes[].stat` | yes | Stat name, such as `AttackPct`. See "Star map limits". |
-| `nodes[].perRank`, `maxRank` | for normal stars | Value per rank and number of ranks. |
-| `nodes[].tier` | no | `1` (inner ring, default) or `2` (outer ring). |
-| `nodes[].keystone`, `value`, `description` | for keystones | A keystone. It uses the same mastery requirement and cost as the built-in keystones. |
-| `nodes[].name` | no | Display name. Defaults to `id`. |
+| `memories` | no | The traveler's memories (`key` is the memory class name) with display names. Memory stars can target them. They are not added to Dreamforge's loot or links. |
+| `starTree` | no | The traveler's own star map (`nodes`, and optionally `clusters`). Without it, the traveler uses the generic star map. |
+
+### Stars (`starTree.nodes[]`)
+
+Every star has an `id`: lowercase letters, digits and `_`, up to 32 characters, unique within the traveler. The saved star ID is `x.<key>.<id>`. `name` is the display name (defaults to `id`).
+
+Each star has exactly one effect:
+
+| Effect | Fields | Meaning |
+| --- | --- | --- |
+| Stat | `stat`, `perRank`, `maxRank` | A stat bonus, such as `AttackPct`. |
+| Memory star | `link`, `memory`, `perRank`, `maxRank` | A bonus tied to one memory, using a link kind from the built-in memory routes (for example `MemoryDamage`, `MemoryHaste`, `MemorySurge`, `Guard`). `memory` is one of your `memories` or a base-game memory. |
+| Power | `power`, `perRank`, `maxRank` | A power star, such as `Aegis`. With `"kind": "Notable"` it is shown as a notable. |
+| Keystone | `keystone: true`, `value`, plus `stat` or `power` | A keystone. Stat keystones need `description`; power keystones use the power's own text when `description` is missing. Same mastery requirement as the built-in keystones. |
+| Choice | `choices`, `maxRank` | The player picks one of the listed options. Each option is a normal star without `id`, connections or position. |
+| Gimmick | `gimmick`, `memory`, `maxRank` | Reuses the gimmick of a built-in star, given by that star's ID (for example `h.vesper.route.resolve.2`). New gimmicks cannot be declared. |
+| Gimmick boost | `gimmickBoost`, `memory`, `maxRank` | Strengthens the gimmick on that memory. |
+| Gimmick parameter | `gimmickParam`, `perRank`, `maxRank`, `memory` | Raises one parameter of the gimmick, such as `Duration` or `Radius`. |
+| Memory modifier | `nativeModifier` or `scopedModifier`, `memory`, `maxRank` | Damage or haste for one memory, or a scoped bonus to other stars' effects, using the same units as built-in stars (100 units = 1%). |
+
+Placement and access, all optional:
+
+| Field | Meaning |
+| --- | --- |
+| `requires` | IDs of stars in the same tree. Taking any one of them opens this star. An empty list connects it to the center. Without `requires`, connections are automatic. |
+| `center` | `true` also connects the star to the center; `false` keeps an empty `requires` from doing so. |
+| `requiredStars`, `requiredAnyStars` | Stars that must already be taken (all of them / any one), in addition to the connections. |
+| `position` | `{ "ring": 2, "angle": -45 }` or `{ "x": 120, "y": -30 }`. Angle 0 is right, 90 is down. Without it, placement is automatic. |
+| `tier` | `1` (inner ring, default) or `2` (outer ring) for automatic placement. |
+| `cluster`, `clusterOrder` | The local ID of a cluster in `starTree.clusters` (each with `id` and `name`), and the order inside it. |
+| `isDreamRing` | Marks the star as part of the dream ring. |
+| `rankCost` | Points per rank. Defaults to the built-in cost. |
+
+Example of the extra star types, added to the `nodes` of the full example:
+
+```json
+{ "id": "blink_damage", "link": "MemoryDamage", "memory": "St_Q_NovaBlink",
+  "perRank": 1, "maxRank": 3, "requires": ["edge", "focus"],
+  "position": { "ring": 2, "angle": -45 } },
+{ "id": "aegis", "power": "Aegis", "perRank": 1, "maxRank": 3, "requires": ["blink_damage"] },
+{ "id": "pick", "maxRank": 1, "requires": ["aegis"], "choices": [
+    { "stat": "AttackPct", "perRank": 1, "maxRank": 1 },
+    { "power": "Aegis", "perRank": 1, "maxRank": 1 } ] }
+```
+
+Connections work both ways, like the built-in star maps. If the connections form a cycle, point to an unknown ID, or leave a star unreachable from the center, the traveler uses the generic star map and the reason goes to the report file.
 
 Unknown fields are ignored, so a file written for a newer format still loads the parts this version understands.
 
 ## Star map limits
 
-Limits are not fixed numbers in the code. Dreamforge works them out at startup from the core star maps of the built-in travelers, so they follow future balance changes.
+Limits are not fixed numbers in the code. Dreamforge works them out at startup from the star maps of the built-in travelers, so they follow future balance changes.
 
-- Only stats that appear on built-in normal stars can be used.
-- For each stat, `perRank` and `maxRank` cannot exceed the highest values used on built-in stars with that stat.
-- A keystone's `value` cannot exceed one fully ranked built-in star of the same stat.
-- The number of normal stars and keystones cannot exceed the largest built-in traveler.
+- Only stats, link kinds, powers, gimmick parameters and modifiers that appear on built-in stars can be used.
+- For each kind, a star must stay within all three of: the highest value per rank, the highest number of ranks, and the highest total (value × ranks) of a single built-in star of that kind. For example, a memory-damage star of 150.21% per rank is allowed with 1 rank but not with 3.
+- The numbers of stars, keystones, choice stars, options per choice and clusters, and `rankCost`, cannot exceed the largest built-in traveler. A star map can be as large as a built-in one (around 900 stars).
 
-Values over a limit are not rounded down. The traveler is still registered, but it uses the generic star map, and the reason is written to the report file. Stars are placed automatically; positions cannot be declared in version 1.
+Values over a limit are not rounded down. The traveler is still registered, but it uses the generic star map, and the reason is written to the report file. The report file lists every current limit.
 
 ## Checking your file
 
