@@ -6,6 +6,33 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.86 — Full star maps for traveler mods via the Hero Connector（2026-11-02）
+
+この版では、ヒーローコネクタを広げました。ほかの MOD が追加した旅人も、本体の旅人と同じように、星群・橋・外縁・キーストーン・2択を持つ星図を使えるようになります。あわせて、ヒーローコネクタの星図の宣言と連携報告に関する不具合を直しました。 / This version expands the Hero Connector so that travelers added by other mods can have star maps with clusters, bridges, outer regions, keystones, and choices, just like the base game's travelers. It also fixes issues with Hero Connector star map declarations and the connector report.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 新機能 / New features
+
+- 旅人を追加する MOD は、`starManifest` を使って、星群・橋・外縁・キーストーン・2択を持つ星図を宣言できるようになりました。 / Traveler mods can now declare star maps with clusters, bridges, outer regions, keystones, and choices through `starManifest`. 星図に不正な星があれば、その星だけを警告つきで外します。星図全体を読めないときは、これまでの形式の星図に戻ります。 / Invalid stars are omitted one by one with a warning, and if the whole manifest cannot be read, the traveler falls back to the existing tree format. 星図で参照できる記憶は、その旅人が `memories` で宣言した技だけです。ID の重複、本体やほかの旅人の星との ID の衝突、存在しない参照、本体の既存9人の同じ種類の星の最大を超える数値も、警告の対象になります。星の数にも上限があります。 / Stars can only reference memories that the traveler declares in `memories`. Duplicate IDs, ID collisions with base-game or other travelers' stars, missing references, and values above the maximum for the same kind of star among the nine existing travelers are also flagged. The number of stars is capped as well. 宣言した記憶ごとに、本体と同じ形と費用の記憶ルートが自動で作られ、星群の入口になります。 / Each declared memory automatically gets a memory route with the same shape and costs as the base game's, which serves as the entry point for clusters. 取得した星は本体の旅人と同じ形式で保存され、MOD を外しても、ほかの旅人のセーブは壊れません。 / Allocated stars are saved in the same format as the base game's travelers, and removing the mod does not break other travelers' saves. 協力プレイでは、星図の宣言も参加者のあいだで照合します。 / In co-op, star map declarations are also checked for a match between players. ペア連携・旅人別のスケール・Power の星は、`starManifest` では宣言できません。 / Pair combos, per-traveler scaling, and Power stars cannot be declared in `starManifest`. `starManifest` を持たない旅人 MOD は、これまでどおりに動きます。 / Traveler mods without `starManifest` work as before. 書き方は [MOD 作者向けガイド](https://github.com/Kling0012/dreamforge-rpg/blob/main/docs/MODDING.ja.md) に追加しました。 / The format has been added to the [guide for mod authors](https://github.com/Kling0012/dreamforge-rpg/blob/main/docs/MODDING.md). 既存の9人の旅人の星図・セーブ・数値は変わりません。 / The existing nine travelers' star maps, saves, and values are unchanged.
+- ヒーローコネクタの星図で、既存の機構・ペア連携・機構付きのキーストーンを参照して、星と記憶の対応を決められるようになりました。 / Hero Connector star maps can now reference existing mechanisms, pair combos, and typed keystones, and bind stars to memories. これで、Vesper と Bismuth の星図も、キーストーンを含めて再現できます（RunGrowth の星は除きます）。 / This makes it possible to reproduce the Vesper and Bismuth trees, keystones included, except for RunGrowth stars. 外部の記憶の効果が既存のイベントの通知を必要とするときは、作者向けの報告に注意が出ます。 / The author report shows a warning when an external memory's effect needs the existing event notifications.
+- ヒーローコネクタの星図に、指定できる欄を増やしました。記憶と Power の星とキーストーン、2択、星群の名前、既存の仕掛けの名前による参照と修飾、費用、夢の輪の属性、つながり、取得の条件、位置を指定できます。 / Added more fields to Hero Connector star maps: memory and Power stars and keystones, choices, cluster names, references to existing gimmicks by name and their modifiers, costs, dream-ring attributes, connections, allocation prerequisites, and positions. 種類ごとの上限は既存の9人の星図から求め、作者向けの報告に表示します。 / Per-kind limits are derived from the nine existing travelers' star maps and shown in the author report. 既存の星図を書き出し、登録し直して比べられる道具も追加しました。 / Also added a tool that exports existing star maps, re-registers them, and compares the results. これまでの宣言は、そのまま使えます。 / Existing declarations remain compatible.
+
+### 不具合の修正 / Bug fixes
+
+- ヒーローコネクタで、記憶ルートの一部だけを参照する小さな星図を作ると、内部エラーになっていました。これを直しました。 / Fixed internal errors when a small Hero Connector star map references only part of a memory route.
+- ヒーローコネクタで、別々の既存の星から1段あたりの値の最大と段数の最大を取って組み合わせると、どの既存の星よりも合計の大きい星を宣言できてしまいました。 / In the Hero Connector, combining the per-rank maximum and the rank-count maximum taken from different existing stars allowed a star whose total exceeded every existing star of the same kind. 今は、段のある効果と2択の選択肢について、1つの星の合計も確かめます。上限と、受け付けなかった理由は作者向けの報告に表示します。 / Ranked effects and choice options now also have each star's total checked, and the limits and rejection reasons appear in the author report.
+- 旅人 MOD の連携報告に、同じ MOD の結果が重複して表示されていました。これを直しました。 / Fixed duplicate results for the same mod in the traveler connector report.
+- 星図を読み込むときに不正な星を外すと、ID の前半が同じ別の星まで一緒に外れてしまいました。これを直しました。 / When the star map loader omitted an invalid star, other stars whose IDs began the same way were omitted too. This is now fixed.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.85 — Hero Connector for other mods' travelers, plus co-op and performance fixes（2026-11-01）
 
 この版では、ほかの MOD が追加した旅人を Dreamforge で使えるようにする「ヒーローコネクタ」を追加しました。あわせて、ほかの MOD の旅人で技を使うたびにエラーが出る不具合、協力プレイのゲストでスキルが使えないまま戻らないことがある不具合、長く遊ぶと部屋の移動が重くなる問題などを直しました。 / This version adds the Hero Connector, which lets travelers added by other mods be used in Dreamforge. It also fixes errors when another mod's traveler uses skills, guests in co-op sometimes staying unable to use skills, and room changes slowing down over long sessions, among other issues.
