@@ -6,6 +6,25 @@ The Dreamforge RPG changelog, newest first.
 
 ---
 
+## v3.8.87 — Hero Connector fixes for mixed file and runtime API registration（2026-11-02）
+
+この版では、ヒーローコネクタで、同じ MOD が宣言ファイルとランタイム API を併用したときに連携報告とキャッシュが上書きされる不具合を直しました。 / This version fixes the Hero Connector's report and cache being overwritten when the same mod uses both a declaration file and the runtime API.
+
+### 更新前に確認 / Before updating
+
+- 協力プレイでは、参加者全員がこのバージョンに更新してください。 / Everyone in co-op should update to this version.
+- セーブデータはそのまま引き継げます。 / Saves carry over.
+- 更新後はゲームを再起動してください。 / Restart the game after updating.
+
+### 不具合の修正 / Bug fixes
+
+- 同じ MOD が宣言ファイル（`dreamforge.json`）とランタイム API の両方で旅人を登録すると、ヒーローコネクタの連携報告とキャッシュで一方の結果がもう一方を上書きしていました。これを直しました。 / Fixed one registration overwriting the other in the Hero Connector's report and cache when the same mod registers travelers through both a declaration file (`dreamforge.json`) and the runtime API. 連携報告では、ランタイム API で登録した項目に「runtime API」と表示します。 / The connector report now labels entries registered through the runtime API as "runtime API".
+- 宣言ファイルの形式が壊れていると、読み込むたびに同じ警告が繰り返し出ていました。今は、内容が変わらないあいだは受け付けなかった結果を保持し、同じ警告を繰り返しません。 / A malformed declaration file caused the same warning to appear again on every scan. Rejected declarations are now kept while their content is unchanged, so the warning is not repeated. 報告の「file rejected」の行はこれまでどおり表示されます。星図（`starManifest`）の読み込みに失敗したときだけ、次の読み込みで読み直します。 / The "file rejected" line still appears in the report, and only star-map (`starManifest`) read failures are retried on the next scan.
+
+この版の変更は、コードとテストで確認したもので、実際のゲームと協力プレイでの確認はまだです。おかしな点があれば教えてください。 / These changes were verified by code and tests, not yet in the live game or co-op. Please report anything odd.
+
+---
+
 ## v3.8.86 — Full star maps for traveler mods via the Hero Connector（2026-11-02）
 
 この版では、ヒーローコネクタを広げました。ほかの MOD が追加した旅人も、本体の旅人と同じように、星群・橋・外縁・キーストーン・2択を持つ星図を使えるようになります。あわせて、ヒーローコネクタの星図の宣言と連携報告に関する不具合を直しました。 / This version expands the Hero Connector so that travelers added by other mods can have star maps with clusters, bridges, outer regions, keystones, and choices, just like the base game's travelers. It also fixes issues with Hero Connector star map declarations and the connector report.
